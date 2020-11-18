@@ -89,21 +89,22 @@ class acceptRequest extends Component{
         const { task } = this.state;
         return (
             <Grid container>
-            <Grid item md={1} xs={0}></Grid>
-            <Grid item md={10} xs={12} >
+            <Grid item md={1}></Grid>
+            <Grid item md={10}>
 
-                <ul style={{listStyle:'none'}}>
+                <ul>
                     {task.map(t=>( ((t.status==="pending")&&(!t.serviceprovideremail))?(
-                        <li key={t._id} style={{display:'inline-flex',marginRight:'40px',marginTop:'40px'}}>
+                        <li key={t._id}>
                  
 
-        <Card   style={{maxWidth:'335px',}}
+        <Card  className={classes.root}
          >
         <CardActionArea>
           <CardMedia    
-        
+           className={classes.media}    
+           title="Contemplative Reptile"
           />
-         <img src= {this.getimage(t.servicetype)} alt={"no content"}style={{maxHeight:'350px',maxWidth:'280px',}}/>
+         <img src= {this.getimage(t.servicetype)} alt={"no content"}style={{maxHeight:'350px',maxWidth:'350px',}}/>
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
              Title: {t.title}
@@ -154,7 +155,6 @@ class acceptRequest extends Component{
                     ))}
                 </ul>
       </Grid>
-       <Grid item md={1} xs={0}></Grid>
       </Grid>
         );
       }

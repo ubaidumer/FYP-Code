@@ -161,7 +161,7 @@ console.log(  this.state.title,
     render()
     {
     return ( 
-        <Grid container >
+        <Grid container>
          <Grid item md={3}>
 
          </Grid>
@@ -169,23 +169,23 @@ console.log(  this.state.title,
            
          <Paper elevation={3} >
          <form onSubmit ={this.handleSubmit} >
-         <Typography variant='h3' style={{textAlign:'center',marginTop:'20px',paddingTop:'20px',backgroundColor:'#52a8a7',paddingBottom:'20px',color:'#2d4a6b'}}>
+         <Typography variant='h3' style={{textAlign:'center',marginTop:'20px',paddingTop:'20px',backgroundColor:'#52a8a7',paddingBottom:'20px'}}>
              Post a task
          </Typography>
         <div style={{marginLeft:'20px',marginRight:'20px',textAlign:'center'}}>
          <div >
-             <Typography variant='h4' style={{color:'#2d4a6b'}}>
+             <Typography variant='h4'>
                  Title
              </Typography>
              <div style={{fontSize:12, color:'red'}}> 
              {this.state.titleError}     </div>
-         <input name="title" placeholder="Enter the title" value={this.state.title} onChange={this.handleChange} style={{marginTop:'10px',border:'0.1rem solid #d9d9d9',height:'30px',borderRadius:'18px',width:'70%',marginBottom:'20px',textAlign:'center'}} type='text'/>
+         <input name="title" placeholder="Title" value={this.state.title} onChange={this.handleChange} style={{width:'60%'}} type='text'/>
     
         </div>
         <div style={{textAlign:'center',marginLeft:'20px',marginTop:'20px'}}>
         <div style={{fontSize:12, color:'red'}}> 
              {this.state.ServiceError}     </div>
-        <Typography variant='h4' style={{color:'#2d4a6b'}}>
+        <Typography variant='h4'>
                  Service type <span>   <select id="servicetype"onChange={this.handleChange}style={{width:'150px',marginBottom:'20px',height:'30px',marginLeft:'20px',border:'0px solid #fff'}}>
                                 <option value="">Select</option>
                                 <option value="Maid">Maid</option>
@@ -201,7 +201,7 @@ console.log(  this.state.title,
         <div>
         <div style={{fontSize:12, color:'red'}}> 
              {this.state.cityError}     </div>
-        <Typography variant='h4' style={{color:'#2d4a6b'}}>
+        <Typography variant='h4'>
                  Location  <span>   <select id="city" onChange={this.handleChange}style={{width:'150px',marginBottom:'20px',height:'30px',marginLeft:'20px',border:'0px solid #fff'}}>
                                 <option value="">Select</option>
                                 <option value="Lahore">Lahore</option>
@@ -211,39 +211,36 @@ console.log(  this.state.title,
                                 </Typography>
              <div style={{fontSize:12, color:'red'}}> 
              {this.state.LocationError}     </div>
-         <input name="Area" placeholder="Enter your Area"  value={this.state.Area}  onChange={this.handleChange} style={{marginTop:'10px',border:'0.1rem solid #d9d9d9',height:'30px',borderRadius:'18px',width:'30%',marginBottom:'20px',textAlign:'center'}} type='text' />
+         <input name="Area" placeholder="Area"  value={this.state.Area}  onChange={this.handleChange} style={{width:'30%',marginLeft:'10px',marginTop:'10px'}} type='text' />
          <div style={{fontSize:12, color:'red'}}> 
              {this.state.streetNoError}     </div>
-         <input name="streetNo" placeholder="Enter your Street No"   value={this.state.streetNo}  onChange={this.handleChange} style={{marginTop:'10px',border:'0.1rem solid #d9d9d9',height:'30px',borderRadius:'18px',width:'30%',marginBottom:'20px',textAlign:'center'}} type='text' />
+         <input name="streetNo" placeholder="Street No"   value={this.state.streetNo}  onChange={this.handleChange} style={{width:'30%',marginLeft:'10px',marginTop:'10px'}} type='text' />
          <div style={{fontSize:12, color:'red'}}> 
              {this.state.houseNoError}     </div>
-         <input name="houseNo" placeholder="Enter yourHouse No"  value={this.state.houseNo}  onChange={this.handleChange} style={{marginTop:'10px',border:'0.1rem solid #d9d9d9',height:'30px',borderRadius:'18px',width:'30%',marginBottom:'20px',textAlign:'center'}} type='text'/>
+         <input name="houseNo" placeholder="House No"  value={this.state.houseNo}  onChange={this.handleChange} style={{width:'30%',marginLeft:'10px',marginTop:'10px'}} type='text'/>
         
         </div>
         <div>
-        <Typography variant='h4' style={{marginTop:'20px',marginBottom:'20px',color:'#2d4a6b'}}>
+        <Typography variant='h4'>
                  Bidding
              </Typography>
         
              <div style={{fontSize:12, color:'red'}}> 
              {this.state.perTaskError}     </div>
-         <input name="perTask" placeholder="Per Task"  value={this.state.perTask}  onChange={this.handleChange}
-          style={{marginTop:'10px',border:'0.1rem solid #d9d9d9',height:'30px',borderRadius:'18px',width:'30%',marginBottom:'20px',textAlign:'center'}} type='text' />
+         <input name="perTask" placeholder="Per Task"  value={this.state.perTask}  onChange={this.handleChange} style={{width:'20%',marginLeft:'10px',marginTop:'10px'}} type='text' />
          <div style={{fontSize:12, color:'red'}}> 
              {this.state.perHourError}     </div>
-         <input name="perHour"  id="hehe" placeholder="Per Hour"   value={this.state.perHour}  onChange={this.handleChange}
-          style={{marginTop:'10px',border:'0.1rem solid #d9d9d9',height:'30px',borderRadius:'18px',width:'30%',marginBottom:'20px',textAlign:'center'}} type='text' />
+         <input name="perHour"  id="hehe" placeholder="Per Hour"   value={this.state.perHour}  onChange={this.handleChange} style={{width:'20%',marginLeft:'10px',marginTop:'10px'}} type='text' />
          <div style={{fontSize:12, color:'red'}}> 
              {this.state.perMonthError}     </div>
-         <input name="perMonth" placeholder="Per Month"  value={this.state.perMonth}  onChange={this.handleChange}
-          style={{marginTop:'10px',border:'0.1rem solid #d9d9d9',height:'30px',borderRadius:'18px',width:'30%',marginBottom:'20px',textAlign:'center'}} type='text' />
+         <input name="perMonth" placeholder="Per Month"  value={this.state.perMonth}  onChange={this.handleChange} style={{width:'20%',marginLeft:'10px',marginTop:'10px'}} type='text' />
 
          </div>
          <div style={{marginTop:'20px'}}>
-         <Typography variant='h4' style={{textAlign:'center',color:'#2d4a6b'}}>
+         <Typography variant='h4' style={{textAlign:'center'}}>
              <div style={{marginBottom:'10px'}}>Time Duration</div>
-            <div> <span ><label style={{paddingLeft:'50px',marginTop:'20px'}}>Start Time </label ><input id="starttime" type="time"onChange={this.handleChange}style={{width:'20%'}}/></span></div> 
-            <div>  <span ><label style={{marginLeft:'40px',paddingLeft:'20px',paddingTop:''}}>End Time </label><input type="time" id="endtime"onChange={this.handleChange}style={{width:'20%'}}/></span></div> 
+            <div> <span ><label style={{paddingLeft:'50px'}}>Start Time </label ><input id="starttime" type="time"onChange={this.handleChange}style={{width:'20%'}}/></span></div> 
+            <div>  <span ><label style={{marginLeft:'40px',paddingLeft:'20px'}}>End Time </label><input type="time" id="endtime"onChange={this.handleChange}style={{width:'20%'}}/></span></div> 
             <div>
             <label style={{marginLeft:'40px',paddingLeft:'20px'}}>Month </label> <span>   <select id="month"onChange={this.handleChange} style={{width:'150px',marginBottom:'20px',height:'30px',marginLeft:'20px',border:'0px solid #fff'}}>
                                 <option value="0">0</option>
@@ -265,7 +262,7 @@ console.log(  this.state.title,
          </Typography>
          </div>
          <div>
-           <Typography variant='h4' style={{textAlign:'center',color:'#2d4a6b'}}>
+           <Typography variant='h4' style={{textAlign:'center'}}>
            <div>
              <h6 style={{marginBlockStart:'1.0em',marginBlockEnd:'1.0em'}}>
                 Description
@@ -275,8 +272,7 @@ console.log(  this.state.title,
            </Typography>
           </div>
          </div>
-         <button style={{marginTop:'20px',marginBottom:'20px',marginLeft:'30%',width:'40%',marginRight:'30%',backgroundColor:'#2d4a6b',color:'white',height:'30px'
-        ,borderRadius:'10px'}}>Post</button>
+         <button style={{marginTop:'20px',marginBottom:'20px',marginLeft:'30%',width:'40%',marginRight:'30%',}}>Post</button>
          </form>
          </Paper>
          </Grid>
