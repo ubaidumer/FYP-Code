@@ -134,7 +134,7 @@ class payment extends React.Component {
           // localStorage.setItem("token", result.data);
         console.log("Successfull emailed");
           setTimeout(function () {
-            window.location = "/";
+            window.location = "/rating";
           }, 2000);
         })
         .catch((err) => {

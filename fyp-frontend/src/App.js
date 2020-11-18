@@ -37,9 +37,7 @@ class App extends Component {
               <Route path="/workHistory" component={workHistory}/>
               <Route path="/rating" component={rating}/>
               <Route path="/admindashboard" component={admindashboard}/>
-
-
-
+              
             </BrowserRouter>
           
         </main>

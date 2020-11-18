@@ -83,7 +83,7 @@ class customerSignup extends Component {
           // localStorage.setItem("token", result.data);
         console.log("Successfull signup");
           setTimeout(function () {
-            window.location = "/";
+            window.location = "/login";
           }, 2000);
         })
         .catch((err) => {
