@@ -10,6 +10,7 @@ const {CProfile}    = require('../../models/Customer/CProfile');
 const { Task } = require('../../models/Customer/PostTask');
 const { date } = require("joi");
 
+
 router.use(bodyparser.json());
 router.use(bodyparser.urlencoded({ extended: false }));
 
@@ -150,5 +151,6 @@ router.post("/signup", async (req,res) => {
 
 
 
+  
  router.update;
  module.exports = router;
