@@ -134,7 +134,7 @@ class payment extends React.Component {
           // localStorage.setItem("token", result.data);
         console.log("Successfull emailed");
           setTimeout(function () {
-            window.location = "/";
+            window.location = "/rating";
           }, 2000);
         })
         .catch((err) => {
@@ -160,7 +160,7 @@ class payment extends React.Component {
     return ( 
 
 
-      <Grid container style={{paddingTop:'5px',paddingBottom:'40px'}}>
+      <Grid container>
           <Grid item md={1}></Grid>
           <Grid item md={6} xs={12} style={{marginRight:'20px',marginLeft:'20px'}}>
           <Paper style={{marginTop:'50px', border:'1px solid #000'}} elevation={3}>

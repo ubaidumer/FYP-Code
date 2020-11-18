@@ -26,10 +26,10 @@ class orderHistory extends Component {
             <h3 style={{textAlign:'center'}}>
                 Order History
             </h3>
-            <ul style={{listStyle:'none'}}>
+            <ul>
                 {
                     task.map(t=>(
-                        <li key={t._id} style={{marginTop:'20px',marginBottom:'20px'}}>
+                        <li key={t._id}>
             <Paper elevation={3}>
         <table style={{borderCollapse: "separate", borderSpacing:'30px'}}>
               <thead>
