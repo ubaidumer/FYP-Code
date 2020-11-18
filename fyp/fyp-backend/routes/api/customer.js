@@ -1,0 +1,115 @@
+const express    = require("express");
+const router     = express.Router();
+const bcrypt     = require("bcryptjs");
+const bodyparser = require("body-parser");
+const decode     = require("jwt-decode");
+const { Customer , validateCustomer, validateLogin } = require('../../models/Customer/Customer');
+const { setToken } = require("../../auth/auth");
+const {OrderHistory}= require('../../models/Customer/OrderHistory');
+
+
+router.use(bodyparser.json());
+router.use(bodyparser.urlencoded({ extended: false }));
+
+
+// Customer sign-up fr-
+router.post("/signup", async (req,res) => {
+
+    console.log(
+        "signUp Backend ",
+        req.body.firstname,
+        req.body.lastname,
+        req.body.email,
+        req.body.password,
+        req.body.contactno
+      );
+  // Validate Schema
+  const { error } = validateCustomer(req.body);
+  if (error) {
+    console.log("validation Error", error);
+    return res.status(400).send(error.details[0].message);
+  }
+
+  // Check if this Customer already exisits
+  let user = await Customer.findOne({ email: req.body.email });
+  if (user) {
+    console.log("Customer already exists");
+    return res.status(400).send("Customer already exists!");
+  } 
+  // Insert the new Customer if they do not exist yet
+  else {
+    try {
+      user = new Customer({
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        email: req.body.email,
+        password: req.body.password,
+        contactno: req.body.contactno,
+        isAdmin: false,
+        isApproved: false,
+      });
+    } catch (ex) {
+      console.log("Error in creating Customer", ex);
+    }
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(user.password, salt);
+
+    await user.save();
+    const token = setToken(user._id, user.isApproved, user.email, user.isAdmin);
+    console.log("token", token);
+    res
+      .header("x-auth-token", token)
+      .header("access-control-expose-headers", "x-auth-token")
+      .send(token);
+  }
+
+ });
+
+ // Customer Log-in fr-
+ router.post("/login", async (req, res) => {
+    const { error } = validateLogin(req.body);
+  
+    if (error) {
+      return res.status(400).send(error.details[0].message);
+    }
+  
+    let user = await Customer.findOne({ email: req.body.email });
+    if (user) {
+      const validatePassword = await bcrypt.compare(req.body.password,user.password);
+      if (!validatePassword)
+      {
+           res.status(400)
+      }    
+      try{
+      const token = setToken(user._id, user.email, user.isAdmin, user.isApproved);
+      res
+        .header("x-auth-token", token)
+        .header("access-control-expose-headers", "x-auth-token")
+        .send(token)
+        .status(200)
+      }
+      catch(ex){
+         console.log("Setting token Exception" , ex)
+      }
+    } else res.status(400).send("No Registered Customer exists");
+  });
+  router.get("/view", async (req, res) => {
+    const jwt = decode(req.header("x-auth-token"));
+    const task = await OrderHistory.find({customer:jwt.id});
+    if (!task) res.status(400);
+    res.send(task);
+  });
+  router.get("/info", async (req, res) => {
+    const jwt = decode(req.header("x-auth-token"));
+    const task = await OrderHistory.findOne({customer:jwt.id,isRated:"no"});
+    if (!task) res.status(400);
+    res.send(task);
+  });
+  router.get("/email:id", async (req, res) => {
+    const task = await Customer.findById({_id:req.params.id});
+    if (!task) res.status(400);
+    res.send(task.email);
+  });
+  
+ router.update;
+ module.exports = router;
