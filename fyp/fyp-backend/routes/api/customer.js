@@ -6,7 +6,9 @@ const decode     = require("jwt-decode");
 const { Customer , validateCustomer, validateLogin } = require('../../models/Customer/Customer');
 const { setToken } = require("../../auth/auth");
 const {OrderHistory}= require('../../models/Customer/OrderHistory');
-
+const {CProfile}    = require('../../models/Customer/CProfile');
+const { Task } = require('../../models/Customer/PostTask');
+const { date } = require("joi");
 
 router.use(bodyparser.json());
 router.use(bodyparser.urlencoded({ extended: false }));
@@ -55,6 +57,20 @@ router.post("/signup", async (req,res) => {
     user.password = await bcrypt.hash(user.password, salt);
 
     await user.save();
+
+
+    let date= new Date();
+    let d=""+date.getDate()+"/"+date.getMonth()+"/"+date.getFullYear()+"";
+    let profile= new CProfile({
+      customer: user._id,
+      customername: ""+user.firstname+" "+user.lastname+"",
+      taskcompleted:0,
+      creditspent:0,
+      joindate: d
+    });
+
+     await profile.save();
+
     const token = setToken(user._id, user.isApproved, user.email, user.isAdmin);
     console.log("token", token);
     res
@@ -110,6 +126,29 @@ router.post("/signup", async (req,res) => {
     if (!task) res.status(400);
     res.send(task.email);
   });
+
+  router.get("/profile", async ( req , res )=>{
+    const jwt = decode(req.header("x-auth-token"));
+    const profile = await CProfile.findOne({customer:jwt.id});
+    if(!profile)res.status(400);
+    res.send(profile);
+  });
+  router.get("/postedtasks", async ( req , res )=>{
+    const jwt = decode(req.header("x-auth-token"));
+    const task = await Task.find({customer:jwt.id,status:"pending"});
+ 
+    console.log(task);
+    res.send(task);
+  });
+  router.get("/activetasks", async ( req , res )=>{
+    const jwt = decode(req.header("x-auth-token"));
+    const task = await Task.find({customer:jwt.id,status:"in progress"});
+ 
+    res.send(task);
+  });
   
+
+
+
  router.update;
  module.exports = router;

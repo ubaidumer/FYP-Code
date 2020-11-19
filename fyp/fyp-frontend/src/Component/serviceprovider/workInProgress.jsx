@@ -88,12 +88,12 @@ class workInProgress extends Component{
             <Grid item md={1}></Grid>
             <Grid item md={10}>
 
-                <ul>
+                <ul style={{listStyle:'none'}}>
                     {task.map(t=>( t.status==="in progress" ?(
-                        <li key={t._id}>
+                        <li key={t._id} style={{marginLeft:'20px'}}>
                  
 
-        <Card  className={classes.root}
+        <Card  className={classes.root} style={{maxWidth:'335px'}}
          >
         <CardActionArea>
           <CardMedia    

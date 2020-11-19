@@ -9,6 +9,7 @@ const { ServiceProvider }= require("../../models/Service Provider/ServiceProvide
 const {Payment} = require("../../models/Customer/Payment");
 const {OrderHistory}= require("../../models/Customer/OrderHistory");
 const {WorkHistory}= require("../../models/Service Provider/WorkHistory");
+const {CProfile}= require("../../models/Customer/CProfile");
 router.use(bodyparser.json());
 router.use(bodyparser.urlencoded({ extended: false }));
 
@@ -83,6 +84,20 @@ router.get('/paymentbyCash', async( req , res )=>{
       isRated:"no"
     });
     await order.save();
+
+    const profile = await CProfile.findOne({customer:jwt.id});
+
+    let t=profile.taskcompleted;
+    let c=profile.creditspent;
+
+    await CProfile.findOneAndUpdate({customer:jwt.id},{
+
+      $set:{
+
+        taskcompleted:t+1,
+        creditspent:c+Math.abs(((order.month*order.permonth)+(order.pertask)+(order.perhour*(parseInt(order.endtime)-parseInt(order.starttime))*(order.month*30)))),
+      },
+    },{new:true})
 
     table.deleteOne({customer:user._id});
         res.send(200);

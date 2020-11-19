@@ -153,6 +153,21 @@ router.use(bodyparser.urlencoded({ extended: false }));
 
     });
 
+    router.get("/viewAll", async (req,res)=>{
+
+
+      const service = await ServiceProvider.find();
+
+      res.send(service);
+
+    });
+
+    router.post("/getServicebbytype", async (req,res)=>{
+
+      const service = await ServiceProvider.find({servicetype:req.body.type});
+
+      res.send(service);
+    });
 
  router.update;
  module.exports = router;
