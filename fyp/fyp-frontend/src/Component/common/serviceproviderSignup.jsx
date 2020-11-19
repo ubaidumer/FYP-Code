@@ -82,7 +82,7 @@ class serviceproviderSignup extends Component {
           // localStorage.setItem("token", result.data);
         console.log("Successfull signup");
           setTimeout(function () {
-            window.location = "/login";
+            window.location = "/";
           }, 2000);
         })
         .catch((err) => {
