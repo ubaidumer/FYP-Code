@@ -1,8 +1,8 @@
 import React ,{Component} from 'react';
 import { Grid, Paper } from '@material-ui/core';
-import * as historyService from "../../Axios-Actions/historyService";
+import * as customerService from "../../Axios-Actions/customerService";
 
-class workHistory extends Component {
+class postedTasks extends Component {
     constructor() {
         super();
         this.state = {
@@ -11,7 +11,7 @@ class workHistory extends Component {
         };
     }
        componentDidMount(){
-           historyService.getAllWorks()
+           customerService.getpostedtasks()
            .then((result) => {
             this.setState({ task: result.data });
           })
@@ -24,7 +24,7 @@ class workHistory extends Component {
         <Grid item md={2}></Grid>
         <Grid item md={8} xs={12}>
             <h3 style={{textAlign:'center'}}>
-                Work History
+                Posted Tasks
             </h3>
             <ul style={{listStyle:'none'}}>
                 {
@@ -33,7 +33,7 @@ class workHistory extends Component {
             <Paper elevation={3}>
         <table style={{borderCollapse: "separate", borderSpacing:'30px'}}>
               <thead>
-              <tr >
+                  <tr >
                   <th >
                       Title
                   </th>
@@ -49,14 +49,11 @@ class workHistory extends Component {
                   <th>
                       Service type
                   </th>
-                  <th>
+                  <th >
                       Location
                   </th>
                   <th>
                       Total Bill
-                  </th>
-                  <th>
-                      Customer Email
                   </th>
                   </tr>
               </thead>
@@ -72,7 +69,7 @@ class workHistory extends Component {
              {t.endtime}
                   </td>
                   <td>
-            {t.month}
+             {t.month}
                   </td>
                   <td>
             {t.servicetype}
@@ -82,9 +79,6 @@ class workHistory extends Component {
                   </td>
                   <td>
             {(t.month*t.permonth)+(t.pertask)+(t.perhour*(parseInt(t.endtime)-parseInt(t.starttime))*(t.month*30))}
-                  </td>
-                  <td>
-            {t.customeremail}
                   </td>
                
                   </tr>
@@ -109,4 +103,4 @@ class workHistory extends Component {
 
 
  
-export default workHistory ;
+export default postedTasks;

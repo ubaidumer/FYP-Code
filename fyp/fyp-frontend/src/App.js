@@ -14,6 +14,13 @@ import payment from "./Component/customer/payment";
 import rating from "./Component/customer/rating";
 import admindashboard from "./Component/admin/admindashboard";
 import adminLogin from "./Component/common/adminlogin";
+import HomeScreen from "./Component/common/HomeScreen";
+import Footer from "./Component/common/Footer";
+import Header from "./Component/common/Header";
+import customerDashboard from "./Component/customer/customerDashboard";
+import viewServiceProvider from "./Component/customer/viewServiceProviders";
+import postedtask from "./Component/customer/postedTasks";
+import activetask from "./Component/customer/activeTasks";
 
 class App extends Component {
   renderComp() {}
@@ -22,9 +29,12 @@ class App extends Component {
     return (
       
         <main className="Container">
-        
+           
             <BrowserRouter>
-              <Route path="/adminLogin" component={adminLogin}/>         
+            
+              <Route path="/adminLogin" component={adminLogin}/>   
+              <Route path="/viewserviceprovider" component={viewServiceProvider}/>   
+              <Route path="/customerdashboard" component={customerDashboard}/>      
               <Route path="/serviceproviderSignup" exact={true} component={serviceproviderSignup} />
               <Route path="/customerSignup" component={customerSignup} />
               <Route path="/login" component={Login}/>
@@ -37,10 +47,17 @@ class App extends Component {
               <Route path="/workHistory" component={workHistory}/>
               <Route path="/rating" component={rating}/>
               <Route path="/admindashboard" component={admindashboard}/>
+              <Route path="/postedtask" component={postedtask}/>
+              <Route path="/activetask" component={activetask}/>
               
+
+              <Route path="/" exact={true} component={HomeScreen}/>
+
+
             </BrowserRouter>
-          
+         
         </main>
+    
       
     );
   }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as authService from'../../Axios-Actions/authService';
-import { Grid, Radio, Typography } from '@material-ui/core';
+import { Button, Grid, Paper, Radio, Typography } from '@material-ui/core';
+import  { Redirect } from 'react-router-dom'
 import img1 from './work.jpg';
 import Joi from "joi-browser";
 
@@ -79,8 +80,9 @@ class Login extends Component {
   
         console.log("Successfully loged in!");
         setTimeout(function () {
-          window.location = "/";
+          window.location = "/postatask";
         }, 2000);
+    
       })
       .catch((err) => {
         this.setState({ invalid: true });
@@ -113,35 +115,37 @@ class Login extends Component {
 
         </Grid>
         <Grid item md={6} xs={12} style={{marginTop:'50px'}}>
+      
         <Typography  variant="h1" style={{color: "#5e7bdb"}}>Welcome to XsSupport</Typography>
         <Typography  variant="h4" style={{color: "#5e7bdb",marginTop:'40px'}}>
                 A world where ease is at your hands</Typography>
                   <img src= {img1} alt={"no content"}style={{maxHeight:'400px',maxWidth:'700px'}}/>
           
-         <Typography  variant="h4" style={{color: "#5e7bdb",marginTop:'40px'}}>
+         <Typography  variant="h4" style={{color: "#5e7bdb",marginTop:'20px',marginBottom:'20px'}}>
                Register to be a part of our team.</Typography>
         </Grid>
         <Grid item md={4} xs={12}  style={{marginTop:'50px'}}>
+          <Paper elevation={3} style={{marginLeft:'20px'}} >
         <div className="form"  >
             <form >
-            <ul className="form-container" >
-                <li>
-                <Typography  variant="h3" style={{color: "#5e7bdb",marginTop:'20px',textAlign:'center',marginRight:'10px'}}>Sign In</Typography>
+            <ul className="form-container" style={{listStyle:'none',marginLeft:'30px',}}>
+                <li style={{paddingTop:'20px'}}>
+                <Typography  variant="h4" style={{color: "#5e7bdb",marginBottom:'20px',textAlign:'center',marginRight:'50px'}}>Sign In</Typography>
                 </li>
               
                 <li>
                     <label htmlFor="email">
-                    <Typography  variant="h4" style={{color: "#5e7bdb"}}>Email</Typography>
+                    <Typography  variant="h5" style={{color: "#5e7bdb"}}>Email</Typography>
                     </label>
-                    <input style={{marginTop:'10px',border:'0.1rem #ffffff',height:'30px'}} onChange={this.onChange}type="email" name="email" id="email" >
+                    <input style={{marginTop:'10px',border:'0.1rem solid #d9d9d9',height:'30px',borderRadius:'18px',width:'70%',marginBottom:'20px'}} onChange={this.onChange}type="email" name="email" id="email" >
 
                     </input>
                 </li>
                 <li>
                     <label htmlFor="password" style={{marginTop:'10px'}}>
-                    <Typography  variant="h4" style={{color: "#5e7bdb"}}>Password</Typography>
+                    <Typography  variant="h5" style={{color: "#5e7bdb"}}>Password</Typography>
                     </label>
-                    <input style={{marginTop:'10px',border:'0.1rem #ffffff',height:'30px'}} onChange={this.onChange}type="password" name="password" id="password" >
+                    <input style={{marginTop:'10px',border:'0.1rem solid #d9d9d9',height:'30px',borderRadius:'18px',width:'70%',marginBottom:'20px'}} onChange={this.onChange}type="password" name="password" id="password" >
 
                     </input>
                 </li>
@@ -168,17 +172,24 @@ class Login extends Component {
 Sign in as a customer.
 </span>
                 </li>
-                <li>
-                <button style={{marginTop:'20px',backgroundColor:'#4a95f7'}} type="submit"onClick={this.onSubmit}  className="button-primary"> <Typography  variant="h5" style={{textAlign:'center',color: "white",fontWeight:'bold'}}>Sign in</Typography> </button>
+                <li><center>
+                  
+                <button style={{marginTop:'20px',backgroundColor:'#4a95f7',borderRadius:'9px',width:'40%',marginRight:'60px'}} 
+                type="submit"onClick={this.onSubmit}  className="button-primary"> <Typography  variant="h5" style={{textAlign:'center',color: "white",fontWeight:'bold'}}>Sign in</Typography> </button>
+               
+               </center>
                 </li>
                 <li style={{marginTop:'20px'}}>
                     Dont have an account yet?
+                  <a href="/customerSignup" > <Button>Sign up as customer</Button> </a>
                 </li>
                  <Typography  variant="h5" style={{textAlign:'center',color: "white",fontWeight:'bold'}}>Create your account now!</Typography>
-                <p> Terms and conditions... </p>
+                Terms and conditions... 
+                <p style={{marginLeft:'20px'}}> _______</p>
             </ul>
             </form>
         </div>
+        </Paper>
         </Grid>
         </Grid>
     );

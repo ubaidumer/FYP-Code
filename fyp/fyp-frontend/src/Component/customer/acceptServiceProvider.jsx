@@ -105,21 +105,21 @@ class acceptServiceProvider extends Component{
         return (
             <Grid container>
             <Grid item md={1}></Grid>
-            <Grid item md={10}>
+            <Grid item md={10} xs={12}>
 
                 <ul>
                     {task.map(t=>( ((t.status==="pending")&&(t.serviceprovideremail))?(
-                        <li key={t._id}>
+                        <li key={t._id} style={{display:'inline-flex',marginRight:'40px',marginTop:'40px'}}>
                  
 
-        <Card  className={classes.root}
+        <Card  className={classes.root} style={{maxWidth:'335px'}}
          >
         <CardActionArea>
-          <CardMedia    
+          <CardMedia  
            className={classes.media}    
            title="Contemplative Reptile"
           />
-         <img src= {this.getimage(t.servicetype)} alt={"no content"}style={{maxHeight:'350px',maxWidth:'350px',}}/>
+         <img src= {this.getimage(t.servicetype)} alt={"no content"}style={{maxHeight:'350px',maxWidth:'280px',}}/>
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
              Title: {t.title}
@@ -129,7 +129,7 @@ class acceptServiceProvider extends Component{
               Location: {t.location}
             </Typography>
             <Typography variant="h6" color="textSecondary" component="p">
-              ServiceProivder: {t.serviceprovideremail}
+              ServiceProvider: {t.serviceprovideremail}
             </Typography>
             <Typography variant="h6" color="textSecondary" component="p">
               Bidding per Task: {t.pertask}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import * as authService from'../../Axios-Actions/authService';
-import { Grid, Typography } from '@material-ui/core';
+import { Grid, Paper, Typography } from '@material-ui/core';
 import img1 from './work.jpg';
 import Joi from "joi-browser";
 
@@ -83,7 +83,7 @@ class customerSignup extends Component {
           // localStorage.setItem("token", result.data);
         console.log("Successfull signup");
           setTimeout(function () {
-            window.location = "/login";
+            window.location = "/";
           }, 2000);
         })
         .catch((err) => {
@@ -101,7 +101,7 @@ class customerSignup extends Component {
             <Grid item md={1}>
                
             </Grid>
-            <Grid item md={7}>
+            <Grid item md={7} xs={12}>
             <Typography  variant="h1" style={{color: "#5e7bdb",marginTop:'20px'}}>Welcome to XsSupport</Typography>
             <img alt="no content" src= {img1} style={{maxHeight:'400px',maxWidth:'700px'}}/>
             <Typography  variant="h4" style={{color: "#5e7bdb",marginTop:'40px'}}>
@@ -111,72 +111,75 @@ class customerSignup extends Component {
                <Typography  variant="h4" style={{color: "#5e7bdb",marginTop:'40px'}}>
                XsSupport is a platform where you can become the king of acting.</Typography>
             </Grid>
-            <Grid item md={4}>
+            <Grid item md={3}>      <Paper elevation={3}>
         <div className="form" style={{marginTop:'20px'}}>
-            <form >
-            <ul className="form-container">
+ <form >
+            <ul className="form-container" style={{listStyle:'none'}}>
                 <li>
-                <Typography  variant="h3" style={{color: "#5e7bdb", marginTop:'30px'}}>Create your Account</Typography>
+                <Typography  variant="h4" style={{color: "#5e7bdb", marginTop:'30px',paddingTop:'20px'}}>Create your Account</Typography>
                 </li>
                 <li> 
                     <label >
-                    <Typography  variant="h4" style={{color: "#5e7bdb", marginTop:'10px'}}>First Name</Typography>
+                    <Typography  variant="h5" style={{color: "#5e7bdb", marginTop:'20px'}}>First Name</Typography>
                     </label>
-                    <input style={{border:'0.1rem #ffffff',height:'30px', marginTop:'10px'}} type="name" onChange={this.onChange}name="fname" id="fname" >
+                    <input style={{marginTop:'10px',border:'0.1rem solid #d9d9d9',height:'30px',borderRadius:'18px',width:'70%',marginBottom:'20px'}} type="name" onChange={this.onChange}name="fname" id="fname" >
 
                     </input>
                 </li>
                 <li> 
                     <label >
-                    <Typography  variant="h4" style={{color: "#5e7bdb", marginTop:'10px'}}>Last Name</Typography>
+                    <Typography  variant="h5" style={{color: "#5e7bdb", marginTop:'10px'}}>Last Name</Typography>
                     </label>
-                    <input style={{border:'0.1rem #ffffff',height:'30px', marginTop:'10px'}} type="name"onChange={this.onChange} name="lname" id="lname" >
+                    <input style={{marginTop:'10px',border:'0.1rem solid #d9d9d9',height:'30px',borderRadius:'18px',width:'70%',marginBottom:'20px'}} type="name"onChange={this.onChange} name="lname" id="lname" >
 
                     </input>
                 </li>
                 <li>
                     <label >
-                    <Typography  variant="h4" style={{color: "#5e7bdb", marginTop:'10px'}}>Email</Typography>
+                    <Typography  variant="h5" style={{color: "#5e7bdb", marginTop:'10px'}}>Email</Typography>
                     </label>
-                    <input style={{border:'0.1rem #ffffff',height:'30px'}} type="email" onChange={this.onChange}name="email" id="email" >
+                    <input style={{marginTop:'10px',border:'0.1rem solid #d9d9d9',height:'30px',borderRadius:'18px',width:'70%',marginBottom:'20px'}} type="email" onChange={this.onChange}name="email" id="email" >
 
                     </input>
                 </li>
                 <li>
                     <label >
-                    <Typography  variant="h4" style={{color: "#5e7bdb", marginTop:'10px'}}>Password</Typography>
+                    <Typography  variant="h5" style={{color: "#5e7bdb", marginTop:'10px'}}>Password</Typography>
                     </label>
-                    <input style={{border:'0.1rem #ffffff',height:'30px', marginTop:'10px'}} type="password"onChange={this.onChange} name="password" id="password" >
+                    <input style={{marginTop:'10px',border:'0.1rem solid #d9d9d9',height:'30px',borderRadius:'18px',width:'70%',marginBottom:'20px'}} type="password"onChange={this.onChange} name="password" id="password" >
 
                     </input>
                 </li>
                 <li>
                     <label >
-                    <Typography  variant="h4" style={{color: "#5e7bdb", marginTop:'10px'}}>Confirm Password</Typography>
+                    <Typography  variant="h5" style={{color: "#5e7bdb", marginTop:'10px'}}>Confirm Password</Typography>
                     </label>
-                    <input style={{border:'0.1rem #ffffff',height:'30px', marginTop:'10px'}} type="password"onChange={this.onChange} name="confirmpassword" id="confirmpassword" >
+                    <input style={{marginTop:'10px',border:'0.1rem solid #d9d9d9',height:'30px',borderRadius:'18px',width:'70%',marginBottom:'20px'}} type="password"onChange={this.onChange} name="confirmpassword" id="confirmpassword" >
 
                     </input>
                     <li> 
                     <label >
-                    <Typography  variant="h4" style={{color: "#5e7bdb", marginTop:'10px'}}>Contact No</Typography>
+                    <Typography  variant="h5" style={{color: "#5e7bdb", marginTop:'10px'}}>Contact No</Typography>
                     </label>
-                    <input style={{border:'0.1rem #ffffff',height:'30px', marginTop:'10px'}} type="name"onChange={this.onChange} name="contact" id="contact" >
+                    <input style={{marginTop:'10px',border:'0.1rem solid #d9d9d9',height:'30px',borderRadius:'18px',width:'70%',marginBottom:'20px'}} type="name"onChange={this.onChange} name="contact" id="contact" >
 
                     </input>
                 </li>
                 </li>
-                <li>
-                <button style={{marginTop:'20px',backgroundColor:'#4a95f7',color:'#ffffff',fontSize:'20px',marginBottom:'10px'}} type="submit" onClick={this.onSubmit} className="button-primary">Register now</button>
+                <li><center>
+                <button style={{marginTop:'20px',backgroundColor:'#4a95f7',color:'#ffffff',fontSize:'20px',marginBottom:'10px',borderRadius:'9px',marginRight:'60px'}} 
+                type="submit" onClick={this.onSubmit} className="button-primary">Register now</button> </center>
                 </li>
                 <li>
-                  <h4>Already have an Account?</h4> <h3 style={{color:'blue'}}> Sign in </h3>
+                  <h4>Already have an Account?</h4><a href="/login"> <h3 style={{color:'blue',paddingBottom:'20px'}}> Sign in </h3> </a>
                 </li>
              
             </ul>
             </form>
         </div>
+        </Paper> 
         </Grid>
+        <Grid item md={1}></Grid>
         </Grid>
       );
     }
