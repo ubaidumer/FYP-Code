@@ -24,7 +24,7 @@ class serviceproviderSignup extends Component {
       fname: Joi.string().required().label("First Name"),
       lname: Joi.string().required().label("Last Name"),
       email: Joi.string().required().email({ minDomainAtoms: 2 }).label("Email"),
-      servicetype: Joi.string().required().label("Service Type"),
+      servicetype: Joi.string().required().label("Service type"),
       password: Joi.string().required().min(8).label("Password"),
       confirmpassword: Joi.string().required().min(8).label("ConfirmPassword"),
       contact: Joi.number().required().label("Contact no"),
@@ -82,7 +82,7 @@ class serviceproviderSignup extends Component {
           // localStorage.setItem("token", result.data);
         console.log("Successfull signup");
           setTimeout(function () {
-            window.location = "/";
+            window.location = "/login";
           }, 2000);
         })
         .catch((err) => {
@@ -123,9 +123,19 @@ class serviceproviderSignup extends Component {
                 <h5>Email</h5>
         <input style={{width:'80%'}} type='text'name='email'  onChange={this.onChange}placeholder='Enter your Email'/>
  
-        <h5>Service Type</h5>
-        <input style={{width:'80%'}} type='text' name='servicetype' onChange={this.onChange}placeholder='Enter your Service Type'/>
- 
+    
+        <div style={{display:'inline-flex'}}>
+       <h5>  Service type </h5> <select  id="servicetype"  name="servicetype" onChange={this.onChange} style={{width:'150px',marginBottom:'20px',height:'30px',marginLeft:'20px',border:'0px solid #fff'}}>
+                                <option value="">Select</option>
+                                <option value="maid">Maid</option>
+                                <option value="electrician">Electrician</option>
+                                <option value="cook">Cook</option>
+                                <option value="plumber">Plumber</option>
+                                <option value="shopkeeper">Shopkeeper</option>
+                                <option value="driver">Driver</option>
+                                <option value="tailor">Tailor</option>
+                                
+                                </select>  </div>
         <h5> Password</h5>
         <input  style={{width:'80%'}} type='password' name='password' onChange={this.onChange} placeholder='Enter your Password'/>
  

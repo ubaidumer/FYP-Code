@@ -49,7 +49,7 @@ class acceptServiceProvider extends Component{
             // localStorage.setItem("token", result.data);
           console.log("Successfull posted");
             setTimeout(function () {        //iisme tune kahin define to nahi kiya k when i click button add serviceproivder add to that field?
-              window.location = "/";
+              window.location = "/payment";
             }, 2000);
           })
           .catch((err) => {
