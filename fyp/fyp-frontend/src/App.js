@@ -21,6 +21,7 @@ import customerDashboard from "./Component/customer/customerDashboard";
 import viewServiceProvider from "./Component/customer/viewServiceProviders";
 import postedtask from "./Component/customer/postedTasks";
 import activetask from "./Component/customer/activeTasks";
+import serviceProviderDashboard from "./Component/serviceprovider/serviceproviderDashboard";
 
 class App extends Component {
   renderComp() {}
@@ -34,7 +35,8 @@ class App extends Component {
             
               <Route path="/adminLogin" component={adminLogin}/>   
               <Route path="/viewserviceprovider" component={viewServiceProvider}/>   
-              <Route path="/customerdashboard" component={customerDashboard}/>      
+              <Route path="/customerdashboard" component={customerDashboard}/>    
+              <Route path="/serviceproviderDashboard" component={serviceProviderDashboard}/>      
               <Route path="/serviceproviderSignup" exact={true} component={serviceproviderSignup} />
               <Route path="/customerSignup" component={customerSignup} />
               <Route path="/login" component={Login}/>

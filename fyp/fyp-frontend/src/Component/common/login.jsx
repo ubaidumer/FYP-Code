@@ -80,7 +80,7 @@ class Login extends Component {
   
         console.log("Successfully loged in!");
         setTimeout(function () {
-          window.location = "/postatask";
+          window.location = "/customerdashboard";
         }, 2000);
     
       })
