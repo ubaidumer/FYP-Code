@@ -10,13 +10,6 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-<<<<<<< HEAD
-
-
-
-class serviceProviderDashboard extends React.Component{
-    render(){ 
-=======
 import * as serviceproviderService from "../../Axios-Actions/serviceproviderService";
 
 
@@ -37,7 +30,6 @@ this.setState({profile:result.data});
       };
     render(){ 
       let { profile } = this.state;
->>>>>>> ubaid
         return(
             <Grid container>
               
@@ -51,11 +43,7 @@ this.setState({profile:result.data});
                      </Typography>
                      <Divider/>
                      <Typography variant='h2' style={{paddingTop:'15px'}}>
-<<<<<<< HEAD
-                        0
-=======
                         {profile.ordercompleted}
->>>>>>> ubaid
                      </Typography>
                  </Paper> 
                  </center>
@@ -69,11 +57,7 @@ this.setState({profile:result.data});
                      </Typography>
                      <Divider/>
                      <Typography variant='h2' style={{paddingTop:'15px'}}>
-<<<<<<< HEAD
-                        0
-=======
                         {profile.creditearn}
->>>>>>> ubaid
                      </Typography>
                  </Paper> 
                  </center>
@@ -87,11 +71,7 @@ this.setState({profile:result.data});
                      </Typography>
                      <Divider/>
                      <Typography variant='h4' style={{paddingTop:'30px'}}>
-<<<<<<< HEAD
-                        00-00-00
-=======
                         {profile.joindate}
->>>>>>> ubaid
                      </Typography>
                      
                  </Paper> 
@@ -105,11 +85,7 @@ this.setState({profile:result.data});
               <Grid item md={6} xs={12} style={{backgroundColor:'#d7dbe0',marginTop:'10px',height:'700px'}}>
               <center style={{paddingTop:'20px'}}>
                   <Typography variant='h5' style={{marginBottom:'20px'}}>
-<<<<<<< HEAD
-                      Work in Progress
-=======
                       Accepted Tasks
->>>>>>> ubaid
                   </Typography>
               <Card style={{maxWidth:'200px',marginLeft:'20px',}}>
       <CardActionArea>
@@ -125,18 +101,11 @@ this.setState({profile:result.data});
       </CardActionArea>
       <CardActions>
           
-<<<<<<< HEAD
-        <Button size="small" color="primary" style={{marginLeft:'55px'}}>
-          View
-        </Button>
-      
-=======
           <a href="./acceptedTask">
         <Button size="small" color="primary" style={{marginLeft:'55px'}}>
           View
         </Button>
         </a>
->>>>>>> ubaid
       </CardActions>
     </Card>
 
@@ -145,11 +114,7 @@ this.setState({profile:result.data});
               <Grid item md={6} xs={12} style={{backgroundColor:'#d7dbe0',marginTop:'10px',height:'700px'}}>
               <center style={{paddingTop:'20px'}}>
                   <Typography variant='h5' style={{marginBottom:'20px'}}>
-<<<<<<< HEAD
-                      Completed Work
-=======
                       Active Tasks
->>>>>>> ubaid
                   </Typography>
               <Card style={{maxWidth:'200px',marginLeft:'20px',}}>
       <CardActionArea>
@@ -164,19 +129,11 @@ this.setState({profile:result.data});
         </CardContent>
       </CardActionArea>
       <CardActions>
-<<<<<<< HEAD
-          
-        <Button size="small" color="primary" style={{marginLeft:'55px'}}>
-          View
-        </Button>
-      
-=======
           <a href="./activeT">
         <Button size="small" color="primary" style={{marginLeft:'55px'}}>
           View
         </Button>
         </a>
->>>>>>> ubaid
       </CardActions>
     </Card>
 
@@ -190,11 +147,7 @@ this.setState({profile:result.data});
                             <img style={{width:'150px',height:'150px'}} src={img}/>
                         </Avatar>
                         <Typography variant='h6' style={{color:'white',marginTop:'15px'}}>
-<<<<<<< HEAD
-                            Azeem Sultan
-=======
                             {profile.serviceprovidername}
->>>>>>> ubaid
                         </Typography>
                         <div>
                             <Typography variant='subtitle2' style={{marginTop:'10px',color:'#bd502f'}}>
@@ -224,11 +177,7 @@ this.setState({profile:result.data});
                             <div>
                             <h5 style={{marginLeft:'5px'}}>
                          
-<<<<<<< HEAD
-                             Work in Progress
-=======
                              End Task
->>>>>>> ubaid
                             </h5>
                             </div>
                             </Button>
@@ -243,11 +192,7 @@ this.setState({profile:result.data});
                             </h5>
                             </div>
                             </Button>
-<<<<<<< HEAD
-                            <a href="/workhistory" style={{textDecoration:'none'}}>
-=======
                             <a href="/workHistory" style={{textDecoration:'none'}}>
->>>>>>> ubaid
                             <Button style={{width:'100%',height:'100px',marginTop:'20px',color:'#bd502f',justifyContent:'start'}}
                             >
                                     <div><HistoryIcon style={{fontSize:'50px'}}/></div>
