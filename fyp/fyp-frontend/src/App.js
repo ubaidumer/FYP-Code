@@ -22,6 +22,8 @@ import viewServiceProvider from "./Component/customer/viewServiceProviders";
 import postedtask from "./Component/customer/postedTasks";
 import activetask from "./Component/customer/activeTasks";
 import serviceProviderDashboard from "./Component/serviceprovider/serviceproviderDashboard";
+import acceptedTasks from "./Component/serviceprovider/acceptedTasks";
+import activeT from "./Component/serviceprovider/activeTasks";
 
 class App extends Component {
   renderComp() {}
@@ -51,6 +53,9 @@ class App extends Component {
               <Route path="/admindashboard" component={admindashboard}/>
               <Route path="/postedtask" component={postedtask}/>
               <Route path="/activetask" component={activetask}/>
+              <Route path="/acceptedtask" component={acceptedTasks}/>
+              <Route path="/activeT" component={activeT}/>
+
               
 
               <Route path="/" exact={true} component={HomeScreen}/>

@@ -35,7 +35,7 @@ class workInProgress extends Component{
         };
     }
        componentDidMount(){
-           workInProgressService.getAllTask()
+           workInProgressService.getAllTaskofS()
            .then((result) => {
             this.setState({ task: result.data });
           })

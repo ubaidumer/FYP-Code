@@ -10,6 +10,7 @@ const {Payment} = require("../../models/Customer/Payment");
 const {OrderHistory}= require("../../models/Customer/OrderHistory");
 const {WorkHistory}= require("../../models/Service Provider/WorkHistory");
 const {CProfile}= require("../../models/Customer/CProfile");
+const {SProfile} = require("../../models/Service Provider/SProfile");
 router.use(bodyparser.json());
 router.use(bodyparser.urlencoded({ extended: false }));
 
@@ -96,6 +97,21 @@ router.get('/paymentbyCash', async( req , res )=>{
 
         taskcompleted:t+1,
         creditspent:c+Math.abs(((order.month*order.permonth)+(order.pertask)+(order.perhour*(parseInt(order.endtime)-parseInt(order.starttime))*(order.month*30)))),
+      },
+    },{new:true})
+
+
+    const pro = await SProfile.findOne({serviceprovider:order.serviceprovider});
+
+    let ta=pro.ordercompleted;
+    let ca=pro.creditearn;
+
+    await SProfile.findOneAndUpdate({serviceprovider:order.serviceprovider},{
+
+      $set:{
+
+        ordercompleted:ta+1,
+        creditearn:ca+Math.abs(((order.month*order.permonth)+(order.pertask)+(order.perhour*(parseInt(order.endtime)-parseInt(order.starttime))*(order.month*30)))),
       },
     },{new:true})
 

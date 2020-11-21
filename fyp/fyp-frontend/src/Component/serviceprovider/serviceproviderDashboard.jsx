@@ -10,11 +10,26 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-
+import * as serviceproviderService from "../../Axios-Actions/serviceproviderService";
 
 
 class serviceProviderDashboard extends React.Component{
+  constructor(){
+
+    super();
+    this.state={
+      profile:[]
+    };
+  }
+  componentDidMount(){
+serviceproviderService.getprofile()
+.then((result)=>{
+this.setState({profile:result.data});
+})
+
+      };
     render(){ 
+      let { profile } = this.state;
         return(
             <Grid container>
               
@@ -28,7 +43,7 @@ class serviceProviderDashboard extends React.Component{
                      </Typography>
                      <Divider/>
                      <Typography variant='h2' style={{paddingTop:'15px'}}>
-                        0
+                        {profile.ordercompleted}
                      </Typography>
                  </Paper> 
                  </center>
@@ -42,7 +57,7 @@ class serviceProviderDashboard extends React.Component{
                      </Typography>
                      <Divider/>
                      <Typography variant='h2' style={{paddingTop:'15px'}}>
-                        0
+                        {profile.creditearn}
                      </Typography>
                  </Paper> 
                  </center>
@@ -56,7 +71,7 @@ class serviceProviderDashboard extends React.Component{
                      </Typography>
                      <Divider/>
                      <Typography variant='h4' style={{paddingTop:'30px'}}>
-                        00-00-00
+                        {profile.joindate}
                      </Typography>
                      
                  </Paper> 
@@ -70,7 +85,7 @@ class serviceProviderDashboard extends React.Component{
               <Grid item md={6} xs={12} style={{backgroundColor:'#d7dbe0',marginTop:'10px',height:'700px'}}>
               <center style={{paddingTop:'20px'}}>
                   <Typography variant='h5' style={{marginBottom:'20px'}}>
-                      Work in Progress
+                      Accepted Tasks
                   </Typography>
               <Card style={{maxWidth:'200px',marginLeft:'20px',}}>
       <CardActionArea>
@@ -86,10 +101,11 @@ class serviceProviderDashboard extends React.Component{
       </CardActionArea>
       <CardActions>
           
+          <a href="./acceptedTask">
         <Button size="small" color="primary" style={{marginLeft:'55px'}}>
           View
         </Button>
-      
+        </a>
       </CardActions>
     </Card>
 
@@ -98,7 +114,7 @@ class serviceProviderDashboard extends React.Component{
               <Grid item md={6} xs={12} style={{backgroundColor:'#d7dbe0',marginTop:'10px',height:'700px'}}>
               <center style={{paddingTop:'20px'}}>
                   <Typography variant='h5' style={{marginBottom:'20px'}}>
-                      Completed Work
+                      Active Tasks
                   </Typography>
               <Card style={{maxWidth:'200px',marginLeft:'20px',}}>
       <CardActionArea>
@@ -113,11 +129,11 @@ class serviceProviderDashboard extends React.Component{
         </CardContent>
       </CardActionArea>
       <CardActions>
-          
+          <a href="./activeT">
         <Button size="small" color="primary" style={{marginLeft:'55px'}}>
           View
         </Button>
-      
+        </a>
       </CardActions>
     </Card>
 
@@ -131,7 +147,7 @@ class serviceProviderDashboard extends React.Component{
                             <img style={{width:'150px',height:'150px'}} src={img}/>
                         </Avatar>
                         <Typography variant='h6' style={{color:'white',marginTop:'15px'}}>
-                            Azeem Sultan
+                            {profile.serviceprovidername}
                         </Typography>
                         <div>
                             <Typography variant='subtitle2' style={{marginTop:'10px',color:'#bd502f'}}>
@@ -161,7 +177,7 @@ class serviceProviderDashboard extends React.Component{
                             <div>
                             <h5 style={{marginLeft:'5px'}}>
                          
-                             Work in Progress
+                             End Task
                             </h5>
                             </div>
                             </Button>
@@ -176,7 +192,7 @@ class serviceProviderDashboard extends React.Component{
                             </h5>
                             </div>
                             </Button>
-                            <a href="/workhistory" style={{textDecoration:'none'}}>
+                            <a href="/workHistory" style={{textDecoration:'none'}}>
                             <Button style={{width:'100%',height:'100px',marginTop:'20px',color:'#bd502f',justifyContent:'start'}}
                             >
                                     <div><HistoryIcon style={{fontSize:'50px'}}/></div>
