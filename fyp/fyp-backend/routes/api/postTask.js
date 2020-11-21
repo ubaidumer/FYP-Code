@@ -63,6 +63,12 @@ router.get("/view", async (req, res) => {
   if (!task) res.status(400);
   res.send(task);
 });
+router.get("/viewS", async (req, res) => {
+  const jwt = decode(req.header("x-auth-token"));
+  const task = await Task.find({serviceprovider:jwt.id});
+  if (!task) res.status(400);
+  res.send(task);
+});
 //gets all customer tasks waiting for acceptServiceProvider
 router.get("/fetch", async (req, res) => {
   const jwt = decode(req.header("x-auth-token"));

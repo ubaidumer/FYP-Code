@@ -22,6 +22,11 @@ import viewServiceProvider from "./Component/customer/viewServiceProviders";
 import postedtask from "./Component/customer/postedTasks";
 import activetask from "./Component/customer/activeTasks";
 import serviceProviderDashboard from "./Component/serviceprovider/serviceproviderDashboard";
+<<<<<<< HEAD:fyp/fyp-frontend/src/App.js
+=======
+import acceptedTasks from "./Component/serviceprovider/acceptedTasks";
+import activeT from "./Component/serviceprovider/activeTasks";
+>>>>>>> ubaid:fyp-frontend/src/App.js
 
 class App extends Component {
   renderComp() {}
@@ -51,8 +56,16 @@ class App extends Component {
               <Route path="/admindashboard" component={admindashboard}/>
               <Route path="/postedtask" component={postedtask}/>
               <Route path="/activetask" component={activetask}/>
+<<<<<<< HEAD:fyp/fyp-frontend/src/App.js
               
 
+=======
+              <Route path="/acceptedtask" component={acceptedTasks}/>
+              <Route path="/activeT" component={activeT}/>
+
+              
+
+>>>>>>> ubaid:fyp-frontend/src/App.js
               <Route path="/" exact={true} component={HomeScreen}/>
 
 

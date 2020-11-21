@@ -1,8 +1,8 @@
 import React ,{Component} from 'react';
 import { Grid, Paper } from '@material-ui/core';
-import * as historyService from "../../Axios-Actions/historyService";
+import * as serviceproviderService from "../../Axios-Actions/serviceproviderService";
 
-class workHistory extends Component {
+class activeTasks extends Component {
     constructor() {
         super();
         this.state = {
@@ -11,10 +11,9 @@ class workHistory extends Component {
         };
     }
        componentDidMount(){
-           historyService.getAllWorks()
+          serviceproviderService.getactivetasks()
            .then((result) => {
             this.setState({ task: result.data });
-            
           })
        }
     render() {
@@ -25,7 +24,7 @@ class workHistory extends Component {
         <Grid item md={2}></Grid>
         <Grid item md={8} xs={12}>
             <h3 style={{textAlign:'center'}}>
-                Work History
+                Active Tasks
             </h3>
             <ul style={{listStyle:'none'}}>
                 {
@@ -34,7 +33,7 @@ class workHistory extends Component {
             <Paper elevation={3}>
         <table style={{borderCollapse: "separate", borderSpacing:'30px'}}>
               <thead>
-              <tr >
+                  <tr >
                   <th >
                       Title
                   </th>
@@ -50,7 +49,7 @@ class workHistory extends Component {
                   <th>
                       Service type
                   </th>
-                  <th>
+                  <th >
                       Location
                   </th>
                   <th>
@@ -73,7 +72,7 @@ class workHistory extends Component {
              {t.endtime}
                   </td>
                   <td>
-            {t.month}
+             {t.month}
                   </td>
                   <td>
             {t.servicetype}
@@ -110,4 +109,4 @@ class workHistory extends Component {
 
 
  
-export default workHistory ;
+export default activeTasks;
