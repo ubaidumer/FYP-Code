@@ -22,6 +22,7 @@
     "react-scripts": "4.0.0",
     "react-star-rating-component": "^1.4.1",
     "react-toastify": "^6.0.9",
+    "read-more-react": "^1.0.10",
     "web-vitals": "^0.2.4"
   },
   "scripts": {

@@ -156,13 +156,13 @@ class postATask extends React.Component  {
          <Grid item sm={6} xs={12}  >
            
          <Paper elevation={3}  >
-         <form onSubmit ={this.handleSubmit}  style={{ backgroundImage: `url(${img})` }} >
-         <Typography variant='h3' style={{textAlign:'center',paddingTop:'20px',backgroundColor:'#d5dade',paddingBottom:'20px',color:'#2d4a6b'}}>
+         <form onSubmit ={this.handleSubmit}   >
+         <Typography variant='h3' style={{textAlign:'center',paddingTop:'20px',backgroundColor:'#d5dade',paddingBottom:'20px',color:'blueviolet'}}>
              Post a task
          </Typography>
         <div style={{marginLeft:'40px',marginRight:'20px',}}>
          <div >
-             <Typography variant='h5' style={{color:'white',marginTop:'10px'}}>
+             <Typography variant='h5' style={{color:'blueviolet',marginTop:'10px'}}>
                  Enter the Title
              </Typography>
              <div style={{fontSize:12, color:'red'}}> 
@@ -173,7 +173,7 @@ class postATask extends React.Component  {
         <div style={{marginTop:'20px'}}>
         <div style={{fontSize:12, color:'red'}}> 
              {this.state.ServiceError}     </div>
-        <Typography variant='h6' style={{color:'white'}}>
+        <Typography variant='h6' style={{color:'blueviolet'}}>
                  Service Type: <span>   <select id="servicetype"onChange={this.handleChange}style={{width:'150px',marginBottom:'10px',height:'30px',marginLeft:'20px',border:'0px solid #fff'}}>
                                 <option value="">Select</option>
                                 <option value="Maid">Maid</option>
@@ -191,7 +191,7 @@ class postATask extends React.Component  {
         <div>
         <div style={{fontSize:12, color:'red'}}> 
              {this.state.cityError}     </div>
-        <Typography variant='h6' style={{color:'white'}}>
+        <Typography variant='h6' style={{color:'blueviolet'}}>
                  Location:  <span>   <select id="city" onChange={this.handleChange}style={{width:'150px',height:'30px',marginLeft:'9.3%',border:'0px solid #fff'}}>
                                 <option value="">Select</option>
                                 <option value="Lahore">Lahore</option>
@@ -205,17 +205,17 @@ class postATask extends React.Component  {
              {this.state.LocationError}     </div>
      <div style={{display:'inline-flex'}}>
      <input name="Area" placeholder="Enter Area"  value={this.state.Area}  onChange={this.handleChange} style={{marginTop:'10px',border:'0.1rem solid #d9d9d9',height:'30px',borderRadius:'18px',width:'30%',marginBottom:'10px',textAlign:'center',}} type='text' />
-         <div style={{fontSize:12, color:'red'}}> 
+         <div style={{fontSize:12, color:'red',paddingTop:'40px'}}> 
              {this.state.streetNoError}     </div> 
              <input name="streetNo" placeholder="Enter  Street#"   value={this.state.streetNo}  onChange={this.handleChange} style={{marginTop:'10px',border:'0.1rem solid #d9d9d9',height:'30px',borderRadius:'18px',width:'30%',textAlign:'center',marginLeft:'10px'}} type='text' />
-        <div style={{fontSize:12, color:'red'}}> 
+        <div style={{fontSize:12, color:'red',paddingTop:'40px'}}> 
              {this.state.houseNoError}     </div>
           
          <input name="houseNo" placeholder="Enter House#"  value={this.state.houseNo}  onChange={this.handleChange} style={{marginTop:'10px',border:'0.1rem solid #d9d9d9',height:'30px',borderRadius:'18px',width:'30%',textAlign:'center',marginLeft:'10px'}} type='text'/>
          </div>
         </div>
         <div>
-        <Typography variant='h5' style={{color:'white'}}>
+        <Typography variant='h5' style={{color:'blueviolet'}}>
                  Bidding
              </Typography>
         <div style={{display:'inline-flex'}}>
@@ -234,9 +234,9 @@ class postATask extends React.Component  {
         </div>
          </div>
          <div style={{marginTop:'20px'}}>
-         <Typography variant='h5' style={{color:'white'}}>
+         <Typography variant='h5' style={{color:'blueviolet'}}>
              <div style={{marginBottom:'10px'}}>Time Duration</div>    </Typography>
-       <div style={{display:'inline-flex',color:'white',fontWeight:'bold'}}>
+       <div style={{display:'inline-flex',color:'blueviolet',fontWeight:'bold'}}>
         <Typography variant='subtitle1'> Start Time    </Typography>
          <input id="starttime" type="time"onChange={this.handleChange}style={{width:'15%'}}/>
          <Typography variant='subtitle1' style={{paddingLeft:'10%'}}> End Time    </Typography>
@@ -244,7 +244,7 @@ class postATask extends React.Component  {
             </div>
             <div>
 
-            <label style={{fontWeight:'bold',color:'white'}}>Month </label> <span>   <select id="month"onChange={this.handleChange} style={{marginTop:'10px',width:'150px',height:'30px',marginLeft:'20px',border:'0px solid #fff'}}>
+            <label style={{fontWeight:'bold',color:'blueviolet'}}>Month </label> <span>   <select id="month"onChange={this.handleChange} style={{marginTop:'10px',width:'150px',height:'30px',marginLeft:'20px',border:'0px solid #fff'}}>
                                 <option value="0">0</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -264,7 +264,7 @@ class postATask extends React.Component  {
       
          </div>
          <div>
-           <Typography variant='h4' style={{color:'white'}}>
+           <Typography variant='h4' style={{color:'blueviolet'}}>
            <div>
              <h6 style={{marginBlockStart:'1.0em',marginBlockEnd:'1.0em'}}>
                 Description
@@ -274,7 +274,7 @@ class postATask extends React.Component  {
            </Typography>
           </div>
          </div>
-         <button style={{marginTop:'10px',marginBottom:'10px',marginLeft:'30%',width:'40%',marginRight:'30%',backgroundColor:'#d5dade',color:'#2d4a6b',height:'30px',fontSize:'20px'
+         <button style={{marginTop:'10px',marginBottom:'10px',marginLeft:'30%',width:'40%',marginRight:'30%',backgroundColor:'#d5dade',color:'blueviolet',height:'30px',fontSize:'20px'
         ,borderRadius:'10px'}}>POST</button>
          </form>
          </Paper>
