@@ -44,59 +44,71 @@ searchbyall(){
             <Grid container style={{backgroundColor:'#d7dbe0'}}>
              
                 <Grid item md={2} xs={12}>
-                <Button onClick={this.searchbyall.bind(this)}>
-                    <Typography variant='h4' style={{color:'blueviolet',marginTop:'40px',textAlign:'center'}}>
+                <Button style={{width:'100%'}} onClick={this.searchbyall.bind(this)}>
+                    <Typography variant='h5' style={{color:'blueviolet',marginTop:'40px',textAlign:'center'}}>
                         All Categories
                     </Typography>
                     </Button>
-                    <Button onClick={this.searchbytype.bind(this,"plumber")}>
-                    <Typography variant='h5'style={{color:'#2d4a6b',marginTop:'20px',marginLeft:'30px'}}>
+                    <Button style={{width:'100%'}} onClick={this.searchbytype.bind(this,"plumber")}>
+                    <Typography variant='h5'style={{color:'#2d4a6b',marginTop:'20px'}}>
                         Plumber
                     </Typography>
                     </Button>
-                    <Button onClick={this.searchbytype.bind(this,"electrician")}>
-                    <Typography variant='h5' style={{color:'#2d4a6b',marginTop:'20px',marginLeft:'30px'}}>
+                    <Button style={{width:'100%'}}  onClick={this.searchbytype.bind(this,"electrician")}>
+                    <Typography variant='h5' style={{color:'#2d4a6b',marginTop:'20px'}}>
                         Electrician
                     </Typography>
                     </Button>
-                    <Button onClick={this.searchbytype.bind(this,"maid")}>
-                    <Typography variant='h5' style={{color:'#2d4a6b',marginTop:'20px',marginLeft:'30px'}}>
+                    <Button style={{width:'100%'}} onClick={this.searchbytype.bind(this,"maid")}>
+                    <Typography variant='h5' style={{color:'#2d4a6b',marginTop:'20px'}}>
                         Maid
                     </Typography>
                     </Button>
-                    <Button onClick={this.searchbytype.bind(this,"driver")}>
-                    <Typography variant='h5' style={{color:'#2d4a6b',marginTop:'20px',marginLeft:'30px'}}>
+                    <Button style={{width:'100%'}} onClick={this.searchbytype.bind(this,"driver")}>
+                    <Typography variant='h5' style={{color:'#2d4a6b',marginTop:'20px',}}>
                         Driver
                     </Typography>
                     </Button>
-                    <Button onClick={this.searchbytype.bind(this,"tailor")}>
-                    <Typography variant='h5' style={{color:'#2d4a6b',marginTop:'20px',marginLeft:'30px'}}>
+                    <Button style={{width:'100%'}} onClick={this.searchbytype.bind(this,"tailor")}>
+                    <Typography variant='h5' style={{color:'#2d4a6b',marginTop:'20px'}}>
                         Tailor
                     </Typography>
                     </Button>
-                    <Button onClick={this.searchbytype.bind(this,"cook")}>
-                    <Typography variant='h5' style={{color:'#2d4a6b',marginTop:'20px',marginLeft:'30px'}}>
+                    <Button style={{width:'100%'}} onClick={this.searchbytype.bind(this,"cook")}>
+                    <Typography variant='h5' style={{color:'#2d4a6b',marginTop:'20px'}}>
                         Cook
                     </Typography>
                     </Button>
-                    <Typography variant='h5' style={{color:'#2d4a6b',marginTop:'20px',marginLeft:'30px'}}>
-                        Mender
+                    <Button style={{width:'100%'}} onClick={this.searchbytype.bind(this,"plumber")}>
+                    <Typography variant='h5'style={{color:'#2d4a6b',marginTop:'20px'}}>
+                        Plumber
                     </Typography>
-                    <Typography variant='h5' style={{color:'#2d4a6b',marginTop:'20px',marginLeft:'30px'}}>
-                        Guard
+                    </Button>
+                    <Button style={{width:'100%'}}  onClick={this.searchbytype.bind(this,"electrician")}>
+                    <Typography variant='h5' style={{color:'#2d4a6b',marginTop:'20px'}}>
+                        Electrician
                     </Typography>
-                    <Typography variant='h5' style={{color:'#2d4a6b',marginTop:'20px',marginLeft:'30px'}}>
-                        Gardener
+                    </Button>
+                    <Button style={{width:'100%'}} onClick={this.searchbytype.bind(this,"maid")}>
+                    <Typography variant='h5' style={{color:'#2d4a6b',marginTop:'20px'}}>
+                        Maid
                     </Typography>
-                    <Typography variant='h5' style={{color:'#2d4a6b',marginTop:'20px',marginLeft:'30px'}}>
-                        Carpenter
+                    </Button>
+                    <Button style={{width:'100%'}} onClick={this.searchbytype.bind(this,"driver")}>
+                    <Typography variant='h5' style={{color:'#2d4a6b',marginTop:'20px',}}>
+                        Driver
                     </Typography>
-                    <Typography variant='h5' style={{color:'#2d4a6b',marginTop:'20px',marginLeft:'30px'}}>
+                    </Button>
+                    <Button style={{width:'100%'}} onClick={this.searchbytype.bind(this,"tailor")}>
+                    <Typography variant='h5' style={{color:'#2d4a6b',marginTop:'20px'}}>
                         Tailor
                     </Typography>
-                    <Typography variant='h5' style={{color:'#2d4a6b',marginTop:'20px',marginLeft:'30px'}}>
-                        Swift
+                    </Button>
+                    <Button style={{width:'100%'}} onClick={this.searchbytype.bind(this,"cook")}>
+                    <Typography variant='h5' style={{color:'#2d4a6b',marginTop:'20px'}}>
+                        Cook
                     </Typography>
+                    </Button>
 
                    
                 </Grid>
