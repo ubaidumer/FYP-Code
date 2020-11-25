@@ -130,8 +130,6 @@ router.use(bodyparser.urlencoded({ extended: false }));
     router.put("/edit",async (req,res)=>{
 
       const task = await ServiceProvider.find({email:req.body.esearchemail});
-
-      console.log(task);
       await ServiceProvider.update(
         {email:req.body.esearchemail},
         {
@@ -201,5 +199,10 @@ router.use(bodyparser.urlencoded({ extended: false }));
    
       res.send(task);
     });
+    router.post("/searchbyid", async ( req , res )=>{
+      const s = await ServiceProvider.find({_id:req.body.id});
+      res.send(s);
+    });
+
  router.update;
  module.exports = router;
