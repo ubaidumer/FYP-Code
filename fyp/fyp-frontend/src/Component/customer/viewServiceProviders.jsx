@@ -28,7 +28,7 @@ searchbytype(type){
     .then((result)=>{
     this.setState({service:result.data});
     })
-
+   console.log(this.state)
 }
 searchbyall(){
     customerService.getAllService()
