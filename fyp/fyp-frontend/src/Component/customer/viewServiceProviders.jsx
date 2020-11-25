@@ -10,7 +10,9 @@ class viewServiceProvider extends React.Component{
     super();
     this.state={
       service:[],
+
       servant:[],
+
       openService: false
     }
     this.searchbytype=this.searchbytype.bind(this);
@@ -130,15 +132,17 @@ getData(id){
                        open={this.state.openService}
                        onClose={!this.state.openService} 
                        >
-                           
+
                     <Grid container>
                         <Grid item md={2}></Grid>
 
                         <Grid item md={8}> 
+
                         <ul>
                 {
                     servant.map(t=>(
                         <li key={t._id}>
+
                             <Paper elevation={2} style={{marginTop:'40px'}}>
                               <div style={{display:'inline-flex',}}>
                               <div style={{marginLeft:'30px',marginBottom:'20px'}}>
@@ -147,11 +151,22 @@ getData(id){
                               </div>
                               <div style={{marginTop:'40px',paddingLeft:'40%',color:'blueviolet'}}>
                           
-        <Typography variant="h5" >{t.firstname} {t.lastname}:</Typography>
+
+       <Typography variant="h5" >{t.firstname} {t.lastname}:</Typography>
                     <Typography variant="subtitle1">{t.servicetype}</Typography>
                     <Typography variant="subtitle1">{t.email}</Typography> 
 
-                              <Typography variant="subtitle2">____________________________</Typography>
+
+        <Typography variant="h5" >Azeem Sultan:</Typography>
+                              <Typography variant="subtitle1">Plumber</Typography>
+                              <Typography variant="subtitle1">Description </Typography> 
+                     
+                              <ReactStars
+    count={4.5}
+    size={24}
+    color={"#ffd700"}
+  />
+             <Typography variant="subtitle2">____________________________</Typography>
                               <div style={{marginTop:'30px'}}>
                                <Typography>Want to hire?</Typography>
                                <Button variant="outlined" onClick={()=>this.setState({openService:!this.state.openService})}>Send Task</Button>
@@ -159,16 +174,24 @@ getData(id){
                               </div>
 
                               <div style={{marginTop:'40px',}}>
+
                               <Typography  variant="subtitle1">Contact on number:</Typography>
                     <Typography  variant="subtitle1">{t.contactno}</Typography>
+
+                             <Typography  variant="subtitle1">Task Completion %: 90 </Typography>
+                             <Typography  variant="subtitle1">Task Cancellation %:5 </Typography>
+                             <Typography  variant="subtitle1">Response Time : 1 Hour </Typography>
+
                               </div>
                               </div>
                               </div>
                             </Paper>
+
                             </li>
                     ))
                 }
             </ul>
+
                           
                         </Grid>
 
@@ -207,7 +230,11 @@ getData(id){
       </CardActionArea>
       <CardActions>
           
+
         <Button size="small" color="primary" style={{marginLeft:'35px'}} onClick={()=>this.setState({openService:!this.state.openService},this.getData(s._id))}>
+
+        <Button size="small" color="primary" style={{marginLeft:'35px'}} onClick={()=>this.setState({openService:!this.state.openService})}>
+
           View Details
         </Button>
       
