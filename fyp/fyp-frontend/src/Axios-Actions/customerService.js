@@ -22,3 +22,12 @@ export async function getServicebbytype(type){
     return await http.post(apiEndpoint + "/serviceprovider/getServicebbytype",{type});
 
 }
+
+export async function editdata(fname,lname,pass,contact){
+
+    return await http.post(apiEndpoint+"/customer/edit",{fname,lname,pass,contact});
+}
+export async function findService(id){
+
+    return await http.post(apiEndpoint+"/serviceprovider/searchbyid",{id});
+}

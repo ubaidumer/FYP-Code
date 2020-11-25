@@ -18,6 +18,10 @@ class customerDashboard extends React.Component{
     super();
     this.state={
       profile:[],
+      newfname:'',
+      newlname:'',
+      newpass:'',
+      newcontact:'',
       updateOpen: false
     };
   }
@@ -28,6 +32,54 @@ this.setState({profile:result.data});
 })
 
       };
+
+      newChange=(event)=>{
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+    
+        this.setState({
+          [name]: value
+        }); 
+
+
+      };
+      editSave=()=>{
+
+
+
+        if(this.state.newfname.length>10||this.state.newfname.length<3){
+console.log("enter valid firstname");
+        }else if(this.state.newlname.length>10||this.state.newlname.length<3){
+
+          console.log("enter valid lastname");
+
+        }else if(this.state.newpass.length<4){
+
+          
+          console.log("enter valid password");
+        }else if(this.state.newcontact.length>255||this.state.newcontact.length<11){
+
+
+          console.log("enter valid contact no");
+        }else{
+
+
+
+
+        customerService.editdata(this.state.newfname,this.state.newlname,this.state.newpass,this.state.newcontact)
+        .then((result) => {
+        console.log("Successfull edited customer data");
+          setTimeout(function () {
+            window.location = "/customerdashboard";
+          }, 2000);
+        })
+        .catch((err) => {
+          this.setState({ invalid: true });
+          console.log("Server error");
+        });
+      }
+      }
 
       handleChange = () => {
         this.setState({updateOpen:!this.state.updateOpen})
@@ -74,24 +126,24 @@ this.setState({profile:result.data});
         <Typography variant='h6' style={{paddingTop:'20px',textAlign:'center'}}>Update Info:</Typography>
           <div style={{display:'inline-flex',marginTop:'20px'}}>
             <Typography variant='h6' style={{marginLeft:'20px'}}>First Name:</Typography>
-            <input style={{borderRadius:'3px',border:'1px solid #d2d4d2',width:'50%',marginLeft:'9px'}}/>
+            <input name="newfname" onChange={this.newChange.bind(this)}value={this.state.newfname}style={{borderRadius:'3px',border:'1px solid #d2d4d2',width:'50%',marginLeft:'9px'}}/>
           </div>
 
           <div style={{display:'inline-flex',marginTop:'20px'}}>
             <Typography  style={{marginLeft:'20px'}} variant='h6'>Last Name:</Typography>
-            <input style={{borderRadius:'3px',border:'1px solid #d2d4d2',width:'50%',marginLeft:'10px'}}/>
+            <input name="newlname"onChange={this.newChange.bind(this)}value={this.state.newlname} style={{borderRadius:'3px',border:'1px solid #d2d4d2',width:'50%',marginLeft:'10px'}}/>
           </div>
           <div style={{display:'inline-flex',marginTop:'20px'}}>
             <Typography  style={{marginLeft:'20px'}} variant='h6'>Password:</Typography>
-            <input style={{borderRadius:'3px',border:'1px solid #d2d4d2',width:'50%',marginLeft:'19px'}}/>
+            <input type="password"name="newpass" onChange={this.newChange.bind(this)} value={this.state.newpass}style={{borderRadius:'3px',border:'1px solid #d2d4d2',width:'50%',marginLeft:'19px'}}/>
           </div>
           <div style={{display:'inline-flex',marginTop:'20px'}}>
             <Typography  style={{marginLeft:'20px'}} variant='h6'>Contact No:</Typography>
-            <input style={{borderRadius:'3px',border:'1px solid #d2d4d2',width:'50%',marginLeft:'8px'}}/>
+            <input name="newcontact" onChange={this.newChange.bind(this)}value={this.state.newcontact}style={{borderRadius:'3px',border:'1px solid #d2d4d2',width:'50%',marginLeft:'8px'}}/>
           </div>
           <center>
             <div style={{display:'inline-flex',marginTop:'30px',marginBottom:'20px'}}>
-            <Button variant="outlined">Save</Button>
+            <Button onClick={this.editSave} variant="outlined">Save</Button>
             <Button variant="outlined" style={{marginLeft:'10px'}}
             onClick={this.handleChange}
             >Close</Button>

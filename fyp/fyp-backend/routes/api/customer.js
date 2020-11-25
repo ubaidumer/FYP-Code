@@ -146,11 +146,39 @@ router.post("/signup", async (req,res) => {
  
     res.send(task);
   });
-  
+  router.post("/edit", async (req, res )=>{
+    const jwt = decode(req.header("x-auth-token"));
+
+    const salt = await bcrypt.genSalt(10);
+    const newp= await bcrypt.hash(req.body.pass,salt);
+ 
+    await Customer.update(
+      {_id:jwt.id},
+      {
+        $set: {
+          firstname:req.body.fname,
+          lastname:req.body.lname,
+          password:newp,
+          contactno:req.body.contact
+        },
+      },
+      { new: true }
+    );
+    await CProfile.update(
+      {customer:jwt.id},
+      {
+        $set: {
+          customername:""+req.body.fname+" "+req.body.lname+"",
+        },
+      },
+      { new: true }
+    );
 
 
 
-  
+    res.send(200);
+
+  });
 
 
 
