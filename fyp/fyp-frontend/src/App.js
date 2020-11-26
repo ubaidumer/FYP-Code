@@ -32,7 +32,7 @@ class App extends Component {
     return (
       
         <main className="Container">
-           
+           <Header/>
             <BrowserRouter>
             
               <Route path="/adminLogin" component={adminLogin}/>   
@@ -62,7 +62,7 @@ class App extends Component {
 
 
             </BrowserRouter>
-         
+         <Footer/>
         </main>
     
       
