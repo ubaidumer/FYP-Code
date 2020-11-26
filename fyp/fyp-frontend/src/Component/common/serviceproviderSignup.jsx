@@ -1,4 +1,4 @@
-import { Grid, Paper} from '@material-ui/core';
+import { Grid, Paper, Typography} from '@material-ui/core';
 import React, {Component} from 'react';
 import img from './work.jpg';
 import * as authService from "../../Axios-Actions/authService";
@@ -102,9 +102,9 @@ class serviceproviderSignup extends Component {
  
        </Grid>
        <Grid item md={7} xs={12}>
-           <h2>
+       <Typography variant="h5">
                Join us as a Service Provider
-           </h2>
+               </Typography>
            <p>
                Welcome to join XsSupport community as a Service Provider, we hope you will make your living better with our platform
            </p>
@@ -115,17 +115,19 @@ class serviceproviderSignup extends Component {
  
             <div style={{marginLeft:'20px',marginTop:'40px'}}>
  
-            <h5 style={{paddingTop:'20px'}}> First Name</h5>
-        <input style={{width:'80%'}} type='text' name='fname' onChange={this.onChange} placeholder='Enter your First Name'/>
+         <Typography variant="h6" style={{paddingTop:'20px'}}>First Name</Typography>
+            <input style={{marginTop:'10px',border:'0.1rem solid #d9d9d9',height:'30px',borderRadius:'18px',width:'85%',marginBottom:'20px',textAlign:'center'}}  type='text' name='fname' onChange={this.onChange} placeholder='Enter your First Name'/>
  
-        <h5 style={{paddingTop:'20px'}}>Last Name</h5>
-        <input style={{width:'80%'}} type='text'name='lname' onChange={this.onChange} placeholder='Enter your Last Name'/>
-                <h5>Email</h5>
-        <input style={{width:'80%'}} type='text'name='email'  onChange={this.onChange}placeholder='Enter your Email'/>
+       
+            <Typography variant="h6" >Last Name</Typography>
+        <input style={{marginTop:'10px',border:'0.1rem solid #d9d9d9',height:'30px',borderRadius:'18px',width:'85%',marginBottom:'20px',textAlign:'center'}}  type='text'name='lname' onChange={this.onChange} placeholder='Enter your Last Name'/>
+        <Typography variant="h6" >Email</Typography>
+                <input style={{marginTop:'10px',border:'0.1rem solid #d9d9d9',height:'30px',borderRadius:'18px',width:'85%',marginBottom:'20px',textAlign:'center'}}  type='text'name='email'  onChange={this.onChange}placeholder='Enter your Email'/>
  
     
         <div style={{display:'inline-flex'}}>
-       <h5>  Service type </h5> <select  id="servicetype"  name="servicetype" onChange={this.onChange} style={{width:'150px',marginBottom:'20px',height:'30px',marginLeft:'20px',border:'0px solid #fff'}}>
+        <Typography variant="h6" >Service Type:</Typography>
+        <select  id="servicetype"  name="servicetype" onChange={this.onChange} style={{width:'120px',marginBottom:'20px',height:'30px',marginLeft:'20px',border:'0px solid #fff',paddingTop:'5px'}}>
                                 <option value="">Select</option>
                                 <option value="maid">Maid</option>
                                 <option value="electrician">Electrician</option>
@@ -136,14 +138,14 @@ class serviceproviderSignup extends Component {
                                 <option value="tailor">Tailor</option>
                                 
                                 </select>  </div>
-        <h5> Password</h5>
-        <input  style={{width:'80%'}} type='password' name='password' onChange={this.onChange} placeholder='Enter your Password'/>
+                                <Typography variant="h6">Password</Typography>
+        <input style={{marginTop:'10px',border:'0.1rem solid #d9d9d9',textAlign:'center',height:'30px',borderRadius:'18px',width:'85%',marginBottom:'20px'}}  type='password' name='password' onChange={this.onChange} placeholder='Enter your Password'/>
  
-        <h5>Confirm Password</h5>
-        <input style={{width:'80%'}} type='password'name='confirmpassword'  onChange={this.onChange}placeholder='Enter your Password'/>
+       <Typography variant="h6">Confirm Password</Typography>
+        <input style={{marginTop:'10px',border:'0.1rem solid #d9d9d9',textAlign:'center',height:'30px',borderRadius:'18px',width:'85%',marginBottom:'20px'}}  type='password'name='confirmpassword'  onChange={this.onChange}placeholder='Enter your Password'/>
  
-        <h5>Contact No</h5>
-        <input style={{width:'80%'}} type='text' name='contact' onChange={this.onChange} placeholder='Enter your Contact Number'/>
+        <Typography variant="h6" >Contact No</Typography>
+        <input style={{marginTop:'10px',border:'0.1rem solid #d9d9d9',textAlign:'center',height:'30px',borderRadius:'18px',width:'85%',marginBottom:'20px'}}  type='text' name='contact' onChange={this.onChange} placeholder='Enter your Contact Number'/>
      
         </div>
         <button style={{marginBottom:'30px',marginTop:'30px',marginLeft:'20px',width:'80%',backgroundColor:'#4a95f7',borderRadius:'9px',color:'white',fontSize:'20px'}}  onClick={this.onSubmit}>Register</button>

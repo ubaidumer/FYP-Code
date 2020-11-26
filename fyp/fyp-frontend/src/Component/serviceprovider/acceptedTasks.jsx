@@ -1,12 +1,13 @@
 import React ,{Component} from 'react';
-import { Grid, Paper } from '@material-ui/core';
+import { Button, Card, CardActionArea, CardActions, CardContent, Collapse, FormControlLabel, Grid, Paper, Typography } from '@material-ui/core';
 import * as serviceproviderService from "../../Axios-Actions/serviceproviderService";
-
+import VisibilityIcon from '@material-ui/icons/Visibility';
 class acceptedTasks extends Component {
     constructor() {
         super();
         this.state = {
             task:[],
+            checked:false
 
         };
     }
@@ -15,92 +16,78 @@ class acceptedTasks extends Component {
            .then((result) => {
             this.setState({ task: result.data });         
           })
+
+         
        }
     render() {
         const { task } = this.state;
       return (
-        <Grid container>
+        <Grid container style={{backgroundColor:'#619eff'}}>
 
-        <Grid item md={2}></Grid>
-        <Grid item md={8} xs={12}>
+        <Grid item md={1}  style={{marginTop:'50px',backgroundColor:'#f5f5f5'}} ></Grid>
+        <Grid item md={10} xs={12} style={{marginTop:'50px',border:'1px solid white',backgroundColor:'#d6edff',height:'700px'}} >
             <h3 style={{textAlign:'center'}}>
                 Accepted Tasks
             </h3>
-            <ul style={{listStyle:'none'}}>
-                {
+            <ul style={{listStyle:'none',marginLeft:'10px',}}>
+      {
                     task.map(t=>(
-                        <li key={t._id} style={{marginTop:'20px',marginBottom:'20px'}}>
-            <Paper elevation={3}>
-        <table style={{borderCollapse: "separate", borderSpacing:'30px'}}>
-              <thead>
-              <tr >
-                  <th >
-                      Title
-                  </th>
-                  <th>
-                      Starting Time
-                  </th>
-                  <th>
-                      End time
-                  </th>
-                  <th>
-                      Month
-                  </th>
-                  <th>
-                      Service type
-                  </th>
-                  <th>
-                      Location
-                  </th>
-                  <th>
-                      Total Bill
-                  </th>
-                  <th>
-                      Customer Email
-                  </th>
-                  </tr>
-              </thead>
-              <tbody style={{textAlign:'center'}}>
-                 <tr >          
-                  <td>
-                        {t.title}
-                      </td>
-                  <td>
-                {t.starttime}
-                  </td>
-                  <td>
-             {t.endtime}
-                  </td>
-                  <td>
-            {t.month}
-                  </td>
-                  <td>
-            {t.servicetype}
-                  </td>
-                  <td>
-            {t.location}
-                  </td>
-                  <td>
-            {(t.month*t.permonth)+(t.pertask)+(t.perhour*(parseInt(t.endtime)-parseInt(t.starttime))*(t.month*30))}
-                  </td>
-                  <td>
-            {t.customeremail}
-                  </td>
-               
-                  </tr>
-            
-              </tbody>
-         
-              </table>  
-              </Paper>
-              </li>
+                        <li key={t._id} style={{marginTop:'20px',marginBottom:'20px',display:'inline-flex',flexWrap:'wrap',marginRight:'1rem',marginLeft:'1rem'}}>
+
+        <Card style={{maxWidth:'300px'}} >
+      <CardContent>
+        <Typography  color="textSecondary" gutterBottom style={{backgroundColor:'#2c51b0',color:'white'}}>
+        <li> Order:{t._id} </li>
+        </Typography>
+        <Typography variant="h6" component="h2">
+      <li>  Title: {t.title}</li>
+        </Typography>
+        <Typography variant="h6" component="h2">
+      <li>  Start Time:       {t.starttime}</li>
+        </Typography>
+        <Typography variant="h6" component="h2">
+      <li>  End Time:    {t.endtime}</li>
+        </Typography>
+        <FormControlLabel
+        control={<Button style={{color:'#2c51b0'}} checked={this.state.checked} onClick={()=>this.setState({checked:!this.state.checked})} ><VisibilityIcon/> </Button>}
+        label="View Details"
+      />
+      <div>
+      <Collapse in={this.state.checked}>
+        <Typography variant="h6" component="h2">
+      <li>  Month: {t.month}</li>
+        </Typography>  
+        <Typography variant="h6" component="h2">
+      <li>  Service Type: {t.servicetype}</li>
+        </Typography> 
+        <Typography variant="h6" component="h2">
+      <li>  Location: {t.location}</li>
+        </Typography>
+        <Typography variant="h6" component="h2">
+      <li>  Bill:   {(t.month*t.permonth)+(t.pertask)+(t.perhour*(parseInt(t.endtime)-parseInt(t.starttime))*(t.month*30))}</li>
+        </Typography>
+        <Typography variant="h6" component="h2">
+      <li> Service Provider Email: {t.serviceprovideremail}</li>
+        </Typography>
+        </Collapse>
+        </div>
+      </CardContent>
+      <CardActions>
+      
+      </CardActions>
+    </Card>
+
+
+    </li>
                     ))
-                }
-            </ul>
+      }
+
+      </ul>
+
 
         </Grid>
         
-        <Grid item md={2}></Grid>
+        <Grid item md={1}  style={{backgroundColor:'#f5f5f5',width:'100%',marginTop:'50px'}}></Grid>
 
     </Grid>
       );

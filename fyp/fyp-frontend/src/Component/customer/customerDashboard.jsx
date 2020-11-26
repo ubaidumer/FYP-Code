@@ -18,13 +18,10 @@ class customerDashboard extends React.Component{
     super();
     this.state={
       profile:[],
-
       newfname:'',
       newlname:'',
       newpass:'',
       newcontact:'',
-
-
       updateOpen: false
     };
   }
@@ -35,7 +32,6 @@ this.setState({profile:result.data});
 })
 
       };
-
 
       newChange=(event)=>{
         const target = event.target;
@@ -85,7 +81,6 @@ console.log("enter valid firstname");
       }
       }
 
-
       handleChange = () => {
         this.setState({updateOpen:!this.state.updateOpen})
       };
@@ -131,16 +126,11 @@ console.log("enter valid firstname");
         <Typography variant='h6' style={{paddingTop:'20px',textAlign:'center'}}>Update Info:</Typography>
           <div style={{display:'inline-flex',marginTop:'20px'}}>
             <Typography variant='h6' style={{marginLeft:'20px'}}>First Name:</Typography>
-
             <input name="newfname" onChange={this.newChange.bind(this)}value={this.state.newfname}style={{borderRadius:'3px',border:'1px solid #d2d4d2',width:'50%',marginLeft:'9px'}}/>
-
-            <input style={{borderRadius:'3px',border:'1px solid #d2d4d2',width:'50%',marginLeft:'9px'}}/>
-
           </div>
 
           <div style={{display:'inline-flex',marginTop:'20px'}}>
             <Typography  style={{marginLeft:'20px'}} variant='h6'>Last Name:</Typography>
-
             <input name="newlname"onChange={this.newChange.bind(this)}value={this.state.newlname} style={{borderRadius:'3px',border:'1px solid #d2d4d2',width:'50%',marginLeft:'10px'}}/>
           </div>
           <div style={{display:'inline-flex',marginTop:'20px'}}>
@@ -154,21 +144,6 @@ console.log("enter valid firstname");
           <center>
             <div style={{display:'inline-flex',marginTop:'30px',marginBottom:'20px'}}>
             <Button onClick={this.editSave} variant="outlined">Save</Button>
-
-            <input style={{borderRadius:'3px',border:'1px solid #d2d4d2',width:'50%',marginLeft:'10px'}}/>
-          </div>
-          <div style={{display:'inline-flex',marginTop:'20px'}}>
-            <Typography  style={{marginLeft:'20px'}} variant='h6'>Password:</Typography>
-            <input style={{borderRadius:'3px',border:'1px solid #d2d4d2',width:'50%',marginLeft:'19px'}}/>
-          </div>
-          <div style={{display:'inline-flex',marginTop:'20px'}}>
-            <Typography  style={{marginLeft:'20px'}} variant='h6'>Contact No:</Typography>
-            <input style={{borderRadius:'3px',border:'1px solid #d2d4d2',width:'50%',marginLeft:'8px'}}/>
-          </div>
-          <center>
-            <div style={{display:'inline-flex',marginTop:'30px',marginBottom:'20px'}}>
-            <Button variant="outlined">Save</Button>
-
             <Button variant="outlined" style={{marginLeft:'10px'}}
             onClick={this.handleChange}
             >Close</Button>

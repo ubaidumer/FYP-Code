@@ -156,6 +156,7 @@ this.setState({profile:result.data});
                         </div>
                         <Button style={{border:'1px solid #bd502f',borderRadius:'18px',color:'white',fontSize:'12px',fontWeight:'bold',marginTop:'10px'}}>Update Profile</Button>
                     </center>
+                    
                     <div >
                      
                     <a href="/acceptrequest" style={{textDecoration:'none'}}>
