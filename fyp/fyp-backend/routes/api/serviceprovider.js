@@ -2,9 +2,12 @@ const express    = require("express");
 const router     = express.Router();
 const bcrypt     = require("bcryptjs");
 const bodyparser = require("body-parser");
+const decode     = require("jwt-decode");
 const { ServiceProvider , validateServiceProvider, validateLogin } = require('../../models/Service Provider/ServiceProvider');
 const { setToken } = require("../../auth/auth");
 const {WorkHistory}= require('../../models/Service Provider/WorkHistory');
+const {SProfile}   = require("../../models/Service Provider/SProfile");
+const {Task}       = require("../../models/Customer/PostTask");
 const email = require("./email");
 router.use(bodyparser.json());
 router.use(bodyparser.urlencoded({ extended: false }));
@@ -52,6 +55,17 @@ router.use(bodyparser.urlencoded({ extended: false }));
     user.password = await bcrypt.hash(user.password, salt);
 
     await user.save();
+    let date= new Date();
+    let d=""+date.getDate()+"/"+date.getMonth()+"/"+date.getFullYear()+"";
+    let profile= new SProfile({
+      serviceprovider: user._id,
+      serviceprovidername: ""+user.firstname+" "+user.lastname+"",
+      ordercompleted:0,
+      creditearn:0,
+      joindate: d
+    });
+
+     await profile.save();
     const token = setToken(user._id, user.isApproved, user.email, user.isAdmin);
     console.log("token", token);
     res
@@ -116,8 +130,6 @@ router.use(bodyparser.urlencoded({ extended: false }));
     router.put("/edit",async (req,res)=>{
 
       const task = await ServiceProvider.find({email:req.body.esearchemail});
-
-      console.log(task);
       await ServiceProvider.update(
         {email:req.body.esearchemail},
         {
@@ -153,6 +165,44 @@ router.use(bodyparser.urlencoded({ extended: false }));
 
     });
 
+    router.get("/viewAll", async (req,res)=>{
+
+
+      const service = await ServiceProvider.find();
+
+      res.send(service);
+
+    });
+
+    router.post("/getServicebbytype", async (req,res)=>{
+
+      const service = await ServiceProvider.find({servicetype:req.body.type});
+
+      res.send(service);
+    });
+    router.get("/profile", async ( req , res )=>{
+      const jwt = decode(req.header("x-auth-token"));
+      const profile = await SProfile.findOne({serviceprovider:jwt.id});
+      if(!profile)res.status(400);
+      res.send(profile);
+    });
+
+    router.get("/acceptedtasks", async ( req , res )=>{
+      const jwt = decode(req.header("x-auth-token"));
+      const task = await Task.find({serviceprovider:jwt.id,status:"pending"}); 
+      console.log(task);
+      res.send(task);
+    });
+    router.get("/activetasks", async ( req , res )=>{
+      const jwt = decode(req.header("x-auth-token"));
+      const task = await Task.find({serviceprovider:jwt.id,status:"in progress"});
+   
+      res.send(task);
+    });
+    router.post("/searchbyid", async ( req , res )=>{
+      const s = await ServiceProvider.find({_id:req.body.id});
+      res.send(s);
+    });
 
  router.update;
  module.exports = router;
