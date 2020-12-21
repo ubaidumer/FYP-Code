@@ -23,6 +23,10 @@ const sprofile = mongoose.model("SProfile",mongoose.Schema({
     joindate:{
     type: String,
     required:true
+    },
+    image: {
+        type: String,
+        unique: true
     }
 }));
 exports.SProfile=sprofile;

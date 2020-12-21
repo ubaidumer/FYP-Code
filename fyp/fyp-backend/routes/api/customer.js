@@ -8,10 +8,14 @@ const { setToken } = require("../../auth/auth");
 const {OrderHistory}= require('../../models/Customer/OrderHistory');
 const {CProfile}    = require('../../models/Customer/CProfile');
 const { Task } = require('../../models/Customer/PostTask');
-const { date } = require("joi");
+const cloudinary= require('../../utils/cloudinary');
 
-router.use(bodyparser.json());
-router.use(bodyparser.urlencoded({ extended: false }));
+router.use(bodyparser.json({limit: '50mb', extended: true}));
+router.use(bodyparser.urlencoded({limit: '50mb', extended: true}));
+
+
+
+
 
 
 // Customer sign-up fr-
@@ -182,5 +186,28 @@ router.post("/signup", async (req,res) => {
 
 
 
+  router.post('/upload',async(req,res)=>{
+    try{
+    const jwt = decode(req.header("x-auth-token"));
+    const result= await cloudinary.uploader.upload(req.body.imagestring,{upload_preset:'customer_pictures'});
+
+    await CProfile.update(
+      {customer:jwt.id},
+      {
+        $set: {
+          imageURL:result.secure_url,
+          imageCLOUDID:result.public_id
+        },
+      },
+      { new: true }
+    );
+
+
+
+    }catch(err){
+      console.log(err);
+    }
+    res.send(200);
+  })
  router.update;
  module.exports = router;

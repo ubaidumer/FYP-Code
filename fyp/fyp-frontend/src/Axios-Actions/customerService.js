@@ -31,3 +31,6 @@ export async function findService(id){
 
     return await http.post(apiEndpoint+"/serviceprovider/searchbyid",{id});
 }
+export async function saveimage(imagestring){
+    return await http.post(apiEndpoint+"/customer/upload",{imagestring});
+}

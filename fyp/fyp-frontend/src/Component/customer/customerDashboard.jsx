@@ -1,16 +1,17 @@
-import { Avatar, Button, Divider, Grid, Modal, Paper, Popover, Typography } from '@material-ui/core';
+import { Avatar, Button, Divider, Grid, Modal, Paper, Popover, Typography} from '@material-ui/core';
 import React from 'react';
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import NearMeIcon from '@material-ui/icons/NearMe';
 import HistoryIcon from '@material-ui/icons/History';
-import img from '../common/azeem.jpg'
+import img from '../common/azeem.jpg';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import {FileUpload} from 'primereact/fileupload';
 import * as customerService from "../../Axios-Actions/customerService";
-
+import axios from "axios";
 
 class customerDashboard extends React.Component{
   constructor(){
@@ -18,11 +19,16 @@ class customerDashboard extends React.Component{
     super();
     this.state={
       profile:[],
+      imageid:[],
       newfname:'',
       newlname:'',
       newpass:'',
       newcontact:'',
-      updateOpen: false
+      updateOpen: false,
+      file:null,
+      inputfile:null,
+      selectedfile:null,
+      preview:null
     };
   }
   componentDidMount(){
@@ -85,6 +91,41 @@ console.log("enter valid firstname");
         this.setState({updateOpen:!this.state.updateOpen})
       };
 
+      handlefileinputchange(e){
+
+        const file=e.target.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend =()=>{
+
+        this.setState({preview:reader.result});
+        }
+      }
+     async handleSubmit(e){
+
+        e.preventDefault();
+        if(!this.state.preview)return;
+        console.log(this.state.preview);
+        try{
+
+       customerService.saveimage(this.state.preview)     
+        .then((result) => {
+        console.log("Successfull uploaded customer image");
+          setTimeout(function () {
+            window.location = "/customerdashboard";
+          }, 2000);
+        })
+        .catch((err) => {
+          this.setState({ invalid: true });
+          console.log("image upload error");
+        });
+        }catch(err){
+
+          console.log("error in front end"+err);
+        }
+
+      }
+
     render(){ 
       let { profile } = this.state;
 
@@ -92,9 +133,16 @@ console.log("enter valid firstname");
             <Grid container>
                 <Grid item md={2} xs={12} style={{backgroundColor:'#619eff',}}>
                     <center>
-                        <Avatar style={{width:'150px',height:'150px',marginTop:'30px'}}>
-                            <img style={{width:'150px',height:'150px'}} src={img}/>
+                
+
+                        <Avatar src={profile.imageURL} style={{width:'150px',height:'150px',marginTop:'30px'}}>
+                           
                         </Avatar>
+                        <form onSubmit={this.handleSubmit.bind(this)}>
+                          <input type='file' name='image' value={this.state.inputfile} onChange={this.handlefileinputchange.bind(this)}></input>
+                       <Button type='submit'>Upload</Button>
+                        </form>
+                    
                         <Typography variant='h6' style={{color:'white',marginTop:'15px'}}>
                            {profile.customername}
                         </Typography>

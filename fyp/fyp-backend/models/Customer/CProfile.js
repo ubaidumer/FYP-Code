@@ -22,6 +22,14 @@ const cprofile = mongoose.model("CProfile",mongoose.Schema({
     joindate:{
     type: String,
     required:true
+    },
+    imageURL: {
+        type: String,
+        unique: true
+    },
+    imageCLOUDID:{
+        type:String,
+        unique:true
     }
 }));
 exports.CProfile=cprofile;

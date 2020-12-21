@@ -29,10 +29,6 @@ const customer = mongoose.model("Customer", mongoose.Schema({
         minlenght: 11,
         maxlenght: 255,
         required: true
-    },
-    image: {
-        type: String,
-        unique: true
     }
 }))
 
@@ -43,8 +39,7 @@ function validateCustomer(customer) {
         lastname: Joi.string().max(255).required(),
         email: Joi.string().max(255).required().email(),
         password: Joi.string().max(255).min(8).required(),
-        contactno: Joi.number().min(11).required(),
-        image: Joi.string()
+        contactno: Joi.number().min(11).required()
     })
     return Schema.validate(customer)
 }

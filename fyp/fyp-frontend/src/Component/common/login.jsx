@@ -94,7 +94,6 @@ class Login extends Component {
         .ServiceProviderLogin(data.email, data.password)
         .then((result) => {
           localStorage.setItem("token", result.data);
-    
           console.log("Successfully loged in!");
           setTimeout(function () {
             window.location = "/";
