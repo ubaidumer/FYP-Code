@@ -77,9 +77,8 @@ class App extends Component {
               <Route path="/FindLocationMap" component={FLMap}/>
               <Route path="/NearbyServices" component={NBSMap}/>
             </BrowserRouter>
-         
+          
         </main>
-    
       
     );
   }
