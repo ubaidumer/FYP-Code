@@ -114,7 +114,7 @@ class Login extends Component {
         <Grid item md={1}>
 
         </Grid>
-        <Grid item md={6} xs={12} style={{marginTop:'50px'}}>
+        <Grid item md={6} xs={false} style={{marginTop:'50px'}}>
       
         <Typography  variant="h2" style={{color: "#5e7bdb"}}>Welcome to XsSupport</Typography>
         <Typography  variant="h4" style={{color: "#5e7bdb",marginTop:'40px'}}>

@@ -34,11 +34,13 @@ class workInProgress extends Component{
 
         };
     }
-       componentDidMount(){
-           workInProgressService.getAllTaskofS()
+
+       componentDidMount(){/*
+           workInProgressService.getAllTask()
+
            .then((result) => {
             this.setState({ task: result.data });
-          })
+          }) */
        }
        onSubmit(t){
         console.log("In submit button", this.state.data);

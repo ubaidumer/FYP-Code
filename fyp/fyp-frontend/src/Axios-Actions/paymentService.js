@@ -11,3 +11,7 @@ export async function paymentbyCash() {
   export async function getAllTask() {
     return await http.get(apiEndpoint + "/payment/view")
 }
+
+export async function Payment(email,bill) {
+  return await http.post(apiEndpoint + "/payment/pay",{email,bill});
+} 
