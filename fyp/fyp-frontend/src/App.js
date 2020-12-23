@@ -33,7 +33,6 @@ const stripePromise = loadStripe("pk_test_51I1Ax7HfaNOMnRYn508ySaI0Fj8tz765xbYQj
 
 
 
-
 class App extends Component {
   renderComp() {}
 
@@ -48,9 +47,11 @@ class App extends Component {
                <Route path="/profile" component={ProfilePage}/>   
                <Route path="/sprofile" component={SProfilePage}/>   
               <Route path="/adminLogin" component={adminLogin}/>   
+
               <Route path="/stripecard" component={Stripecard}/>
               <Route path="/viewserviceprovider" component={viewServiceProvider}/>    
               <Route path="/customerdashboard" component={customerDashboard}/>      
+
               <Route path="/serviceproviderSignup" exact={true} component={serviceproviderSignup} />
               <Route path="/customerSignup" component={customerSignup} />
               <Route path="/login" component={SignIn}/>
@@ -64,6 +65,13 @@ class App extends Component {
               <Route path="/workHistory" component={workHistory}/>
               <Route path="/rating" component={rating}/>
               <Route path="/admindashboard" component={admindashboard}/>
+              <Route path="/postedtask" component={postedtask}/>
+              <Route path="/activetask" component={activetask}/>
+              <Route path="/acceptedtask" component={acceptedTasks}/>
+              <Route path="/activeT" component={activeT}/>
+
+              
+
               <Route path="/" exact={true} component={HomeScreen}/>
               </Elements>
               <Route path="/FindLocationMap" component={FLMap}/>

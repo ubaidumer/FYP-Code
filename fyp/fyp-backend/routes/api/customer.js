@@ -9,6 +9,7 @@ const {OrderHistory}= require('../../models/Customer/OrderHistory');
 const {CProfile}    = require('../../models/Customer/CProfile');
 const { Task } = require('../../models/Customer/PostTask');
 const { date } = require("joi");
+
 const cloudinary= require('./cloudinary');
 router.use(bodyparser.json({limit: '50mb', extended: true}));
 router.use(bodyparser.urlencoded({limit: '50mb', extended: true}));
@@ -179,6 +180,7 @@ router.post("/signup", async (req,res) => {
     res.send(200);
 
   });
+
   router.post('/upload',async(req,res)=>{
     try{
     const jwt = decode(req.header("x-auth-token"));
@@ -224,6 +226,7 @@ router.post("/signup", async (req,res) => {
     }
     res.send(200);
   });
+
 
  router.update;
  module.exports = router;

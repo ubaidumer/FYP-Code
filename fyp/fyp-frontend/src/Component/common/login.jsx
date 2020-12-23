@@ -80,7 +80,7 @@ class Login extends Component {
   
         console.log("Successfully loged in!");
         setTimeout(function () {
-          window.location = "/postatask";
+          window.location = "/customerdashboard";
         }, 2000);
     
       })
@@ -116,7 +116,7 @@ class Login extends Component {
         </Grid>
         <Grid item md={6} xs={false} style={{marginTop:'50px'}}>
       
-        <Typography  variant="h1" style={{color: "#5e7bdb"}}>Welcome to XsSupport</Typography>
+        <Typography  variant="h2" style={{color: "#5e7bdb"}}>Welcome to XsSupport</Typography>
         <Typography  variant="h4" style={{color: "#5e7bdb",marginTop:'40px'}}>
                 A world where ease is at your hands</Typography>
                   <img src= {img1} alt={"no content"}style={{maxHeight:'400px',maxWidth:'700px'}}/>

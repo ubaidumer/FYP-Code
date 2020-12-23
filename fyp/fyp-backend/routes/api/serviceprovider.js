@@ -204,6 +204,7 @@ router.use(bodyparser.urlencoded({limit: '50mb', extended: true}));
       const s = await ServiceProvider.find({_id:req.body.id});
       res.send(s);
     });
+
     router.post('/upload',async(req,res)=>{
       try{
       const jwt = decode(req.header("x-auth-token"));
@@ -270,8 +271,6 @@ router.use(bodyparser.urlencoded({limit: '50mb', extended: true}));
       res.send(service);
 
     });
-
-
 
 
 

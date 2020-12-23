@@ -31,8 +31,10 @@
     "react-star-rating-component": "^1.4.1",
     "react-swipeable-views": "^0.13.9",
     "react-toastify": "^6.0.9",
+
     "stripe": "^8.129.0",
     "styles": "^0.2.1",
+
     "web-vitals": "^0.2.4"
   },
   "scripts": {
