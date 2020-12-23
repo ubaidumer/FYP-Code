@@ -5,10 +5,10 @@ import serviceproviderSignup from "./Component/common/serviceproviderSignup";
 import customerSignup from "./Component/common/customerSignup";
 import Login from "./Component/common/login";
 import postatask from "./Component/customer/postATask";
-import acceptRequest from "./Component/serviceprovider/acceptRequest";
+import AcceptRequest from "./Component/serviceprovider/AcceptRequest";
 import workInProgress from "./Component/serviceprovider/workInProgress";
 import acceptServiceProvider from "./Component/customer/acceptServiceProvider";
-import orderHistory from "./Component/customer/orderHistory";
+import OrderHistory from "./Component/customer/OrderHistory";
 import workHistory from "./Component/serviceprovider/workHistory";
 import payment from "./Component/customer/payment";
 import rating from "./Component/customer/rating";
@@ -46,11 +46,11 @@ class App extends Component {
               <Route path="/customerSignup" component={customerSignup} />
               <Route path="/login" component={SignIn}/>
               <Route path="/postatask" component={postatask}/>
-              <Route path="/acceptRequest" component={acceptRequest}/>
+              <Route path="/acceptRequest" component={AcceptRequest}/>
               <Route path="/workInProgress" component={workInProgress}/>
               <Route path="/acceptServiceProvider" component={acceptServiceProvider}/>
               <Route path="/payment" component={payment}/>
-              <Route path="/orderHistory" component={orderHistory}/>
+              <Route path="/orderHistory" component={OrderHistory}/>
               <Route path="/postedTask" component={PostedTask}/>
               <Route path="/workHistory" component={workHistory}/>
               <Route path="/rating" component={rating}/>

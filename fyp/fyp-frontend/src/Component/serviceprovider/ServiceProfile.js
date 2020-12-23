@@ -169,7 +169,7 @@ console.log("enter valid firstname");
                   </div>
                   <div className={classes.name}>
       <h3 className={classes.title}>{prof.serviceprovidername}</h3>
-                    <h6>Customer</h6>
+                    <h6>Service Provider</h6>
                     <Button justIcon link className={classes.margin5}>
                       <i className={"fab fa-twitter"} />
                     </Button>
