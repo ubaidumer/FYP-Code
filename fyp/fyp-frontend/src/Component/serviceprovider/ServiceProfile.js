@@ -7,6 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Camera from "@material-ui/icons/Camera";
 import Palette from "@material-ui/icons/Palette";
 import Favorite from "@material-ui/icons/Favorite";
+import MapIcon from "@material-ui/icons/Map"
 // core components
 import Header from "../../components/Header/Header.js";
 import Footer from "../../components/Footer/Footer.js";
@@ -41,6 +42,7 @@ import AcceptRequest from "./AcceptRequest";
 import AcceptedTask from "./AcceptedTask.js";
 import WorkHist from "./WorkHist.js";
 import WorkInProg from "./WorkInProg.js";
+import FindLocationMap from "../../Component/common/FindLocationMap";
 
 
 
@@ -59,6 +61,7 @@ export default function ServiceProfile(props) {
   const [lName,setLName] = React.useState('');
   const [newpass,setNewPass] = React.useState('');
   const [newContact,setNewContact] = React.useState('');
+  const [preview,setPreview] = React.useState(false);
 
   const [updateOpen,setUpdateOpen] = React.useState(false);
 
@@ -69,6 +72,40 @@ export default function ServiceProfile(props) {
     console.log(prof)
 
   },[]);
+  const ch=(e)=>{
+
+    const file=e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend =()=>{
+    setPreview(reader.result);
+    }
+  }
+ const up=(e)=>{
+
+    e.preventDefault();
+    if(!preview)return;
+    console.log(preview);
+    try{
+
+      serviceproviderService.saveimage(preview)     
+    .then((result) => {
+    console.log("Successfull uploaded serviceprovider image");
+      setTimeout(function () {
+        window.location = "/sprofile";
+      }, 2000);
+    })
+    .catch((err) => {
+      this.setState({ invalid: true });
+      console.log("image upload error");
+    });
+    }catch(err){
+
+      console.log("error in front end"+err);
+    }
+
+  }
+  
   
  
 /*
@@ -165,11 +202,15 @@ console.log("enter valid firstname");
               <GridItem xs={12} sm={12} md={6}>
                 <div className={classes.profile}>
                   <div>
-                    <img src={profile1} alt="..." className={imageClasses} />
+                  <img  style={{maxHeight:'200px',maxWidth:'200px'}}src={prof.imageURL||profile1} alt="No Content" className={imageClasses}/>
                   </div>
                   <div className={classes.name}>
+                  <form onSubmit={(e)=>up(e)}>
+        <input type='file' name='image' onChange={(e)=>ch(e)}></input>
+        <button type='submit'>upload</button>
+        </form>
       <h3 className={classes.title}>{prof.serviceprovidername}</h3>
-                    <h6>Customer</h6>
+                    <h3>Service Provider</h3>
                     <Button justIcon link className={classes.margin5}>
                       <i className={"fab fa-twitter"} />
                     </Button>
@@ -197,18 +238,7 @@ console.log("enter valid firstname");
                   alignCenter
                   color="primary"
                   tabs={[
-                    {
-                      tabButton: "Post A Task",
-                      tabIcon: Camera,
-                      tabContent: (
-                        <GridContainer justify="center">
-                          <GridItem xs={12} sm={12} md={10}>
-            
-                          <PostATask/>
-                          </GridItem>
-                        </GridContainer>
-                      )
-                    },
+ 
                     {
                       tabButton: "Work",
                       tabIcon: Palette,
@@ -286,66 +316,16 @@ console.log("enter valid firstname");
                         </GridContainer>
                    
                       )
-                    },
-                    {
-                      tabButton: "Service Providers",
-                      tabIcon: PanoramaFishEye,
+                    }
+                    , {
+                      tabButton: "Find Task Location",
+                      tabIcon: MapIcon,
                       tabContent: (
                         <GridContainer justify="center">
-                          <GridItem xs={12} sm={12} md={12}>
-                        <GridContainer justify="center">
-                           <GridItem md={6}>
-                           <div>
-                          <Typography variant="h6">Search</Typography>
-                          <TextField
-                          label="Search..."/>
-                        </div>
-                           </GridItem>
-
-
-                           <GridItem md={6}>
-                           <div>
-                          <Typography variant="h6">Category</Typography>
-                          <CustomDropdown/>
-                        </div>
-                           </GridItem>
-                           </GridContainer>
-                          <ul style={{ listStyle: 'none', display: 'inline-flex', flexWrap: 'wrap' }}>
-                            {
-                                sp.map(s => (
-                                    <li key={s.id}>
-                                        <Card style={{ maxWidth: '200px', marginLeft: '20px', marginTop: '10px' }} >
-                                            <CardActionArea>
-                                                <img src={studio1} style={{ width: '200px', maxHeight: '150px' }} />
-                                                <CardContent>
-                                                    <Typography gutterBottom variant="h6" component="h2">
-                                                        {s.firstname} {s.lastname}
-                                                    </Typography>
-                                                    <Typography gutterBottom variant="subtitle1" component="h2">
-                                                        {s.servicetype}
-                                                    </Typography>
-                                                </CardContent>
-                                            </CardActionArea>
-                                            <CardActions>
-
-                                                <Button size="small" color="primary" style={{ marginLeft: '20px' }}
-                                                    onClick={() => this.setState({ openService: !this.state.openService }, this.getData(s._id))}>
-                                                    View Details
-        </Button>
-
-                                            </CardActions>
-                                        </Card>
-                                    </li>
-
-                                ))
-                            }
-                        </ul>
-
-
-
-
+                          <GridItem xs={12} sm={12} md={15}>
+            
+                         <FindLocationMap/>
                           </GridItem>
-                         
                         </GridContainer>
                       )
                     }

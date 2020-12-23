@@ -137,7 +137,7 @@ console.log(  this.state.title,
               // localStorage.setItem("token", result.data);
             console.log("Successfull posted");
               setTimeout(function () {
-                window.location = "/";
+                window.location = "/profile";
               }, 2000);
             })
             .catch((err) => {

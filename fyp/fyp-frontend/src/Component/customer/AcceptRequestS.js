@@ -49,7 +49,7 @@ class AcceptRequestS extends Component{
             // localStorage.setItem("token", result.data);
           console.log("Successfull posted");
             setTimeout(function () {        //iisme tune kahin define to nahi kiya k when i click button add serviceproivder add to that field?
-              window.location = "/";
+              window.location = "/profile";
             }, 2000);
           })
           .catch((err) => {
@@ -89,7 +89,7 @@ class AcceptRequestS extends Component{
         .then((result) => {
           console.log("Successfull Canceled");
             setTimeout(function () {     
-           window.location = "/";
+           window.location = "/profile";
             }, 2000);
           })
           .catch((err) => {

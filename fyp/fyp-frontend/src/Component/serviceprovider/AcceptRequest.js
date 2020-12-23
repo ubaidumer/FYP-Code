@@ -50,7 +50,7 @@ class AcceptRequest extends Component{
             // localStorage.setItem("token", result.data);
           console.log("Successfull posted");
             setTimeout(function () {        
-                   window.location = "/";
+                   window.location = "/sprofile";
             }, 2000);
           })
           .catch((err) => {

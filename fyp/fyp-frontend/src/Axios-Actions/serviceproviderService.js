@@ -13,3 +13,6 @@ export async function getactivetasks(){
 
     return await http.get(apiEndpoint + "/serviceprovider/activetasks");
 }
+export async function saveimage(imagestring){
+    return await http.post(apiEndpoint+"/serviceprovider/upload",{imagestring});
+}

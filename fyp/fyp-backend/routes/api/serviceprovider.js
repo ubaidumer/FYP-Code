@@ -9,8 +9,9 @@ const {WorkHistory}= require('../../models/Service Provider/WorkHistory');
 const {SProfile}   = require("../../models/Service Provider/SProfile");
 const {Task}       = require("../../models/Customer/PostTask");
 const email = require("./email");
-router.use(bodyparser.json());
-router.use(bodyparser.urlencoded({ extended: false }));
+const cloudinary= require('./cloudinary');
+router.use(bodyparser.json({limit: '50mb', extended: true}));
+router.use(bodyparser.urlencoded({limit: '50mb', extended: true}));
 
 // Service provider sign-up fr-
  router.post("/signup", async (req,res) => {
@@ -203,6 +204,76 @@ router.use(bodyparser.urlencoded({ extended: false }));
       const s = await ServiceProvider.find({_id:req.body.id});
       res.send(s);
     });
+    router.post('/upload',async(req,res)=>{
+      try{
+      const jwt = decode(req.header("x-auth-token"));
+      const result= await cloudinary.uploader.upload(req.body.imagestring,{upload_preset:'serviceprovider_pictures'});
+  
+      await SProfile.update(
+        {serviceprovider:jwt.id},
+        {
+          $set: {
+            imageURL:result.secure_url,
+            imageCLOUDID:result.public_id
+          },
+        },
+        { new: true }
+      );
+  
+  
+  
+      }catch(err){
+        console.log(err);
+      }
+      res.send(200);
+    });
+
+    router.post("/findpicture",async (req,res)=>{
+
+      const profile = await SProfile.findOne({serviceprovider:req.body.id});
+      if(!profile)res.status(400);
+      res.send(profile.imageURL);
+
+    });
+    router.post('/savelocation',async(req,res)=>{
+      try{
+      const jwt = decode(req.header("x-auth-token"));
+      await SProfile.update(
+        {serviceprovider:jwt.id},
+        {
+          $set: {
+            Latitude:req.body.lat,
+            Longitude:req.body.lng
+          },
+        },
+        { new: true }
+      );
+  
+  
+      }catch(err){
+        console.log(err);
+      }
+      res.send(200);
+    });
+
+    router.get("/sp", async (req,res)=>{
+
+      const service = await SProfile.find();
+
+      res.send(service);
+
+    });
+
+    router.post("/gethim", async (req,res)=>{
+
+      const service = await SProfile.find({serviceprovider:req.body.id});
+      res.send(service);
+
+    });
+
+
+
+
 
  router.update;
  module.exports = router;
