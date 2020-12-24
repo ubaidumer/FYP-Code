@@ -64,7 +64,7 @@ const PostedTask=()=> {
        <Grid item md={1}></Grid>
        
         <Grid item md={10} xs={12}>
-         <Typography variant="h6">History</Typography> 
+
          <br/>
         <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="customized table">

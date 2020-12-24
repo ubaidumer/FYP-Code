@@ -51,8 +51,15 @@ export async function ServiceProviderSignUp(
       contactno
     });
   }
+  export async function csavelocation(lat,lng){
+    return await http.post(apiEndpoint+"/customer/savelocation",{lat,lng});
+}
+export async function ssavelocation(lat,lng){
+  return await http.post(apiEndpoint+"/serviceprovider/savelocation",{lat,lng});
+}
 
-export function loginWithJwt(jwt) {
+
+  export function loginWithJwt(jwt) {
   localStorage.setItem(tokenKey, jwt);
 }
 

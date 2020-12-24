@@ -5,7 +5,7 @@ import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import CreditCardIcon from '@material-ui/icons/CreditCard';
 import img from './cred.png';
 import * as paymentService from "../../Axios-Actions/paymentService";
-
+import * as Stripecard from"./Stripecard";
 class Pay extends React.Component {
        counter=0;
 
@@ -171,13 +171,6 @@ class Pay extends React.Component {
               </button>
                 Easy option for both customer and Service provider
               <Divider/>
-            <button style={{width:'160px',fontSize:'15px',height:'50px',border:'1px solid white',color:'green'}} type="button" onClick={()=>this.setState({openc:!this.state.openc
-              })} >
-              Card/Debit Card
-              <CreditCardIcon style={{fontSize:'25px',marginLeft:'5px',paddingTop:'5px'}}/>
-            </button>
-            Pay through card when you are out of cash
-            <Divider/>
         
             <Modal style={{maxWidth:'400px',height:'600px',paddingLeft:'10%',paddingRight:'10%'}}
               open={this.state.open}
@@ -200,28 +193,8 @@ class Pay extends React.Component {
             </Paper>
             
             </Modal>
-   
-            <Modal style={{left:'20%',right:'20%'}}
-              open={this.state.openc}
-              onClose={!this.state.open}
-              aria-labelledby="simple-modal-title"
-              aria-describedby="simple-modal-description"
-            >
 
-<Paper elevation={3} style={{textAlign:'center',}}>
-              <h4 style={{backgroundColor:'burlywood',fontSize:'20px',paddingTop:'10px',paddingBottom:'10px'}}>
-                Credit Card
-              </h4>
-              <p>
-                Are you sure?
-              </p>
-              <button onClick={()=>this.setState({creditForm:!this.state.creditForm , openc:!this.state.openc })} style={{backgroundColor:'white',fontSize:'20px',marginBottom:'20px',border:'0px',color:'darkolivegreen',fontWeight:"bolder"}}>
-                Yes
-              </button>
-            
-            </Paper>
-            </Modal>
-            <Modal style={{left:'20%',right:'20%'}}
+            <Modal 
               open={this.state.creditForm}
               onClose={!this.state.creditForm}
               aria-labelledby="simple-modal-title"

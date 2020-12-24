@@ -16,6 +16,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Joi from "joi-browser";
 import * as authService from'../../Axios-Actions/authService';
 import { Radio } from '@material-ui/core';
+import useGeoLocation from "./useGeoLocation";
 
 
 function Copyright() {
@@ -62,7 +63,6 @@ function Copyright() {
       margin: theme.spacing(3, 0, 2),
     },
   });
-
   let radiovalue;
 class SignIn extends Component{
 
@@ -136,7 +136,12 @@ class SignIn extends Component{
           .CustomerLogin(data.email, data.password)
           .then((result) => {
             localStorage.setItem("token", result.data);
-      
+            navigator.geolocation.getCurrentPosition(function(position) {
+              console.log("Latitude is :", position.coords.latitude);
+              console.log("Longitude is :", position.coords.longitude);
+              authService.csavelocation(position.coords.latitude,position.coords.longitude); 
+            });   
+
             console.log("Successfully loged in!");
             setTimeout(function () {
               window.location = "/profile";
@@ -153,7 +158,11 @@ class SignIn extends Component{
             .ServiceProviderLogin(data.email, data.password)
             .then((result) => {
               localStorage.setItem("token", result.data);
-        
+              navigator.geolocation.getCurrentPosition(function(position) {
+                console.log("Latitude is :", position.coords.latitude);
+                console.log("Longitude is :", position.coords.longitude);
+                authService.ssavelocation(position.coords.latitude,position.coords.longitude); 
+              });   
               console.log("Successfully loged in!");
               setTimeout(function () {
                 window.location = "/sprofile";

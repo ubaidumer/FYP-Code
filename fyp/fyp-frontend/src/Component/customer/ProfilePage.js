@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 import Camera from "@material-ui/icons/Camera";
 import Palette from "@material-ui/icons/Palette";
-
+import MapIcon from '@material-ui/icons/Map';
 // core components
 import Header from "../../components/Header/Header.js";
 import Footer from "../../components/Footer/Footer.js";
@@ -19,7 +19,7 @@ import Parallax from "../../components/Parallax/Parallax.js";
 
 import profile1 from "../../assets/img/faces/christian.jpg";
 import * as customerService from "../../Axios-Actions/customerService"
-import studio1 from "../../assets/img/examples/studio-1.jpg";
+import studio1 from "../../assets/img/examples/servant2.jpg";
 
 import styles from "../../assets/jss/material-kit-react/views/profilePage";
 import { Card, CardActionArea, CardActions, CardContent, InputAdornment, Paper, TextField, Typography } from "@material-ui/core";
@@ -33,8 +33,8 @@ import PostedTask from "./postedTask.js";
 import ActiveTask from "./ActiveTask.js";
 import AcceptRequestS from "./AcceptRequestS.js";
 import Pay from "./Pay.js";
-
-
+import Stripecard from "./Stripecard.js";
+import NearbyServices from "../../Component/common/NearbyServices.js"
 const useStyles = makeStyles(styles);
 
 export default function ProfilePage(props) {
@@ -49,6 +49,8 @@ export default function ProfilePage(props) {
   const [lName,setLName] = React.useState('');
   const [newpass,setNewPass] = React.useState('');
   const [newContact,setNewContact] = React.useState('');
+  const [preview,setPreview] = React.useState(false);
+  const [s ,setS] = React.useState([]);
 
   const [updateOpen,setUpdateOpen] = React.useState(false);
 
@@ -58,10 +60,47 @@ export default function ProfilePage(props) {
 
     customerService.getAllService()
     .then((result)=>{setSp(result.data)});
-
+    customerService.AllSprofiles()
+    .then((result)=>{setS(result.data) 
+     console.log(result.data)});
 
 
   },[]);
+
+
+  const ch=(e)=>{
+
+    const file=e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend =()=>{
+    setPreview(reader.result);
+    }
+  }
+ const up=(e)=>{
+
+    e.preventDefault();
+    if(!preview)return;
+    console.log(preview);
+    try{
+
+      customerService.saveimage(preview)     
+    .then((result) => {
+    console.log("Successfull uploaded customer image");
+      setTimeout(function () {
+        window.location = "/profile";
+      }, 2000);
+    })
+    .catch((err) => {
+      this.setState({ invalid: true });
+      console.log("image upload error");
+    });
+    }catch(err){
+
+      console.log("error in front end"+err);
+    }
+
+  }
   
  
 
@@ -95,12 +134,16 @@ export default function ProfilePage(props) {
             <GridContainer justify="center">
               <GridItem xs={12} sm={12} md={6}>
                 <div className={classes.profile}>
-                  <div>
-                    <img src={profile1} alt="..." className={imageClasses} />
+                  <div >
+                    <img style={{maxHeight:'200px',maxWidth:'200px'}} src={prof.imageURL||profile1} alt="No Content" className={imageClasses}/>
                   </div>
                   <div className={classes.name}>
+                  <form onSubmit={(e)=>up(e)}>
+        <input type='file' name='image' onChange={(e)=>ch(e)}></input>
+        <button type='submit'>upload</button>
+        </form>
       <h3 className={classes.title}>{prof.customername}</h3>
-                    <h6>Customer</h6>
+                    <h3>Customer</h3>
                     <Button justIcon link className={classes.margin5}>
                       <i className={"fab fa-twitter"} />
                     </Button>
@@ -171,7 +214,7 @@ export default function ProfilePage(props) {
                         tabContent: (
                           <GridContainer justify="center">
                             <GridItem xs={12} sm={12} md={11}>
-                              <Typography variant="h6">POSTED TASKS</Typography>
+                              <Typography variant="h6">Posted Tasks</Typography>
                               <br/>
                               <PostedTask/>
                             </GridItem>
@@ -241,26 +284,29 @@ export default function ProfilePage(props) {
                            </GridContainer>
                           <ul style={{ listStyle: 'none', display: 'inline-flex', flexWrap: 'wrap' }}>
                             {
-                                sp.map(s => (
-                                    <li key={s.id}>
-                                        <Card style={{ maxWidth: '200px', marginLeft: '20px', marginTop: '10px' }} >
-                                            <CardActionArea>
-                                                <img src={studio1} style={{ width: '200px', maxHeight: '150px' }} />
-                                                <CardContent>
+                                s.map(st => (
+                                    <li key={st.id}>
+                                        <Card style={{ maxWidth: '300px', marginLeft: '20px', marginTop: '10px' }} >
+                                            <CardActionArea >
+                                                <CardContent >
+                                                  <img src={st.imageURL||studio1} style={{maxHeight:"150px", maxWidth:"200px"}}></img>
                                                     <Typography gutterBottom variant="h6" component="h2">
-                                                        {s.firstname} {s.lastname}
+                                                        {st.serviceprovidername}
                                                     </Typography>
-                                                    <Typography gutterBottom variant="subtitle1" component="h2">
-                                                        {s.servicetype}
+                                                    <Typography gutterBottom variant="h6" component="h2">
+                                                        Task Completed:{st.ordercompleted}
+                                                    </Typography>
+                                                    <Typography gutterBottom variant="h6" component="h2">
+                                                        Joined Us On:{st.joindate}
                                                     </Typography>
                                                 </CardContent>
                                             </CardActionArea>
                                             <CardActions>
 
-                                                <Button size="small" color="primary" style={{ marginLeft: '20px' }}
+                                                <Button size="small" color="primary" style={{marginLeft:"50px"}}
                                                     onClick={() => this.setState({ openService: !this.state.openService }, this.getData(s._id))}>
                                                     View Details
-        </Button>
+                                                   </Button>
 
                                             </CardActions>
                                         </Card>
@@ -286,7 +332,54 @@ export default function ProfilePage(props) {
                           <GridItem xs={12} sm={12} md={11}>
                           <br/>
                           
-                         <Pay/>
+                          <NavPills 
+                  alignCenter
+                  
+                  tabs={[
+                    {
+                      tabButton: "Cash on Spot",
+                      tabIcon: Details,
+                      tabContent: (
+                        <GridContainer justify="center">
+                         
+                          <GridItem xs={12} sm={12} md={11}>
+                          <Pay/>
+                          </GridItem>
+
+                        
+                          <br/>
+                        </GridContainer>
+                      )
+                    },
+                      {
+                        tabButton: "Pay By Credit Cards",
+                        tabIcon: Details,
+                        tabContent: (
+                          <GridContainer justify="center">
+                            <GridItem xs={12} sm={12} md={11}>
+                              <Stripecard/>
+                              <br/>
+                              
+                            </GridItem>
+                            
+                          </GridContainer>
+                        )
+                      }
+                      
+                    
+                  ] }/>
+
+                          </GridItem>
+                        </GridContainer>
+                      )
+                    },                    {
+                      tabButton: "Services Nearby",
+                      tabIcon: MapIcon,
+                      tabContent: (
+                        <GridContainer justify="center">
+                          <GridItem xs={12} sm={12} md={15}>
+            
+                          <NearbyServices/>
                           </GridItem>
                         </GridContainer>
                       )

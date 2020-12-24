@@ -14,6 +14,7 @@ class workHistory extends Component {
            historyService.getAllWorks()
            .then((result) => {
             this.setState({ task: result.data });
+            
           })
        }
     render() {
