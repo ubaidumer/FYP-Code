@@ -63,6 +63,7 @@ function Copyright() {
       margin: theme.spacing(3, 0, 2),
     },
   });
+  let la,ln;
   let radiovalue;
 class SignIn extends Component{
 
@@ -86,6 +87,16 @@ class SignIn extends Component{
         email: Joi.string().required().email({ minDomainAtoms: 2 }).label("Email"),
         password: Joi.string().required().min(8).label("Password"),
       };
+      componentDidMount(){
+        navigator.geolocation.getCurrentPosition(function(position) {
+          console.log("Latitude is :", position.coords.latitude);
+          console.log("Longitude is :", position.coords.longitude);
+          la =position.coords.latitude;
+          ln= position.coords.longitude; 
+
+        });   
+
+    }
       validateProperty = ({ name, value }) => {
         const obj = { [name]: value };
         const schema = { [name]: this.schema[name] };
@@ -130,18 +141,20 @@ class SignIn extends Component{
             console.log(errors);   
             console.log("validation error");
              return;
+        }else{
+          if(!la||!ln){
+            alert("your most recent location is not updated.");
+          }
         }
+
         if(radiovalue==="b"){
         authService
           .CustomerLogin(data.email, data.password)
           .then((result) => {
             localStorage.setItem("token", result.data);
-            navigator.geolocation.getCurrentPosition(function(position) {
-              console.log("Latitude is :", position.coords.latitude);
-              console.log("Longitude is :", position.coords.longitude);
-              authService.csavelocation(position.coords.latitude,position.coords.longitude); 
-            });   
-
+            if(la||ln){
+              authService.csavelocation(la,ln); 
+            }
             console.log("Successfully loged in!");
             setTimeout(function () {
               window.location = "/profile";
@@ -158,11 +171,9 @@ class SignIn extends Component{
             .ServiceProviderLogin(data.email, data.password)
             .then((result) => {
               localStorage.setItem("token", result.data);
-              navigator.geolocation.getCurrentPosition(function(position) {
-                console.log("Latitude is :", position.coords.latitude);
-                console.log("Longitude is :", position.coords.longitude);
-                authService.ssavelocation(position.coords.latitude,position.coords.longitude); 
-              });   
+              if(la||ln){
+                authService.ssavelocation(la,ln); 
+              }
               console.log("Successfully loged in!");
               setTimeout(function () {
                 window.location = "/sprofile";

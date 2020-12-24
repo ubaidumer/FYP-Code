@@ -64,6 +64,7 @@ function Copyright() {
       margin: theme.spacing(3, 0, 2),
     },
   });
+  let la,ln
 
 class serviceproviderSignup extends Component {
     constructor() {
@@ -90,7 +91,14 @@ class serviceproviderSignup extends Component {
       confirmpassword: Joi.string().required().min(8).label("ConfirmPassword"),
       contact: Joi.number().required().label("Contact no"),
     };
-  
+    componentDidMount(){
+      navigator.geolocation.getCurrentPosition(function(position) {
+        console.log("Latitude is :", position.coords.latitude);
+        console.log("Longitude is :", position.coords.longitude);
+        la =position.coords.latitude;
+        ln= position.coords.longitude; 
+      });   
+  }
     validateProperty = ({ name, value }) => {
       const obj = { [name]: value };
       const schema = { [name]: this.schema[name] };
@@ -130,6 +138,11 @@ class serviceproviderSignup extends Component {
         return;
       }
       if(data.password===data.confirmpassword){
+
+        if(!la||!ln){
+          alert("In order to signup you need to give access for location.");
+        }else{
+        
         authService
         .ServiceProviderSignUp(
           data.fname,
@@ -137,19 +150,21 @@ class serviceproviderSignup extends Component {
           data.email,
           data.servicetype,
           data.password,
-          data.contact
+          data.contact,
+          la,
+          ln
         )
         .then((result) => {
-          // localStorage.setItem("token", result.data);
-        console.log("Successfull signup");
+         localStorage.setItem("token", result.data);
+         console.log("Successfull signup");
           setTimeout(function () {
-            window.location = "/";
+            window.location = "/login";
           }, 2000);
         })
         .catch((err) => {
           this.setState({ invalid: true });
           console.log("Server error");
-        });
+        });}
       }else{
         console.log("password and confirm password are not same.");
         return;

@@ -24,14 +24,14 @@ export async function CustomerSignUp(
   lastname,
   email,
   password,
-  contactno
+  contactno,lat,lng
 ) {
   return await http.post(apiEndpoint + "/customer/signup", {
     firstname,
     lastname,
     email,
     password,
-    contactno
+    contactno,lat,lng
   });
 }
 export async function ServiceProviderSignUp(
@@ -40,7 +40,7 @@ export async function ServiceProviderSignUp(
     email,
     servicetype,
     password,
-    contactno
+    contactno,lat,lng
   ) {
     return await http.post(apiEndpoint + "/serviceprovider/signup", {
       firstname,
@@ -48,7 +48,7 @@ export async function ServiceProviderSignUp(
       email,
       servicetype,
       password,
-      contactno
+      contactno,lat,lng
     });
   }
   export async function csavelocation(lat,lng){
