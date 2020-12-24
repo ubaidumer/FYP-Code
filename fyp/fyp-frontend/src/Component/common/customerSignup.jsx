@@ -5,7 +5,7 @@ import img1 from './work.jpg';
 import Joi from "joi-browser";
 
 
-
+let la,ln;
 class customerSignup extends Component {
     constructor() {
       super();
@@ -30,6 +30,15 @@ class customerSignup extends Component {
       confirmpassword: Joi.string().required().min(8).label("Confirm Password"),
       contact: Joi.number().required().label("Contact no"),
     };
+    componentDidMount(){
+      navigator.geolocation.getCurrentPosition(function(position) {
+        console.log("Latitude is :", position.coords.latitude);
+        console.log("Longitude is :", position.coords.longitude);
+        la =position.coords.latitude;
+        ln= position.coords.longitude; 
+
+      });   
+  }
   
     validateProperty = ({ name, value }) => {
       const obj = { [name]: value };
@@ -71,25 +80,32 @@ class customerSignup extends Component {
         return;
       }
       if(data.password===data.confirmpassword){
+        
+        if(!la||!ln){
+          alert("In order to signup you need to give access for location.");
+        }else{
+         
         authService
         .CustomerSignUp(
           data.fname,
           data.lname,
           data.email,
           data.password,
-          data.contact
+          data.contact,
+          la,
+          ln
         )
         .then((result) => {
-          // localStorage.setItem("token", result.data);
+          localStorage.setItem("token", result.data);
         console.log("Successfull signup");
           setTimeout(function () {
-            window.location = "/";
+            window.location = "/login";
           }, 2000);
         })
         .catch((err) => {
           this.setState({ invalid: true });
           console.log("Server error");
-        });
+        });}
       }else{
         console.log("password and confirm password are not same.");
         return;

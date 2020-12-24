@@ -25,12 +25,6 @@ router.use(bodyparser.urlencoded({limit: '50mb', extended: true}));
         req.body.servicetype,
         req.body.contactno
       );
-  // Validate Schema
-  const { error } = validateServiceProvider(req.body);
-  if (error) {
-    console.log("validation Error", error);
-    return res.status(400).send(error.details[0].message);
-  }
 
   // Check if this Service Provider already exisits
   let user = await ServiceProvider.findOne({ email: req.body.email });
@@ -63,7 +57,9 @@ router.use(bodyparser.urlencoded({limit: '50mb', extended: true}));
       serviceprovidername: ""+user.firstname+" "+user.lastname+"",
       ordercompleted:0,
       creditearn:0,
-      joindate: d
+      joindate: d,
+      Latitude:req.body.lat,
+      Longitude:req.body.lng
     });
 
      await profile.save();

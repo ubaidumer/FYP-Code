@@ -26,12 +26,7 @@ router.post("/signup", async (req,res) => {
         req.body.password,
         req.body.contactno
       );
-  // Validate Schema
-  const { error } = validateCustomer(req.body);
-  if (error) {
-    console.log("validation Error", error);
-    return res.status(400).send(error.details[0].message);
-  }
+  
 
   // Check if this Customer already exisits
   let user = await Customer.findOne({ email: req.body.email });
@@ -67,7 +62,9 @@ router.post("/signup", async (req,res) => {
       customername: ""+user.firstname+" "+user.lastname+"",
       taskcompleted:0,
       creditspent:0,
-      joindate: d
+      joindate: d,  
+      Latitude:req.body.lat,
+      Longitude:req.body.lng
     });
 
      await profile.save();
