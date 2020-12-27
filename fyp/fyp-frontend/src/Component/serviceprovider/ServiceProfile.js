@@ -4,9 +4,10 @@ import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
-import Camera from "@material-ui/icons/Camera";
+
 import Palette from "@material-ui/icons/Palette";
-import Favorite from "@material-ui/icons/Favorite";
+
+import PublishIcon from '@material-ui/icons/Publish';
 import MapIcon from "@material-ui/icons/Map"
 // core components
 import Header from "../../components/Header/Header.js";
@@ -20,24 +21,12 @@ import Parallax from "../../components/Parallax/Parallax.js";
 
 import profile1 from "../../assets/img/faces/christian.jpg";
 import * as serviceproviderService from "../../Axios-Actions/serviceproviderService";
-import studio1 from "../../assets/img/examples/studio-1.jpg";
-import studio2 from "../../assets/img/examples/studio-2.jpg";
-import studio3 from "../../assets/img/examples/studio-3.jpg";
-import studio4 from "../../assets/img/examples/studio-4.jpg";
-import studio5 from "../../assets/img/examples/studio-5.jpg";
-import work1 from "../../assets/img/examples/olu-eletu.jpg";
-import work2 from "../../assets/img/examples/clem-onojeghuo.jpg";
-import work3 from "../../assets/img/examples/cynthia-del-rio.jpg";
-import work4 from "../../assets/img/examples/mariya-georgieva.jpg";
-import work5 from "../../assets/img/examples/clem-onojegaw.jpg";
+
 
 import styles from "../../assets/jss/material-kit-react/views/profilePage";
 import { Card, CardActionArea, CardActions, CardContent, InputAdornment, Paper, TextField, Typography } from "@material-ui/core";
 import { Details, PanoramaFishEye } from "@material-ui/icons";
-import CustomInput from "../../components/CustomInput/CustomInput.js";
-import CustomDropdown from "../../components/CustomDropdown/CustomDropdown.js";
 
-import PostATask from "../customer/postATask"
 import AcceptRequest from "./AcceptRequest";
 import AcceptedTask from "./AcceptedTask.js";
 import WorkHist from "./WorkHist.js";
@@ -202,13 +191,18 @@ console.log("enter valid firstname");
               <GridItem xs={12} sm={12} md={6}>
                 <div className={classes.profile}>
                   <div>
+                  <form onSubmit={(e) => up(e)}>   <input style={{ display: 'none' }} type='file' id="file" name='image' onChange={(e) => ch(e)} accept="image/*" />
+                    <label for="file">   
                   <img  style={{maxHeight:'200px',maxWidth:'200px'}}src={prof.imageURL||profile1} alt="No Content" className={imageClasses}/>
+                  </label>
+                  </form>
+
                   </div>
                   <div className={classes.name}>
-                  <form onSubmit={(e)=>up(e)}>
-        <input type='file' name='image' onChange={(e)=>ch(e)}></input>
-        <button type='submit'>upload</button>
-        </form>
+                  <form onSubmit={(e) => up(e)}>
+
+                      <Button style={{ height: '40px' }} type='submit'><PublishIcon /></Button>
+                    </form>
       <h3 className={classes.title}>{prof.serviceprovidername}</h3>
                     <h6>Service Provider</h6>
                     <Button justIcon link className={classes.margin5}>
