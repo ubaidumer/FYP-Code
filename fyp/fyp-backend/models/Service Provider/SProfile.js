@@ -23,7 +23,7 @@ const sprofile = mongoose.model("SProfile",mongoose.Schema({
     joindate:{
     type: String,
     required:true
-
+    },
     imageURL:{type: String},imageCLOUDID:{type: String},
     Latitude:{type: String},Longitude:{type: String}
 

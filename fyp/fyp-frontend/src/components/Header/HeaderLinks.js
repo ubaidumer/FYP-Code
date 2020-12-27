@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React from "react";
+import React, { useState } from "react";
 import DeleteIcon from "@material-ui/icons/Delete";
 import IconButton from "@material-ui/core/IconButton";
 // react components for routing our app without refresh
@@ -12,8 +12,9 @@ import ListItem from "@material-ui/core/ListItem";
 import Tooltip from "@material-ui/core/Tooltip";
 
 // @material-ui/icons
-import { Apps, CloudDownload } from "@material-ui/icons";
-
+import { Backdrop, Badge, Container, Divider, Fade, Grid, Modal, Paper, TextField } from '@material-ui/core';
+import { Apps } from "@material-ui/icons";
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 // core components
 
 import CustomDropdown from "../../components/CustomDropdown/CustomDropdown.js";
@@ -25,41 +26,37 @@ const useStyles = makeStyles(styles);
 
 export default function HeaderLinks(props) {
   const classes = useStyles();
+  const [gen,setGen]= useState(false)
   return (
     <List className={classes.list}>
       <ListItem className={classes.listItem}>
         <CustomDropdown
           noLiPadding
-          buttonText="Components"
+          buttonText="Settings"
           buttonProps={{
             className: classes.navLink,
             color: "transparent"
           }}
           buttonIcon={Apps}
           dropdownList={[
-            <Link to="/" className={classes.dropdownLink}>
-              All components
-            </Link>,
-            <a
-              href="https://creativetimofficial.github.io/material-kit-react/#/documentation?ref=mkr-navbar"
-              target="_blank"
-              className={classes.dropdownLink}
+            <Button style={{width:'150px'}}
+            onClick={()=>setGen(true)}
             >
-              Documentation
-            </a>
+              General
+            </Button>,
+            
+            <Button style={{width:'150px'}}>
+            Privacy</Button>
+           
           ]}
         />
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Button
-          href="https://www.creative-tim.com/product/material-kit-react?ref=mkr-navbar"
-          color="transparent"
-          target="_blank"
-          className={classes.navLink}
-        >
-          <CloudDownload className={classes.icons} /> Download
+      <a style={{textDecoration:'none'}} 
+      href="/login">  <Button>
+          <ExitToAppIcon className={classes.icons} /> Logout
         </Button>
-      </ListItem>
+        </a>    </ListItem>
       <ListItem className={classes.listItem}>
         {/*<Tooltip title="Delete">
           <IconButton aria-label="Delete">
@@ -116,6 +113,53 @@ export default function HeaderLinks(props) {
           </Button>
         </Tooltip>
       </ListItem>
+      <Modal style={{display:'flex',alignItems:'center',justifyContent:'center'}}
+  open={gen}
+  onClose={!gen}
+  closeAfterTransition
+  BackdropComponent={Backdrop}
+  BackdropProps={{
+    timeout: 500, 
+  }}
+>
+  <Fade in={gen}>
+    <Paper> 
+  <Container maxWidth="md"> 
+ <Grid container>
+   <Grid item md={1}></Grid>
+   <Grid item md={4}>
+     <TextField
+     label="Change your Name"/>
+     <br/>
+     <TextField
+     label="Change your Password"/>
+     <br/>
+     <TextField
+     label="Confirm Password"/>
+     <br/>
+   </Grid>
+   <Grid item md={3}></Grid>
+   <Grid item md={4}>
+   <TextField
+     label="Change your Contact No"/>
+     <br/>
+     <TextField
+     label="Change your Life"/>
+     <br/>
+   </Grid>
+   <Grid item md={3}></Grid>
+   <Grid item md={6}>
+     <br/>
+
+     <Button style={{marginRight:'20px'}}>Submit</Button>
+ <Button onClick={()=>setGen(!gen)}>Close</Button>
+ </Grid>
+ <Grid item md={3}></Grid>
+ </Grid>
+  </Container>
+  </Paper>
+  </Fade>
+</Modal>
     </List>
   );
 }

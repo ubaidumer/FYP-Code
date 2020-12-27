@@ -12,7 +12,7 @@ import { Container, Typography } from '@material-ui/core';
 const useStyles = makeStyles({
   root: {
     maxWidth: 600,
-    margin: '35vh auto',
+    margin: '10vh auto',
   },
   content: {
     display: 'flex',
@@ -91,12 +91,10 @@ const useStyles = makeStyles({
     <Container maxWidth="md">
     <Card className={classes.root}>
       <CardContent className={classes.content}>
-    
- <Typography>Your Account Email:{task.customeremail}</Typography>
- <Typography>Your Service Provider Email:{task.serviceprovideremail}</Typography>
- <Typography>Your Total bill:{(task.month*task.permonth)+(task.pertask)+(task.perhour*(parseInt(task.endtime)-parseInt(task.starttime))*(task.month*30))}</Typography>
- 
-      
+ <Typography variant="h6" style={{color:'#9b34eb'}}>Your Account Email:{task.customeremail}</Typography>
+ <Typography variant="h6" style={{color:'#9b34eb'}}>Your Service Provider Email:{task.serviceprovideremail}</Typography>
+ <Typography variant="h6" style={{color:'#9b34eb'}}>Your Total bill:{(task.month*task.permonth)+(task.pertask)+(task.perhour*(parseInt(task.endtime)-parseInt(task.starttime))*(task.month*30))}</Typography>
+
         <TextField
           label='Email'
           id='outlined-email-input'

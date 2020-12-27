@@ -7,13 +7,16 @@ import "./search.css"
 import "lrm-google";
 import "./routing.css";
 import useGeoLocation from "./useGeoLocation";
-import { Button, Grid } from "@material-ui/core";
+import { Button, Container, Grid, Paper, Typography } from "@material-ui/core";
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import { Backdrop, Badge, Divider, Fade, Modal, TextField } from '@material-ui/core';
 import * as customerService from "../../Axios-Actions/customerService";
+import PostATask from "../customer/postATask"
 
 import usericon from "./marker/user.svg";
 import serviceicon from "./marker/service.svg";
+
 let DefaultIcon = L.icon({
     iconUrl: icon,
     shadowUrl: iconShadow
@@ -36,6 +39,7 @@ export default function NearbyServices(){
 const [center,setCenter] = React.useState({lat:31.5204,lng: 74.3587});
 const [worker, setWorker] = React.useState([]);
 const [selected, setSelected] = React.useState(null);
+const [view,setView] = React.useState(false);
 const ZOOM_LEVEL= 12;
 const mapRef= React.useRef();
 const { map } = useLeaflet();
@@ -51,6 +55,58 @@ const { map } = useLeaflet();
 return (
     <Grid container>
       <Grid item md={10}>
+      <Modal style={{display:'flex',alignItems:'center',justifyContent:'center'}}
+
+  open={view}
+  onClose={!view}
+  closeAfterTransition
+  BackdropComponent={Backdrop}
+  BackdropProps={{
+    timeout: 500, 
+  }}
+>
+  <Fade in={view}>
+  <Container maxWidth="md">
+ 
+
+ <Paper>
+   <Button onClick={()=>setView(!view)} style={{left:'70%'}}>X</Button>
+  <Grid container>
+    <Grid item md={6}>
+      <div style={{marginLeft:'20px'}}>
+     <TextField
+     label="Enter Title"/>
+     <br/>
+     <TextField
+     label="Enter budget"
+     /><br/>
+     <TextField 
+     label="House Address"/>
+</div>
+    </Grid>
+    <Grid item md={6}>
+     <TextField
+     label="Enter Title"/>
+     <br/>
+     <TextField
+     label="Enter budget"
+     /><br/>
+     <TextField 
+     label="House Address"/>
+
+    </Grid>
+    <center>
+ <Button>Send</Button>
+ </center>
+  </Grid>
+ </Paper>
+
+
+
+  </Container>
+  </Fade>
+</Modal>
+
     <Map
     style={{height:"40vw",width:"100vw"}}
     center={center}
@@ -89,9 +145,10 @@ return (
                                        w.Longitude,
                                      ]}
                                    ><Popup>
-                                     <p>ServiceProvider Name:{w.serviceprovidername}</p>
+                                     <p>Name:{w.serviceprovidername}</p>
                                      <p>Latitude:{w.Latitude}</p>
                                      <p>Longitude:{w.Longitude}</p>
+                                     <Button onClick={()=>setView(true)} variant="outlined">Send Task</Button>
                                      </Popup>
                                    
                                      </Marker>
