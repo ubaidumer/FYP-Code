@@ -12,7 +12,7 @@ import ListItem from "@material-ui/core/ListItem";
 import Tooltip from "@material-ui/core/Tooltip";
 
 // @material-ui/icons
-import { Backdrop, Badge, Container, Divider, Fade, Grid, Modal, Paper, TextField } from '@material-ui/core';
+import { Backdrop, Badge, Container, Divider, Fade, Grid, Modal, Paper, TextField} from '@material-ui/core';
 import { Apps } from "@material-ui/icons";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 // core components
@@ -21,12 +21,37 @@ import CustomDropdown from "../../components/CustomDropdown/CustomDropdown.js";
 import Button from "../../components/CustomButtons/Button.js";
 
 import styles from "../../assets/jss/material-kit-react/components/headerLinksStyle";
-
+import * as customerService from "../../Axios-Actions/customerService";
 const useStyles = makeStyles(styles);
 
-export default function HeaderLinks(props) {
+export default function HeaderLinksC(props) {
   const classes = useStyles();
-  const [gen,setGen]= useState(false)
+  const [gen,setGen]= useState(false);
+  const [fname,setFname]= useState("");
+  const [lname,setLname]= useState("");
+  const [contact,setContact]= useState("");
+  const [pass,setPass]= useState("");
+  
+const update =(e)=>{
+
+  if(fname&&lname&&contact&&pass){
+    customerService.editdata(fname,lname,pass,contact) .then((result) => {
+      console.log("Successfull updated customer");
+      setTimeout(function () {
+        window.location = "/profile";
+      }, 2000);
+    })
+    .catch((err) => {
+      this.setState({ invalid: true });
+      console.log(" upload error");
+    });
+  }else{
+    alert("you need to fill all fields!");
+  }
+
+
+}
+
   return (
     <List className={classes.list}>
       <ListItem className={classes.listItem}>
@@ -129,29 +154,30 @@ export default function HeaderLinks(props) {
    <Grid item md={1}></Grid>
    <Grid item md={4}>
      <TextField
-     label="Change your Name"/>
+     label="Change your firstName" onChange={(e)=>{setFname(e.target.value)}
+    }/>
      <br/>
      <TextField
-     label="Change your Password"/>
-     <br/>
-     <TextField
-     label="Confirm Password"/>
+     label="Change your lastName" onChange={(e)=>{setLname(e.target.value)}
+    }/>
      <br/>
    </Grid>
    <Grid item md={3}></Grid>
    <Grid item md={4}>
    <TextField
-     label="Change your Contact No"/>
+     label="Change your Contact No" onChange={(e)=>{setContact(e.target.value)}
+    }/>
      <br/>
      <TextField
-     label="Change your Life"/>
+     label="Change your Password" onChange={(e)=>{setPass(e.target.value)}
+    }/>
      <br/>
    </Grid>
    <Grid item md={3}></Grid>
    <Grid item md={6}>
      <br/>
 
-     <Button style={{marginRight:'20px'}}>Submit</Button>
+     <Button onClick={(e)=>update(e)} style={{marginRight:'20px'}}>Submit</Button>
  <Button onClick={()=>setGen(!gen)}>Close</Button>
  </Grid>
  <Grid item md={3}></Grid>

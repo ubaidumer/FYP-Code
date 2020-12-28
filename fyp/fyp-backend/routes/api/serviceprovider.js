@@ -197,7 +197,7 @@ router.use(bodyparser.urlencoded({limit: '50mb', extended: true}));
       res.send(task);
     });
     router.post("/searchbyid", async ( req , res )=>{
-      const s = await ServiceProvider.find({_id:req.body.id});
+      const s = await ServiceProvider.findById({_id:req.body.id});
       res.send(s);
     });
 
@@ -266,6 +266,40 @@ router.use(bodyparser.urlencoded({limit: '50mb', extended: true}));
       const service = await SProfile.find({serviceprovider:req.body.id});
       res.send(service);
 
+    });
+    router.post("/edit", async (req, res )=>{
+      const jwt = decode(req.header("x-auth-token"));
+  
+      const salt = await bcrypt.genSalt(10);
+      const newp= await bcrypt.hash(req.body.pass,salt);
+   
+      await ServiceProvider.update(
+        {_id:jwt.id},
+        {
+          $set: {
+            firstname:req.body.fname,
+            lastname:req.body.lname,
+            password:newp,
+            contactno:req.body.contact,
+            servicetype:req.body.st
+          },
+        },
+        { new: true }
+      );
+      await SProfile.update(
+        {serviceprovider:jwt.id},
+        {
+          $set: {
+            serviceprovidername:""+req.body.fname+" "+req.body.lname+"",
+          },
+        },
+        { new: true }
+      );
+  
+  
+  
+      res.send(200);
+  
     });
 
 

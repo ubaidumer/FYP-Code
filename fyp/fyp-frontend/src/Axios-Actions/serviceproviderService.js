@@ -17,4 +17,7 @@ export async function getactivetasks(){
 export async function saveimage(imagestring){
     return await http.post(apiEndpoint+"/serviceprovider/upload",{imagestring});
 
+}export async function editdata(fname,lname,pass,contact,st){
+
+    return await http.post(apiEndpoint+"/serviceprovider/edit",{fname,lname,pass,contact,st});
 }
