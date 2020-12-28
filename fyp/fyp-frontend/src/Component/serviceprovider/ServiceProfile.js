@@ -24,7 +24,7 @@ import * as serviceproviderService from "../../Axios-Actions/serviceproviderServ
 
 
 import styles from "../../assets/jss/material-kit-react/views/profilePage";
-import { Card, CardActionArea, CardActions, CardContent, InputAdornment, Paper, TextField, Typography } from "@material-ui/core";
+import { Card, CardActionArea, CardActions, CardContent, CircularProgress, InputAdornment, Paper, TextField, Typography } from "@material-ui/core";
 import { Details, PanoramaFishEye } from "@material-ui/icons";
 
 import AcceptRequest from "./AcceptRequest";
@@ -49,8 +49,9 @@ export default function ServiceProfile(props) {
   const [fName,setFName] = React.useState('');
   const [lName,setLName] = React.useState('');
   const [newpass,setNewPass] = React.useState('');
-  const [newContact,setNewContact] = React.useState('');
+  const [progress,setProgress] = React.useState(0);
   const [preview,setPreview] = React.useState(false);
+  const [loading,setLoading] = React.useState(false);
 
   const [updateOpen,setUpdateOpen] = React.useState(false);
 
@@ -58,23 +59,35 @@ export default function ServiceProfile(props) {
     serviceproviderService.getprofile()
     .then((result)=>{setProfile(result.data)});
 
-    console.log(prof)
+
+    const timer = setInterval(() => {
+      setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 20));
+    
+    }, 500);
+
+    return () => {
+     
+      clearInterval(timer);
+     
+    };
 
   },[]);
   const ch=(e)=>{
-
+     
     const file=e.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend =()=>{
+     
     setPreview(reader.result);
     }
   }
  const up=(e)=>{
-
+  setLoading(true)
     e.preventDefault();
-    if(!preview)return;
-    console.log(preview);
+    if(!preview)
+    return;
+    console.log(preview +"HAHAHA");
     try{
 
       serviceproviderService.saveimage(preview)     
@@ -82,6 +95,7 @@ export default function ServiceProfile(props) {
     console.log("Successfull uploaded serviceprovider image");
       setTimeout(function () {
         window.location = "/sprofile";
+
       }, 2000);
     })
     .catch((err) => {
@@ -192,21 +206,27 @@ console.log("enter valid firstname");
                 <div className={classes.profile}>
                   <div>
                   <form onSubmit={(e) => up(e)}>   <input style={{ display: 'none' }} type='file' id="file" name='image' onChange={(e) => ch(e)} accept="image/*" />
+                    
                     <label for="file">   
                   <img  style={{maxHeight:'200px',maxWidth:'200px'}}src={prof.imageURL||profile1} alt="No Content" className={imageClasses}/>
                   </label>
+                
                   </form>
-
+              
                   </div>
                   <div className={classes.name}>
+                  { loading ? <CircularProgress variant="determinate" value={progress} />: <div></div> }
                   <form onSubmit={(e) => up(e)}>
-
-                      <Button style={{ height: '40px' }} type='submit'><PublishIcon /></Button>
+                
+                      <Button style={{ height: '40px' }} type='submit'
+                     
+                      ><PublishIcon /></Button>
              <br/><br/>
                     </form>
                     <Typography style={{color:'#a62e9c'}} variant="h6">{prof.serviceprovidername}</Typography>
-
-                    <Typography className={classes.description} variant="h6">Customer</Typography>
+                 
+                    
+                    <Typography className={classes.description} variant="h6">Service Provider</Typography>
                     <Button justIcon link className={classes.margin5}>
                       <i className={"fab fa-twitter"} />
                     </Button>

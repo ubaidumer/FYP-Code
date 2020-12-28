@@ -5,7 +5,7 @@ import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 import Camera from "@material-ui/icons/Camera";
-import { Backdrop, Container, Grid, Input, Modal } from '@material-ui/core';
+import { Backdrop, CircularProgress, Container, Fade, Grid, Input, Modal } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import img from "./plumber.jpg"
 
@@ -46,6 +46,7 @@ import NearbyServices from "../../Component/common/NearbyServices.js"
 const useStyles = makeStyles(styles);
 
 let currentS;
+let image;
 export default function ProfilePage(props) {
 
 
@@ -71,7 +72,8 @@ export default function ProfilePage(props) {
   const [month, setLMonth] = React.useState('');
   const [description, setDescription] = React.useState('');
 
-
+  const [loading,setLoading] = React.useState(false);
+  const [progress,setProgress] = React.useState(0);
 
 
 
@@ -93,6 +95,16 @@ export default function ProfilePage(props) {
 
       
 
+      const timer = setInterval(() => {
+        setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 20));
+      
+      }, 500);
+  
+      return () => {
+       
+        clearInterval(timer);
+       
+      };
 
   }, []);
 
@@ -149,7 +161,7 @@ let getData=(id)=>{
 
   }
 
-  const viewSp = (id) =>{
+  const viewSp = (id,img) =>{
     console.log(id);
     customerService.findService(id)
     .then((result)=>{
@@ -158,6 +170,7 @@ let getData=(id)=>{
         setOpenService(true);
         });
         currentS=id;
+        image=img
   }
 const okhello =(e)=>{
 setOpenService(false);
@@ -174,9 +187,12 @@ setprivatetaskOpen(true);
     }
   }
   const up = (e) => {
-
+    setLoading(true)
     e.preventDefault();
-    if (!preview) return;
+    if (!preview) 
+    {
+  return
+    };
     console.log(preview);
     try {
 
@@ -226,7 +242,7 @@ setprivatetaskOpen(true);
 
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div>
-          <div className={classes.container}>
+          <div className={classes.container}> 
             <GridContainer justify="center">
               <GridItem xs={12} sm={12} md={6}>
                 <div className={classes.profile}>
@@ -239,6 +255,7 @@ setprivatetaskOpen(true);
 
                   </div>
                   <div className={classes.name}>
+                  { loading ? <CircularProgress variant="determinate" value={progress} />: <div></div> }
                     <form onSubmit={(e) => up(e)}>
 
                       <Button style={{ height: '40px' }} type='submit'><PublishIcon /></Button>
@@ -443,7 +460,7 @@ setprivatetaskOpen(true);
                                     <Card style={{ maxWidth: '300px', marginTop: '10px',marginRight:'30px' }} >
                                       <CardActionArea >
                                         <CardContent >
-                                          <img src={st.imageURL || studio1} style={{ maxHeight: "150px", maxWidth: "200px" }}></img>
+                                          <img src={st.imageURL || studio1} style={{ maxHeight: "200px", maxWidth: "300px", borderRadius:'16px 16px 0px 0px' }}></img>
                                           <Typography gutterBottom variant="h6" component="h2">
                                             {st.serviceprovidername}
                                           </Typography>
@@ -458,7 +475,7 @@ setprivatetaskOpen(true);
                                       <CardActions>
 
                                         <Button size="small" color="primary" style={{ marginLeft: "50px" }}
-                                      onClick={() => viewSp(st.serviceprovider)}
+                                      onClick={() => viewSp(st.serviceprovider,st.imageURL)}
                                     >
                                           View Details
                                                    </Button>
@@ -559,18 +576,14 @@ setprivatetaskOpen(true);
                          timeout: 500, 
                        }} 
                        >
-
+                  <Fade in={openService}>
                    <Container maxWidth="sm">
-                    
-
-                      
-
                             <Paper elevation={2}>
                               <Grid container>
                                 <Grid item md={8} sm={12}>
                               
                               <div style={{marginLeft:'20px',marginBottom:'20px'}}>
-                                  <img src={img} style={{marginTop:'17%',height:'250px',maxWidth:'300px',borderRadius:'16px 16px 0px 0px'}}/>
+                                  <img src={image} style={{marginTop:'25px',height:'250px',maxWidth:'300px',borderRadius:'16px 16px 0px 0px'}}/>
                               </div>
                               </Grid>
                               <Grid item md={4} sm={12}>
@@ -603,6 +616,7 @@ setprivatetaskOpen(true);
 
                           
                             </Container> 
+                            </Fade>
                   </Modal>
                   <Modal 
                        open={privatetask}
