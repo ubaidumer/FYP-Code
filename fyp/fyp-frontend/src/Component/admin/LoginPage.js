@@ -8,7 +8,6 @@ import Email from "@material-ui/icons/Email";
 import People from "@material-ui/icons/People";
 // core components
 import Header from "../../components/Header/Header";
-
 import Footer from "../../components/Footer/Footer";
 import GridContainer from "../../components/Grid/GridContainer";
 import GridItem from "../../components/Grid/GridItem";
@@ -40,7 +39,7 @@ export default function LoginPage(props) {
         absolute
         color="transparent"
         brand="XsSupport"
-        rightLinks=""
+        rightLinks={""}
         {...rest}
       />
       <div

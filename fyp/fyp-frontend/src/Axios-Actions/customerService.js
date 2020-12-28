@@ -47,9 +47,9 @@ export async function AllSprofiles(){
     return await http.get(apiEndpoint+"/serviceprovider/sp");
 }
 
-export async function oneprofile(id){
+export async function oneprofile(servicetype){
 
-    return await http.post(apiEndpoint+"/serviceprovider/gethim",{id});
+    return await http.post(apiEndpoint+"/serviceprovider/gethim",{servicetype});
 }
 
 

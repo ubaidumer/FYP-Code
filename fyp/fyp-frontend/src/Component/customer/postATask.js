@@ -1,4 +1,4 @@
-import { Grid, Paper, Typography } from '@material-ui/core';
+import { Container, Grid, Paper, Typography } from '@material-ui/core';
 import React from 'react';
 import * as postService from'../../Axios-Actions/postService';
 
@@ -162,17 +162,15 @@ console.log(  this.state.title,
     render()
     {
     return ( 
+      <Container maxWidth="md">
         <Grid container >
- 
-       <Grid item md={1}>
-
-</Grid>
-         <Grid item sm={9} xs={12}>
+        <Grid item md={2}></Grid>
+         <Grid item md={8} xs={12}>
          
          <Paper elevation={3} >
          <form onSubmit ={this.handleSubmit} >
          
-         <Typography variant='h3' style={{textAlign:'center',marginTop:'20px',paddingTop:'20px',backgroundColor:'#a62e9c',paddingBottom:'20px',color:'#2d4a6b'}}>
+         <Typography variant='h5' style={{textAlign:'center',marginTop:'20px',paddingTop:'20px',backgroundColor:'#a62e9c',paddingBottom:'20px',color:'#2d4a6b'}}>
              Post a task
          </Typography>
         <div style={{marginLeft:'20px',marginRight:'20px',textAlign:'center'}}>
@@ -328,10 +326,9 @@ console.log(  this.state.title,
          </Paper>
          </Grid>
 
-         <Grid item md={2}>
-
-</Grid>
+  
         </Grid>
+        </Container>
      );
     }
 }

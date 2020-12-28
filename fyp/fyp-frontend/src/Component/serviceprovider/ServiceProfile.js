@@ -15,7 +15,7 @@ import Footer from "../../components/Footer/Footer.js";
 import Button from "../../components/CustomButtons/Button.js";
 import GridContainer from "../../components/Grid/GridContainer.js";
 import GridItem from "../../components/Grid/GridItem.js";
-import HeaderLinks from "../../components/Header/HeaderLinks.js";
+import HeaderLinksS from "../../components/Header/HeaderLinksS.js";
 import NavPills from "../../components/NavPills/NavPills.js";
 import Parallax from "../../components/Parallax/Parallax.js";
 
@@ -32,7 +32,7 @@ import AcceptedTask from "./AcceptedTask.js";
 import WorkHist from "./WorkHist.js";
 import WorkInProg from "./WorkInProg.js";
 import FindLocationMap from "../../Component/common/FindLocationMap";
-
+import PrivateAcceptRequest from "./PrivateAcceptRequest"
 
 
 
@@ -175,7 +175,7 @@ console.log("enter valid firstname");
       <Header
         color="transparent"
         brand="XsSupport"
-        rightLinks={<HeaderLinks />}
+        rightLinks={<HeaderLinksS />}
         fixed
         changeColorOnScroll={{
           height: 200,
@@ -202,9 +202,11 @@ console.log("enter valid firstname");
                   <form onSubmit={(e) => up(e)}>
 
                       <Button style={{ height: '40px' }} type='submit'><PublishIcon /></Button>
+             <br/><br/>
                     </form>
-      <h3 className={classes.title}>{prof.serviceprovidername}</h3>
-                    <h6>Service Provider</h6>
+                    <Typography style={{color:'#a62e9c'}} variant="h6">{prof.serviceprovidername}</Typography>
+
+                    <Typography className={classes.description} variant="h6">Customer</Typography>
                     <Button justIcon link className={classes.margin5}>
                       <i className={"fab fa-twitter"} />
                     </Button>
@@ -295,6 +297,20 @@ console.log("enter valid firstname");
                             <br/>
                       
                           <WorkInProg/>
+                           
+                            </GridItem>
+                          </GridContainer>
+                        )
+                      },
+                      {
+                        tabButton: "Private Task Requests ",
+                        tabIcon: Details,
+                        tabContent: (
+                          <GridContainer justify="center">
+                            <GridItem xs={12} sm={12} md={11}>
+                            <br/>
+                      
+          <PrivateAcceptRequest/>
                            
                             </GridItem>
                           </GridContainer>

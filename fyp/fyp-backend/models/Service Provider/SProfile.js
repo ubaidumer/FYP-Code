@@ -20,6 +20,10 @@ const sprofile = mongoose.model("SProfile",mongoose.Schema({
         type:Number,
         required:false
     },
+    servicetype:{
+        type:String,
+        required:false
+    },
     joindate:{
     type: String,
     required:true

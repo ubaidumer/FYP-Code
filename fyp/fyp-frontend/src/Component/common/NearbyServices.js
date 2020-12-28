@@ -13,6 +13,7 @@ import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import { Backdrop, Badge, Divider, Fade, Modal, TextField } from '@material-ui/core';
 import * as customerService from "../../Axios-Actions/customerService";
 import PostATask from "../customer/postATask"
+import * as privateTaskService from "../../Axios-Actions/privateTaskService";
 
 import usericon from "./marker/user.svg";
 import serviceicon from "./marker/service.svg";
@@ -35,6 +36,7 @@ const markerstart = new L.Icon({
     iconAnchor: [17, 46],
     popupAnchor: [0, -46], 
   });
+  let currentS;
 export default function NearbyServices(){
 const [center,setCenter] = React.useState({lat:31.5204,lng: 74.3587});
 const [worker, setWorker] = React.useState([]);
@@ -44,6 +46,18 @@ const ZOOM_LEVEL= 12;
 const mapRef= React.useRef();
 const { map } = useLeaflet();
 
+
+const [privatetask, setprivatetaskOpen] = React.useState(false);
+const [title, setTitle] = React.useState('');
+const [servicetype, setServicetype] = React.useState('');
+const [location2, setLocation] = React.useState('');
+const [pertask, setPertask] = React.useState('');
+const [perhour, setPerhour] = React.useState('');
+const [permonth, setPermonth] = React.useState('');
+const [start, setStart] = React.useState('');
+const [end, setEnd] = React.useState('');
+const [month, setLMonth] = React.useState('');
+const [description, setDescription] = React.useState('');
   const location = useGeoLocation();
 
   React.useEffect(() => {
@@ -51,60 +65,92 @@ const { map } = useLeaflet();
     .then((result)=>{setWorker(result.data)})
     
   },[]);
+  const ha=(e,serviceprovider)=>{
+
+    currentS=serviceprovider;
+    setprivatetaskOpen(true);
+  }
+  const sendptask =(e,serviceprovider)=>{
+
+    if(title&&location2&&description&&pertask&&perhour&&permonth&&month&&start&&end&&servicetype){
+
+      privateTaskService.PostATask(title,servicetype,location2,perhour,permonth,pertask,start,end,month,description,serviceprovider) 
+       .then((result) => {
+        console.log("Successfully send a private task");
+          setTimeout(function () {
+            window.location = "/profile";
+          }, 2000);
+        })
+        .catch((err) => {
+         
+          console.log(" upload error");
+        });
+    }else{
+      alert("incomplete input");
+    }
+
+  }
 
 return (
     <Grid container>
       <Grid item md={10}>
       <Modal style={{display:'flex',alignItems:'center',justifyContent:'center'}}
 
-  open={view}
-  onClose={!view}
+  open={privatetask}
+  onClose={!privatetask}
   closeAfterTransition
   BackdropComponent={Backdrop}
   BackdropProps={{
     timeout: 500, 
   }}
 >
-  <Fade in={view}>
-  <Container maxWidth="md">
- 
 
- <Paper>
-   <Button onClick={()=>setView(!view)} style={{left:'70%'}}>X</Button>
-  <Grid container>
-    <Grid item md={6}>
-      <div style={{marginLeft:'20px'}}>
-     <TextField
-     label="Enter Title"/>
-     <br/>
-     <TextField
-     label="Enter budget"
-     /><br/>
-     <TextField 
-     label="House Address"/>
-</div>
-    </Grid>
-    <Grid item md={6}>
-     <TextField
-     label="Enter Title"/>
-     <br/>
-     <TextField
-     label="Enter budget"
-     /><br/>
-     <TextField 
-     label="House Address"/>
-
-    </Grid>
-    <center>
- <Button>Send</Button>
- </center>
-  </Grid>
- </Paper>
-
-
-
-  </Container>
-  </Fade>
+                    <Grid container>
+                    <Grid item md={3}></Grid>
+                    <Paper elevation={2} style={{marginTop:'40px'}} >
+                      <Grid container>
+                        <Typography>Send a Private Task</Typography>
+                        <ul>
+                          <li><TextField onChange={(e)=>{setTitle(e.target.value)}} label="Title"></TextField></li>
+                          <li><Typography variant='h6' style={{color:'#2d4a6b'}}>
+                 Service type <span>   <select id="servicetype" onChange={(e)=>{setServicetype(e.target.value)}}
+                 style={{width:'150px',marginBottom:'20px',height:'30px',marginLeft:'20px',border:'0px solid #fff'}}>
+                                <option value="">Select</option>
+                                <option value="Maid">Maid</option>
+                                <option value="Electrian">Electrian</option>
+                                <option value="Cook">Cook</option>
+                                <option value="Plumber">Plumber</option>
+                                <option value="Shopkeeper">Shopkeeper</option>
+                                
+                                </select> </span>
+             </Typography></li>
+                          <li><TextField onChange={(e)=>{setLocation(e.target.value)}} label="Full Address"></TextField></li>
+                          <li><Typography>Bidding</Typography> <TextField onChange={(e)=>{setPertask(e.target.value)}} label="per task"></TextField> <TextField onChange={(e)=>{setPerhour(e.target.value)}}label="per hour"></TextField> <TextField onChange={(e)=>{setPermonth(e.target.value)}}label="per month"></TextField></li>
+                          <li><Typography>Time Duration</Typography> </li>
+                          <li><Typography>Starts At</Typography> <input id="starttime" onChange={(e)=>{setStart(e.target.value)}}type="time"style={{width:'20%'}}/> <Typography>Ends At</Typography> <input id="starttime" onChange={(e)=>{setEnd(e.target.value)}} type="time"style={{width:'20%'}}/></li>
+                          <li> <label >Month </label> <span>   <select onChange={(e)=>{setLMonth(e.target.value)}}id="month" style={{width:'150px',marginBottom:'20px',height:'30px',marginLeft:'20px',border:'0px solid #fff'}}>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                
+                                </select> </span></li>
+                          <li><TextField onChange={(e)=>{setDescription(e.target.value)}}label="Description"></TextField></li>
+                          <li><Button onClick={(e)=>sendptask(e,currentS)}>Send</Button><Button onClick={()=>{setprivatetaskOpen(false)}}>Close</Button></li>
+                        </ul>
+                      </Grid>
+                     </Paper>
+                    </Grid>
+                    
 </Modal>
 
     <Map
@@ -146,9 +192,12 @@ return (
                                      ]}
                                    ><Popup>
                                      <p>Name:{w.serviceprovidername}</p>
+                                     <Divider/>
                                      <p>Latitude:{w.Latitude}</p>
                                      <p>Longitude:{w.Longitude}</p>
-                                     <Button onClick={()=>setView(true)} variant="outlined">Send Task</Button>
+                                     <Divider/>
+                                     <br/>
+                                     <Button onClick={(e)=>ha(e,w.serviceprovider)} variant="outlined">Send Task</Button>
                                      </Popup>
                                    
                                      </Marker>

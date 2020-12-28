@@ -58,6 +58,7 @@ router.use(bodyparser.urlencoded({limit: '50mb', extended: true}));
       ordercompleted:0,
       creditearn:0,
       joindate: d,
+      servicetype:user.servicetype,
       Latitude:req.body.lat,
       Longitude:req.body.lng
     });
@@ -173,7 +174,7 @@ router.use(bodyparser.urlencoded({limit: '50mb', extended: true}));
 
     router.post("/getServicebbytype", async (req,res)=>{
 
-      const service = await ServiceProvider.find({servicetype:req.body.type});
+      const service = await SProfile.find({servicetype:req.body.type});
 
       res.send(service);
     });
@@ -197,7 +198,7 @@ router.use(bodyparser.urlencoded({limit: '50mb', extended: true}));
       res.send(task);
     });
     router.post("/searchbyid", async ( req , res )=>{
-      const s = await ServiceProvider.find({_id:req.body.id});
+      const s = await ServiceProvider.findById({_id:req.body.id});
       res.send(s);
     });
 
@@ -263,9 +264,43 @@ router.use(bodyparser.urlencoded({limit: '50mb', extended: true}));
 
     router.post("/gethim", async (req,res)=>{
 
-      const service = await SProfile.find({serviceprovider:req.body.id});
+      const service = await SProfile.find({servicetype:req.body.servicetype});
       res.send(service);
 
+    });
+    router.post("/edit", async (req, res )=>{
+      const jwt = decode(req.header("x-auth-token"));
+  
+      const salt = await bcrypt.genSalt(10);
+      const newp= await bcrypt.hash(req.body.pass,salt);
+   
+      await ServiceProvider.update(
+        {_id:jwt.id},
+        {
+          $set: {
+            firstname:req.body.fname,
+            lastname:req.body.lname,
+            password:newp,
+            contactno:req.body.contact,
+            servicetype:req.body.st
+          },
+        },
+        { new: true }
+      );
+      await SProfile.update(
+        {serviceprovider:jwt.id},
+        {
+          $set: {
+            serviceprovidername:""+req.body.fname+" "+req.body.lname+"",
+          },
+        },
+        { new: true }
+      );
+  
+  
+  
+      res.send(200);
+  
     });
 
 
