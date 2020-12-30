@@ -12,7 +12,7 @@ import ListItem from "@material-ui/core/ListItem";
 import Tooltip from "@material-ui/core/Tooltip";
 
 // @material-ui/icons
-import { Backdrop, Badge, Container, Divider, Fade, Grid, InputAdornment, Modal, Paper, TextField } from '@material-ui/core';
+import { Backdrop, Badge, Container, Divider, Fade, Grid, InputAdornment, Modal, Paper, TextField, Typography } from '@material-ui/core';
 import { Apps, People } from "@material-ui/icons";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 // core components
@@ -154,9 +154,16 @@ const update =(e)=>{
     <Paper> 
   <Container maxWidth="md"> 
  <Grid container>
+   <Grid item md={12} xs={12}>
+   <center>
+      <br/>
+    <Typography variant="h5">Update your Info</Typography> 
+    <Divider/>
+    </center>
+   </Grid>
    <Grid item md={1}></Grid>
-   <Grid item md={4}>
-   <TextField
+   <Grid item md={5}>
+   <TextField fullWidth
                       label="First Name..."
                       name="fname"
                       formControlProps={{
@@ -174,7 +181,7 @@ const update =(e)=>{
                       
                     /> 
           
-                       <TextField
+                       <TextField fullWidth
                       label="Last Name..."
                       name="lname"
                       onChange={(e)=>{setLname(e.target.value)}}
@@ -191,7 +198,7 @@ const update =(e)=>{
                         )
                       }}
                     /> 
-                       <TextField
+                       <TextField fullWidth
                       label="Service Type"
                       name="st"
                       onChange={(e)=>{setSt(e.target.value)}}
@@ -211,9 +218,9 @@ const update =(e)=>{
  
      <br/>
    </Grid>
-   <Grid item md={3}></Grid>
-   <Grid item md={4}>
-   <TextField
+   <Grid item md={1}></Grid>
+   <Grid item md={5}>
+   <TextField fullWidth
                       label="Change Contact No"
                       name="contact"
                       onChange={(e)=>{setContact(e.target.value)}}
@@ -230,7 +237,7 @@ const update =(e)=>{
                         )
                       }}
                     /> 
-                       <TextField
+                       <TextField fullWidth
                       label="Password"
                       name="password"
                       onChange={(e)=>{setPass(e.target.value)}}
@@ -250,14 +257,14 @@ const update =(e)=>{
 
      <br/>
    </Grid>
-   <Grid item md={3}></Grid>
-   <Grid item md={6}>
+   <Grid item md={4}></Grid>
+   <Grid item md={4}>
      <br/>
 
      <Button onClick={(e)=>update(e)} style={{marginRight:'20px'}}>Submit</Button>
  <Button onClick={()=>setGen(!gen)}>Close</Button>
  </Grid>
- <Grid item md={3}></Grid>
+ <Grid item md={4}></Grid>
  </Grid>
   </Container>
   </Paper>

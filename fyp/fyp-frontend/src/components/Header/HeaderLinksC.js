@@ -12,7 +12,7 @@ import ListItem from "@material-ui/core/ListItem";
 import Tooltip from "@material-ui/core/Tooltip";
 
 // @material-ui/icons
-import { Backdrop, Badge, Container, Divider, Fade, Grid, Modal, Paper, TextField} from '@material-ui/core';
+import { Backdrop, Badge, Container, Divider, Fade, Grid, Modal, Paper, TextField, Typography} from '@material-ui/core';
 import { Apps } from "@material-ui/icons";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 // core components
@@ -150,37 +150,47 @@ const update =(e)=>{
   <Fade in={gen}>
     <Paper> 
   <Container maxWidth="md"> 
- <Grid container>
+ <Grid container spacing={2}>
+  <Grid item md={12}>
+    <center>
+      <br/>
+    <Typography variant="h5">Update your Info</Typography> 
+    <Divider/>
+    </center>
+  </Grid>
    <Grid item md={1}></Grid>
    <Grid item md={4}>
-     <TextField
+    
+     <TextField fullWidth
      label="Change your firstName" onChange={(e)=>{setFname(e.target.value)}
     }/>
      <br/>
-     <TextField
+     <TextField fullWidth
      label="Change your lastName" onChange={(e)=>{setLname(e.target.value)}
     }/>
      <br/>
    </Grid>
-   <Grid item md={3}></Grid>
+   <Grid item md={2}></Grid>
    <Grid item md={4}>
-   <TextField
+   <TextField fullWidth
      label="Change your Contact No" onChange={(e)=>{setContact(e.target.value)}
     }/>
      <br/>
-     <TextField
+     <TextField fullWidth
      label="Change your Password" onChange={(e)=>{setPass(e.target.value)}
     }/>
      <br/>
+     <Divider/>
    </Grid>
-   <Grid item md={3}></Grid>
-   <Grid item md={6}>
+  
+   <Grid item md={4}></Grid>
+   <Grid item md={4}>
      <br/>
-
+ 
      <Button onClick={(e)=>update(e)} style={{marginRight:'20px'}}>Submit</Button>
  <Button onClick={()=>setGen(!gen)}>Close</Button>
  </Grid>
- <Grid item md={3}></Grid>
+ <Grid item md={4}></Grid>
  </Grid>
   </Container>
   </Paper>

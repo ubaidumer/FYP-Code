@@ -5,9 +5,9 @@ import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 import Camera from "@material-ui/icons/Camera";
-import { Backdrop, CircularProgress, Container, Fade, Grid, Input, Modal } from '@material-ui/core';
+import { Backdrop, CircularProgress, Container, Divider, Fade, Grid, Input, Modal } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import img from "./plumber.jpg"
+import img from "../../assets/img/bg2.jpg"
 
 import Palette from "@material-ui/icons/Palette";
 import PublishIcon from '@material-ui/icons/Publish';
@@ -238,7 +238,7 @@ setprivatetaskOpen(true);
         }}
         {...rest}
       />
-      <Parallax small filter image={require("../../assets/img/bg4.jpg")} />
+      <Parallax small filter image={img} />
 
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div>
@@ -618,21 +618,35 @@ setprivatetaskOpen(true);
                             </Container> 
                             </Fade>
                   </Modal>
-                  <Modal 
+                  <Modal style={{display:'flex',alignItems:'center',justifyContent:'center'}}
                        open={privatetask}
                        onClose={!privatetask} 
                        >
+                 <Container maxWidth="sm">
 
                     <Grid container>
-                    <Grid item md={3}></Grid>
-                    <Paper elevation={2} style={{marginTop:'40px'}} >
+                  
+                    <Paper elevation={2} >
+                    <center>
+                            <br/>
+                        <Typography variant="h5">Send a Private Task</Typography>
+                        <Divider/>
+                        <br/>
+                        </center>
                       <Grid container>
-                        <Typography>Send a Private Task</Typography>
-                        <ul>
-                          <li><TextField onChange={(e)=>{setTitle(e.target.value)}} label="Title"></TextField></li>
+                    
+                        <ul style={{listStyle:'none'}}>
+                          <li>
+                          <Grid item md={10}>
+                            <TextField 
+                          fullWidth
+                          onChange={(e)=>{setTitle(e.target.value)}} label="Title"></TextField>
+                          </Grid>
+                          </li>
+                          <br/>
                           <li><Typography variant='h6' style={{color:'#2d4a6b'}}>
                  Service type <span>   <select id="servicetype" onChange={(e)=>{setServicetype(e.target.value)}}
-                 style={{width:'150px',marginBottom:'20px',height:'30px',marginLeft:'20px',border:'0px solid #fff'}}>
+                 style={{width:'150px',height:'30px',marginLeft:'20px',border:'0px solid #fff'}}>
                                 <option value="">Select</option>
                                 <option value="Maid">Maid</option>
                                 <option value="Electrian">Electrian</option>
@@ -642,11 +656,40 @@ setprivatetaskOpen(true);
                                 
                                 </select> </span>
              </Typography></li>
-                          <li><TextField onChange={(e)=>{setLocation(e.target.value)}} label="Full Address"></TextField></li>
-                          <li><Typography>Bidding</Typography> <TextField onChange={(e)=>{setPertask(e.target.value)}} label="per task"></TextField> <TextField onChange={(e)=>{setPerhour(e.target.value)}}label="per hour"></TextField> <TextField onChange={(e)=>{setPermonth(e.target.value)}}label="per month"></TextField></li>
-                          <li><Typography>Time Duration</Typography> </li>
-                          <li><Typography>Starts At</Typography> <input id="starttime" onChange={(e)=>{setStart(e.target.value)}}type="time"style={{width:'20%'}}/> <Typography>Ends At</Typography> <input id="starttime" onChange={(e)=>{setEnd(e.target.value)}} type="time"style={{width:'20%'}}/></li>
-                          <li> <label >Month </label> <span>   <select onChange={(e)=>{setLMonth(e.target.value)}}id="month" style={{width:'150px',marginBottom:'20px',height:'30px',marginLeft:'20px',border:'0px solid #fff'}}>
+                          
+                            <Grid item md={10}>
+                            <li>
+                            <TextField fullWidth onChange={(e)=>{setLocation(e.target.value)}} label="Full Address"></TextField>
+                            </li>
+                            </Grid>
+
+                       <Typography variant='h6' style={{color:'#2d4a6b'}}>Bidding</Typography>
+                      <Grid container>
+                    
+                        <Grid item md={3}>
+                         <TextField onChange={(e)=>{setPertask(e.target.value)}} label="per task"></TextField> 
+                        </Grid>
+                        <Grid item md={1}></Grid>
+                        <Grid item md={3}>
+                        <TextField onChange={(e)=>{setPerhour(e.target.value)}}label="per hour"></TextField> 
+                        </Grid>
+                        <Grid item md={1}></Grid>
+                        <Grid item md={3}>
+                        <TextField onChange={(e)=>{setPermonth(e.target.value)}}label="per month"></TextField>
+                        </Grid>
+                      </Grid>
+                         
+                          <li><Typography variant='h6' style={{color:'#2d4a6b'}}>Time Duration</Typography> </li>
+                          <br/>
+                          <Grid container spacing={3}>
+                          <Grid item md={4}>
+                          <div style={{display:'inline-flex'}}>   <Typography>Starts:</Typography> <input id="starttime" onChange={(e)=>{setStart(e.target.value)}}type="time"style={{width:'100px',marginLeft:'5px'}}/> </div>
+                          </Grid>
+                          <Grid item md={4}>
+                           <div style={{display:'inline-flex'}}> <Typography>Ends:</Typography> <input id="starttime" onChange={(e)=>{setEnd(e.target.value)}} type="time"style={{width:'100px',marginLeft:'5px'}}/> </div>
+                            </Grid>
+                       <Grid item md={4}>
+                     <div style={{display:'inline-flex'}}> <Typography>Month</Typography>  <select onChange={(e)=>{setLMonth(e.target.value)}}id="month" style={{width:'50px',height:'30px',marginLeft:'20px',border:'0px solid #fff'}}>
                                 <option value="0">0</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -661,14 +704,19 @@ setprivatetaskOpen(true);
                                 <option value="11">11</option>
                                 <option value="12">12</option>
                                 
-                                </select> </span></li>
-                          <li><TextField onChange={(e)=>{setDescription(e.target.value)}}label="Description"></TextField></li>
-                          <li><Button onClick={(e)=>sendptask(e,currentS)}>Send</Button><Button onClick={()=>{setprivatetaskOpen(false)}}>Close</Button></li>
+                                </select>
+                                </div>
+                                </Grid>
+                                </Grid>
+                                <Grid item md={10}>
+                          <li><TextField fullWidth onChange={(e)=>{setDescription(e.target.value)}}label="Description"></TextField></li> </Grid>
+                          <br/>
+                          <li style={{marginLeft:'22%'}}><Button onClick={(e)=>sendptask(e,currentS)}>Send</Button><Button onClick={()=>{setprivatetaskOpen(false)}}>Close</Button></li>
                         </ul>
                       </Grid>
                      </Paper>
                     </Grid>
-                    
+                    </Container>
                   </Modal>
     </div>
   );

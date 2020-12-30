@@ -34,7 +34,7 @@ import WorkInProg from "./WorkInProg.js";
 import FindLocationMap from "../../Component/common/FindLocationMap";
 import PrivateAcceptRequest from "./PrivateAcceptRequest"
 
-
+import img from "../../assets/img/profile-bg.jpg"
 
 const useStyles = makeStyles(styles);
 
@@ -197,7 +197,7 @@ console.log("enter valid firstname");
         }}
         {...rest}
       />
-      <Parallax small filter image={require("../../assets/img/profile-bg.jpg")} />
+      <Parallax small filter image={img} />
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div>
           <div className={classes.container}>
@@ -218,7 +218,7 @@ console.log("enter valid firstname");
                   { loading ? <CircularProgress variant="determinate" value={progress} />: <div></div> }
                   <form onSubmit={(e) => up(e)}>
                 
-                      <Button style={{ height: '40px' }} type='submit'
+                      <Button  style={{ height: '40px' }} type='submit'
                      
                       ><PublishIcon /></Button>
              <br/><br/>

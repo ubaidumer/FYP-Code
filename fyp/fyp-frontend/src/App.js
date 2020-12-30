@@ -12,7 +12,7 @@ import orderHistory from "./Component/customer/OrderHistory";
 import workHistory from "./Component/serviceprovider/workHistory";
 import payment from "./Component/customer/payment";
 import rating from "./Component/customer/rating";
-import admindashboard from "./Component/admin/admindashboard";
+
 import adminLogin from "./Component/common/adminlogin";
 import HomeScreen from "./Component/common/HomeScreen";
 import Footer from "./Component/common/Footer";
@@ -29,6 +29,8 @@ import PostedTask from "./Component/customer/postedTask";
 import Stripecard from"./Component/customer/Stripecard";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import Home from "./Component/common/Home";
+import Dashboard from "./Component/admin/Dashboard";
 const stripePromise = loadStripe("pk_test_51I1Ax7HfaNOMnRYn508ySaI0Fj8tz765xbYQjCAIyRMfsVnv6GvgsdZDzIvaJtgVkqnhSKopZmpUFot8j3tsvW5x00TvBKng7u");
 
 
@@ -49,7 +51,7 @@ class App extends Component {
                <Route path="/sprofile" component={SProfilePage}/>   
               <Route path="/adminLogin" component={adminLogin}/>   
               <Route path="/stripecard" component={Stripecard}/>
- 
+             <Route path="/home" component={Home}/>
               <Route path="/customerdashboard" component={customerDashboard}/>      
               <Route path="/serviceproviderSignup" exact={true} component={serviceproviderSignup} />
               <Route path="/customerSignup" component={customerSignup} />
@@ -63,7 +65,7 @@ class App extends Component {
               <Route path="/postedTask" component={PostedTask}/>
               <Route path="/workHistory" component={workHistory}/>
               <Route path="/rating" component={rating}/>
-              <Route path="/admindashboard" component={admindashboard}/>
+              <Route path="/dashboard" component={Dashboard}/>
               <Route path="/" exact={true} component={HomeScreen}/>
               </Elements>
               <Route path="/FindLocationMap" component={FLMap}/>
