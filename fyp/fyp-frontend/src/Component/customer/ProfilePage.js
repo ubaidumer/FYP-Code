@@ -227,17 +227,7 @@ setprivatetaskOpen(true);
   return (
     <div>
 
-      <Header
-        color="transparent"
-        brand="XsSupport"
-        rightLinks={<HeaderLinksC />}
-        fixed
-        changeColorOnScroll={{
-          height: 200,
-          color: "white"
-        }}
-        {...rest}
-      />
+   
       <Parallax small filter image={img} />
 
       <div className={classNames(classes.main, classes.mainRaised)}>
@@ -259,31 +249,60 @@ setprivatetaskOpen(true);
                     <form onSubmit={(e) => up(e)}>
 
                       <Button style={{ height: '40px' }} type='submit'><PublishIcon /></Button>
-                      <br/><br/>
+              
                     </form>
                     <Typography style={{color:'#a62e9c'}} variant="h6">{prof.customername}</Typography>
 
                     <Typography className={classes.description} variant="h6">Customer</Typography>
-                    <Button justIcon link className={classes.margin5}>
-                      <i className={"fab fa-twitter"} />
-                    </Button>
-                    <Button justIcon link className={classes.margin5}>
-                      <i className={"fab fa-instagram"} />
-                    </Button>
-                    <Button justIcon link className={classes.margin5}>
-                      <i className={"fab fa-facebook"} />
-                    </Button>
                   </div>
                 </div>
               </GridItem>
             </GridContainer>
             <div className={classes.description}>
-              <p>
-                An artist of considerable range, Chet Faker — the name taken by
-                Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs
-                and records all of his own music, giving it a warm, intimate
-                feel with a solid groove structure.{" "}
-              </p>
+              <Grid container spacing={6}>
+            <Grid item md={4}>
+            <center>
+                 <Paper elevation={3} style={{width:'200px',height:'200px',marginTop:'20px'}}>
+                     <Typography variant='h5' style={{paddingTop:'30px'}}>
+                         Customers
+                     </Typography>
+                     <Divider/>
+                     <Typography variant='h2' style={{paddingTop:'15px'}}>
+                        0
+                     </Typography>
+                 </Paper> 
+                 
+                 </center>
+            </Grid>
+            <Grid item md={4}>
+            <center>
+                 <Paper elevation={3} style={{width:'200px',height:'200px',marginTop:'20px'}}>
+                     <Typography variant='h5' style={{paddingTop:'30px'}}>
+                         Customers
+                     </Typography>
+                     <Divider/>
+                     <Typography variant='h2' style={{paddingTop:'15px'}}>
+                        0
+                     </Typography>
+                 </Paper> 
+                 
+                 </center>
+            </Grid>
+            <Grid item md={4}>
+            <center>
+                 <Paper elevation={3} style={{width:'200px',height:'200px',marginTop:'20px'}}>
+                     <Typography variant='h5' style={{paddingTop:'30px'}}>
+                         Customers
+                     </Typography>
+                     <Divider/>
+                     <Typography variant='h2' style={{paddingTop:'15px'}}>
+                        0
+                     </Typography>
+                 </Paper> 
+                 
+                 </center>
+            </Grid>
+            </Grid>
             </div>
             <GridContainer justify="center">
               <GridItem xs={12} sm={12} md={12} className={classes.navWrapper}>

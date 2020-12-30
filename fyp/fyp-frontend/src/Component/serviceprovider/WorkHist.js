@@ -90,7 +90,7 @@ const WorkHist=()=> {
               <StyledTableCell align="right">{t.servicetype}</StyledTableCell>
               <StyledTableCell align="right">{t.location}</StyledTableCell>
               <StyledTableCell align="right">{(t.month*t.permonth)+(t.pertask)+(t.perhour*(parseInt(t.endtime)-parseInt(t.starttime))*(t.month*30))}</StyledTableCell>
-              <StyledTableCell align="right">     {t.serviceprovideremail}</StyledTableCell>
+              <StyledTableCell align="right">     {t.customeremail}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

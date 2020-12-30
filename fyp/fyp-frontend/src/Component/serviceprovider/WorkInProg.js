@@ -6,7 +6,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { Divider, Grid } from '@material-ui/core';
+import { Container, Divider, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import * as workInProgressService from "../../Axios-Actions/workInProgressService"
@@ -85,6 +85,7 @@ class WorkInProg extends Component{
       render() {
         const { task } = this.state;
         return (
+          /*
             <Grid container>
             <Grid item md={1}></Grid>
             <Grid item md={10}>
@@ -155,7 +156,93 @@ class WorkInProg extends Component{
                     ))}
                 </ul>
       </Grid>
-      </Grid>
+      </Grid> */
+       
+      <Grid container>
+   
+      <Grid item md={12}>
+   
+      <ul style={{listStyle:'none'}}>
+                    {task.map(t=>( t.status==="in progress" ?(
+                        <li key={t._id} style={{marginLeft:'20px'}}>
+                  
+                    
+           <Grid container>
+          
+           <Card style={{width:'1000px',height:'auto'}}
+            >
+             <Container maxWidth="lg" style={{display:'inline-flex'}}>
+             <Grid item md={3} xs={12}>
+             <CardMedia  
+              
+              title="Contemplative Reptile"
+             />
+            <img src= {this.getimage(t.servicetype)} alt={"no content"}style={{maxHeight:'250px',maxWidth:'280px',}}/>
+             </Grid>
+            <Grid item md={7} xs={12}>
+            <CardContent>
+              <div style={{marginLeft:'10px',textAlign:'left'}}>
+               <Typography gutterBottom variant="h5" component="h2">
+                Title: {t.title} 
+               </Typography>
+               <Divider/>
+               <Typography variant="h6" color="textSecondary" component="p">
+                 Location: {t.location}
+               </Typography>
+               <Typography variant="h6" color="textSecondary" component="p">
+                 Customer Email: {t.customeremail}
+               </Typography>
+               <Typography variant="h6" color="textSecondary" component="p">
+                 Bidding Task\ Hour\ Month: {t.pertask}\ {t.perhour}\ {t.permonth} (rs)
+               </Typography>
+             
+               <Divider/>
+               <Typography variant="h6" color="textSecondary" component="p">
+                 Starting Time: {t.starttime}
+               </Typography>
+               <Typography variant="h6" color="textSecondary" component="p">
+                 Finishing Time: {t.endtime}
+               </Typography>
+               <Typography variant="h6" color="textSecondary" component="p">
+              Accepted Date: {t.accepttaskdate}
+            </Typography>
+               <Typography variant="h6" color="textSecondary" component="p">
+                 Month: {t.month}
+               </Typography> 
+               <Divider/>
+               <Typography variant="h6" color="textSecondary" component="p">
+                 Service Type: {t.servicetype}
+               </Typography>
+               </div>
+             </CardContent>
+             </Grid>
+             <Divider/>
+           <Grid item md={2}>
+             <div style={{marginTop:'50%'}}>
+           <CardActions>
+           <Button size="large" color="primary"onClick={this.onSubmit.bind(this,t._id)} style={{fontSize:'20px'}}>
+            End Task!
+          </Button>
+          
+           </CardActions>
+           <CardActions>
+       
+           </CardActions>
+           </div>
+           </Grid>
+           </Container>
+         </Card>
+         </Grid>
+     
+         </li>
+                       )
+                       : null
+                       ))}
+                   </ul>
+    
+         </Grid>
+         </Grid>
+
         );
       }
 }
