@@ -450,20 +450,24 @@ setprivatetaskOpen(true);
             >
             Plumber</Button>,
               <Button style={{width:'150px'}}
-           
+              onClick={()=>{searchbytype("driver")}}
               >
                 Driver
               </Button>,
               
-              <Button style={{width:'150px'}}>
+              <Button style={{width:'150px'}}
+              onClick={()=>{searchbytype("cook")}}>
               Cook</Button>,
                 <Button style={{width:'150px'}}
-           
+                onClick={()=>{searchbytype("electrician")}}
                 >
                   Electrician
                 </Button>,
                 
-                <Button style={{width:'150px'}}>
+                <Button 
+                onClick={()=>{searchbytype("shopkeeper")}}
+                style={{width:'150px'}}>
+
                 Shop Keeper</Button>
            
           ]}
