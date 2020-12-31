@@ -31,6 +31,7 @@ import Orders from './Orders';
 import { Button, Card } from '@material-ui/core';
 import Header from '../../components/Header/Header';
 import * as adminService from "../../Axios-Actions/adminService";
+import { keys } from '@material-ui/core/styles/createBreakpoints';
 
 function Copyright() {
   return (
@@ -150,8 +151,10 @@ export default function Dashboard() {
   const [open,setOpen] = React.useState(false);
   const [card,setCard] = React.useState([]);
   const [cardS,setCardS] = React.useState([]);
+  const [cardo,setCardo] = React.useState([]);
   const [numc,setC]= React.useState([]);
   const [nums,setS]= React.useState([]);
+  const [d,setd]= React.useState('');
 
 React.useEffect(()=>{
 
@@ -175,6 +178,12 @@ adminService.viewc() .then((result)=>{
     
       });
       }
+      const Viewo=()=>{
+        adminService.viewo() .then((result)=>{
+          setCardo(result.data);
+        
+          });
+          }
       const delS=(email)=>{
         adminService.del(email);
           }
@@ -244,6 +253,15 @@ adminService.viewc() .then((result)=>{
         <br/>
         <br/>
         <Divider />
+        <Button onClick={()=>{Viewo()}} > 
+        <br/>
+        <br/>
+         View History
+        </Button>
+        <br/>
+        <br/>
+        <Divider />
+
   
       
       
@@ -281,6 +299,7 @@ adminService.viewc() .then((result)=>{
                  </Paper> 
                  </center>
             </Grid>
+
 
             
             <Grid item xs={12} md={12} lg={12}>
@@ -351,6 +370,52 @@ adminService.viewc() .then((result)=>{
                                      <StyledTableCell align="left">{c.contactno}</StyledTableCell>
                                      <StyledTableCell align="left"><Button onClick={()=>{delS(c.email)}}>Delete</Button></StyledTableCell>
                                    </StyledTableRow>
+                            
+                               </TableBody>
+                               
+              ))}                       
+                             </Table>
+                           </TableContainer>
+                       </Paper>
+                       
+                    
+
+            </Grid>
+            <Grid item xs={12} md={12} lg={12}>
+                              
+                   
+                              <Paper className={classes.paper}>
+
+                              <TableContainer component={Paper} >
+                             <Table className={classes.table} aria-label="customized table">
+                               <TableHead>
+                                 <TableRow>
+                                 <StyledTableCell align="left">Title</StyledTableCell>
+                                   <StyledTableCell align="left">Customer Email</StyledTableCell>
+                                   <StyledTableCell align="left">ServiceProvider Email</StyledTableCell>
+                                   <StyledTableCell align="left">Service Type</StyledTableCell>
+                                   <StyledTableCell align="left">Total Bill</StyledTableCell>
+                                   <StyledTableCell align="left">Start Time / End Time </StyledTableCell>
+                                   <StyledTableCell align="left">Total Months</StyledTableCell>
+                                   <StyledTableCell align="left">Start Date / End Date</StyledTableCell>
+                                   <StyledTableCell align="left">Location</StyledTableCell>
+                       
+                                 </TableRow>
+                               </TableHead>
+                               {cardo.map(c=>(
+                               <TableBody>
+                                 
+                                   <StyledTableRow >
+                                   <StyledTableCell align="left">{c.title}</StyledTableCell> 
+                                   <StyledTableCell align="left">{c.customeremail}</StyledTableCell>
+                                     <StyledTableCell align="left">{c.serviceprovideremail}</StyledTableCell>
+                                     <StyledTableCell align="left">{c.servicetype}</StyledTableCell>
+                                     <StyledTableCell align="left">{(c.month*c.permonth)+(c.pertask)+(c.perhour*(parseInt(c.endtime)-parseInt(c.starttime))*(c.month*30))}</StyledTableCell>
+                                     <StyledTableCell align="left">{c.starttime} / {c.endtime}</StyledTableCell>
+                                     <StyledTableCell align="left">{c.month}</StyledTableCell>
+                                     <StyledTableCell align="left">{c.accepttaskdate} / {c.endtaskdate}</StyledTableCell>
+                                     <StyledTableCell align="left">{c.location}</StyledTableCell>
+                                    </StyledTableRow>
                             
                                </TableBody>
                                

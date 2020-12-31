@@ -47,11 +47,15 @@ export async function viewsp(){
 }
 export async function viewo(){
 
-    return await http.post(apiEndpoint+ "/admin/allrecordsCo");
+    return await http.post(apiEndpoint+ "/admin/allrecordso");
 
 }
 export async function viewh(){
 
     return await http.post(apiEndpoint+ "/admin/allrecordsSh");
 
+}
+export async function getdeposits(){
+
+    return await http.get(apiEndpoint+ "/admin/dep");
 }
