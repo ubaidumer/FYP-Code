@@ -98,7 +98,7 @@ if(!t){
         { new: true }
       );
 
-      res.send(200);
+      res.send("successfully accepted");
       }else{
         res.send("already in progress with someone else");
       }
