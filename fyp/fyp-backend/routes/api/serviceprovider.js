@@ -119,7 +119,8 @@ router.use(bodyparser.urlencoded({limit: '50mb', extended: true}));
     });
     router.post("/getdata", async (req,res)=>{
 
-      const task = await ServiceProvider.find({email:req.body.email});
+      const task = await ServiceProvider.findOne({email:req.body.email});
+      console.log("hello"+task);
       if (!task) res.status(400);
       res.send(task);
 

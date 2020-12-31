@@ -156,14 +156,13 @@ export default function Dashboard() {
 React.useEffect(()=>{
 
   adminService.viewsp() .then((result)=>{
-    setS(result.data);  
+    setS(result.data)
     });
-
     adminService.viewcp() .then((result)=>{
-      setC(result.data);
+      setC(result.data)
       });
 
-})
+},[])
 
   const ViewCus=()=>{
 adminService.viewc() .then((result)=>{

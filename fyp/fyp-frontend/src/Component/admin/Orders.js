@@ -22,7 +22,75 @@ import { Button, Grid, Modal, Paper, TextField } from '@material-ui/core';
 function preventDefault(event) {
   event.preventDefault();
 }
+const useStyles = makeStyles((theme) => ({
+  seeMore: {
+    marginTop: theme.spacing(3),
+  },
+  icon: {
+    marginRight: theme.spacing(2),
+  },
+  table: {
+    minWidth: 700,
+  },
+  heroContent: {
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(4, 0, 6),
+  },
+  heroButtons: {
+    marginTop: theme.spacing(4),
+  },
+  cardGrid: {
+    paddingTop: theme.spacing(8),
+    paddingBottom: theme.spacing(8),
+  },
+  card: {
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  cardMedia: {
+    paddingTop: '56.25%', // 16:9
+  },
+  cardContent: {
+    flexGrow: 1,
+  },
+  footer: {
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(6),
+  },
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  }
+}));
+const StyledTableCell = withStyles((theme) => ({
+  head: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  body: {
+    fontSize: 14,
+  },
+}))(TableCell);
 
+const StyledTableRow = withStyles((theme) => ({
+  root: {
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.action.hover,
+    },
+  },
+}))(TableRow);
+
+function createData(name, calories, fat, carbs, protein) {
+  return { name, calories, fat, carbs, protein };
+}
 
 
 
@@ -33,7 +101,7 @@ export default function Orders() {
     const [del,setDelete]= React.useState(false);
 
 
-    const [card,setcard]=React.useState([]);
+    const [data,setData]=React.useState([]);
 
     const [af,setAf] =React.useState('');
     const [al,setAl] =React.useState('');
@@ -55,7 +123,7 @@ export default function Orders() {
 const Add=()=>{
 
   adminService.addservice(af,al,ae,as,ap,ac) .then((result) => {
-    console.log("Successfull"+af+al+ae+as+ap+ac);
+    console.log("Successfull"+af+al+ae+as+ap+ac)
 
       setTimeout(function () {
         window.location = "/dashboard";
@@ -72,7 +140,7 @@ const Add=()=>{
 const Edit=()=>{
 
   adminService.edit(ef,el,ee,es,ep,ec,esearach) .then((result) => {
-    console.log("Successfull");
+    console.log("Successfull")
       setTimeout(function () {
         window.location = "/dashboard";
       }, 2000);
@@ -88,7 +156,7 @@ const Edit=()=>{
 const dels=()=>{
 
   adminService.del(ds) .then((result) => {
-    console.log("Successfull");
+    console.log("Successfull")
       setTimeout(function () {
         window.location = "/dashboard";
       }, 2000);
@@ -102,81 +170,13 @@ const dels=()=>{
 
 }
 const getdaaa=(email)=>{
-adminService.getdata(email).then((result)=>{
-  setcard(result.data);
-  });
+adminService.getdata(email)
+.then((result)=>{
+  console.log(result.data);
+  setData(result.data)
+  console.log(data);
+  },[]);
 }
-   const useStyles = makeStyles((theme) => ({
-    seeMore: {
-      marginTop: theme.spacing(3),
-    },
-    icon: {
-      marginRight: theme.spacing(2),
-    },
-    table: {
-      minWidth: 700,
-    },
-    heroContent: {
-      backgroundColor: theme.palette.background.paper,
-      padding: theme.spacing(4, 0, 6),
-    },
-    heroButtons: {
-      marginTop: theme.spacing(4),
-    },
-    cardGrid: {
-      paddingTop: theme.spacing(8),
-      paddingBottom: theme.spacing(8),
-    },
-    card: {
-      height: '100%',
-      display: 'flex',
-      flexDirection: 'column',
-    },
-    cardMedia: {
-      paddingTop: '56.25%', // 16:9
-    },
-    cardContent: {
-      flexGrow: 1,
-    },
-    footer: {
-      backgroundColor: theme.palette.background.paper,
-      padding: theme.spacing(6),
-    },
-    modal: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    paper: {
-      backgroundColor: theme.palette.background.paper,
-      border: '2px solid #000',
-      boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 3),
-    }
-  }));
-  const StyledTableCell = withStyles((theme) => ({
-    head: {
-      backgroundColor: theme.palette.common.black,
-      color: theme.palette.common.white,
-    },
-    body: {
-      fontSize: 14,
-    },
-  }))(TableCell);
-  
-  const StyledTableRow = withStyles((theme) => ({
-    root: {
-      '&:nth-of-type(odd)': {
-        backgroundColor: theme.palette.action.hover,
-      },
-    },
-  }))(TableRow);
-  
-  function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
-  }
-  
-  
 
   const classes = useStyles();
   return (
@@ -213,17 +213,17 @@ adminService.getdata(email).then((result)=>{
 
            
               
-           <h4>Fname :{card.firstname}</h4>
+           <h4>Fname :{data.firstname}</h4>
            <TextField name="efname"    onChange={(e)=>{setef(e.target.value)}}/* onChange={this.handleChange}value={this.state.efname}*/ ></TextField>
-           <h4>LastName  :{card.lastname}</h4>
+           <h4>LastName  :{data.lastname}</h4>
            <TextField name="elname"   onChange={(e)=>{setel(e.target.value)}}/* onChange={this.handleChange}value={this.state.elname}*/ ></TextField>
-           <h4>Email :{card.email}</h4>
+           <h4>Email :{data.email}</h4>
            <TextField name="eemail"    onChange={(e)=>{setee(e.target.value)}}/*onChange={this.handleChange}value={this.state.eemail}*/ ></TextField>
-           <h4>Password  :{card.password}</h4>
+           <h4>Password  </h4>
            <TextField name="epass"   onChange={(e)=>{setep(e.target.value)}} /*onChange={this.handleChange}value={this.state.epass}*/ ></TextField>
-           <h4>ServiceType  :{card.servicetype}</h4>
+           <h4>ServiceType  :{data.servicetype}</h4>
            <TextField name="eservicetype"    onChange={(e)=>{setes(e.target.value)}}/*onChange={this.handleChange}value={this.state.eservicetype}*/ ></TextField>
-           <h4>Contactno  :{card.contactno}</h4>
+           <h4>Contactno  :{data.contactno}</h4>
            <TextField name="econtactno"    onChange={(e)=>{setec(e.target.value)}} /*onChange={this.handleChange}value={this.state.econtactno}*/ ></TextField>
           
            
@@ -269,11 +269,11 @@ adminService.getdata(email).then((result)=>{
 
            
               
-           <h4>FirstName:{card.firstname}</h4>
-           <h4>LastName:{card.lastname}</h4>
-           <h4>Email:{card.email}</h4>
-           <h4>ServiceType:{card.servicetype}</h4>
-           <h4>Contactno:{card.contactno}</h4>
+           <h4>FirstName:{data.firstname}</h4>
+           <h4>LastName:{data.lastname}</h4>
+           <h4>Email:{data.email}</h4>
+           <h4>ServiceType:{data.servicetype}</h4>
+           <h4>Contactno:{data.contactno}</h4>
           
            <Button variant='outlined'  onClick={()=>dels()}  style={{marginBottom:'30px'}}>Delete</Button>
            <Button variant='outlined' style={{marginBottom:'30px',marginLeft:'20px'}} 
