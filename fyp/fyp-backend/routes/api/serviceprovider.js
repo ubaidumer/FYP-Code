@@ -149,8 +149,9 @@ router.use(bodyparser.urlencoded({limit: '50mb', extended: true}));
     router.post("/del", async (req,res)=>{
       const task = await ServiceProvider.findOne({email:req.body.dsearchemail});
       if(task){
-
+        const profile= await SProfile.findOne({serviceprovider:task._id})
         task.deleteOne({_id:task._id});
+        profile.deleteOne({_id:profile._id});
         res.send(200);
     }
     else{

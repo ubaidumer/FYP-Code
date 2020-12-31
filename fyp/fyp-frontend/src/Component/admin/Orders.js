@@ -13,6 +13,7 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import Title from './Title';
+import * as adminService from "../../Axios-Actions/adminService";
 import { Button, Grid, Modal, Paper, TextField } from '@material-ui/core';
 
 // Generate Order Data
@@ -24,6 +25,7 @@ function preventDefault(event) {
 
 
 
+
 export default function Orders() {
  
     const [add,setAdd] = React.useState(false);
@@ -31,6 +33,79 @@ export default function Orders() {
     const [del,setDelete]= React.useState(false);
 
 
+    const [card,setcard]=React.useState([]);
+
+    const [af,setAf] =React.useState('');
+    const [al,setAl] =React.useState('');
+    const [ae,setAe] =React.useState('');
+    const [ap,setAp] =React.useState('');
+    const [as,setAs] =React.useState('');
+    const [ac,setAc] =React.useState('');
+
+    const [ef,setef] =React.useState('');
+    const [el,setel] =React.useState('');
+    const [ee,setee] =React.useState('');
+    const [ep,setep] =React.useState('');
+    const [es,setes] =React.useState('');
+    const [ec,setec] =React.useState('');
+    const [esearach,setesearch] = React.useState('');
+
+    const [de,setde] =React.useState('');
+    const [ds,setds] =React.useState('');
+const Add=()=>{
+
+  adminService.addservice(af,al,ae,as,ap,ac) .then((result) => {
+    console.log("Successfull"+af+al+ae+as+ap+ac);
+
+      setTimeout(function () {
+        window.location = "/dashboard";
+      }, 2000);
+    })
+    .catch((err) => {
+      console.log(" upload error");
+    });
+
+  setAdd(false);
+
+
+}
+const Edit=()=>{
+
+  adminService.edit(ef,el,ee,es,ep,ec,esearach) .then((result) => {
+    console.log("Successfull");
+      setTimeout(function () {
+        window.location = "/dashboard";
+      }, 2000);
+    })
+    .catch((err) => {
+      console.log(" upload error");
+    });
+
+  setEdit(false);
+
+
+}
+const dels=()=>{
+
+  adminService.del(ds) .then((result) => {
+    console.log("Successfull");
+      setTimeout(function () {
+        window.location = "/dashboard";
+      }, 2000);
+    })
+    .catch((err) => {
+      console.log(" upload error");
+    });
+
+  setDelete(false);
+
+
+}
+const getdaaa=(email)=>{
+adminService.getdata(email).then((result)=>{
+  setcard(result.data);
+  });
+}
    const useStyles = makeStyles((theme) => ({
     seeMore: {
       marginTop: theme.spacing(3),
@@ -128,33 +203,33 @@ export default function Orders() {
            <div>
                <h3>Enter ServiceProvider Email to be edited</h3>
            <div>
-           <TextField name="esearchemail" /* onChange={this.handleChange.bind(this)} value={this.state.esearchemail}*/ style={{width:'40%',marginBottom:'20px'}}
+           <TextField name="esearchemail"    onChange={(e)=>{setesearch(e.target.value)}} /* onChange={this.handleChange.bind(this)} value={this.state.esearchemail}*/ style={{width:'40%',marginBottom:'20px'}}
              />
            </div>
            <div /*onClick={this.get.bind(this)} */>
-           <Button variant='outlined' style={{marginBottom:'30px'}}>Search</Button>
+           <Button variant='outlined'onClick={()=>{getdaaa(esearach)}} style={{marginBottom:'30px'}}>Search</Button>
            </div>
            <h3>Enter ServiceProvider Information to be edited</h3>
 
            
               
-           <h4>Fname</h4>
-           <TextField name="efname" /* onChange={this.handleChange}value={this.state.efname}*/ ></TextField>
-           <h4>LastName</h4>
-           <TextField name="elname"/* onChange={this.handleChange}value={this.state.elname}*/ ></TextField>
-           <h4>Email:</h4>
-           <TextField name="eemail" /*onChange={this.handleChange}value={this.state.eemail}*/ ></TextField>
-           <h4>Password</h4>
-           <TextField name="epass" /*onChange={this.handleChange}value={this.state.epass}*/ ></TextField>
-           <h4>ServiceType:</h4>
-           <TextField name="eservicetype" /*onChange={this.handleChange}value={this.state.eservicetype}*/ ></TextField>
-           <h4>Contactno:</h4>
-           <TextField name="econtactno" /*onChange={this.handleChange}value={this.state.econtactno}*/ ></TextField>
+           <h4>Fname :{card.firstname}</h4>
+           <TextField name="efname"    onChange={(e)=>{setef(e.target.value)}}/* onChange={this.handleChange}value={this.state.efname}*/ ></TextField>
+           <h4>LastName  :{card.lastname}</h4>
+           <TextField name="elname"   onChange={(e)=>{setel(e.target.value)}}/* onChange={this.handleChange}value={this.state.elname}*/ ></TextField>
+           <h4>Email :{card.email}</h4>
+           <TextField name="eemail"    onChange={(e)=>{setee(e.target.value)}}/*onChange={this.handleChange}value={this.state.eemail}*/ ></TextField>
+           <h4>Password  :{card.password}</h4>
+           <TextField name="epass"   onChange={(e)=>{setep(e.target.value)}} /*onChange={this.handleChange}value={this.state.epass}*/ ></TextField>
+           <h4>ServiceType  :{card.servicetype}</h4>
+           <TextField name="eservicetype"    onChange={(e)=>{setes(e.target.value)}}/*onChange={this.handleChange}value={this.state.eservicetype}*/ ></TextField>
+           <h4>Contactno  :{card.contactno}</h4>
+           <TextField name="econtactno"    onChange={(e)=>{setec(e.target.value)}} /*onChange={this.handleChange}value={this.state.econtactno}*/ ></TextField>
           
            
-           <Button variant='outlined'   onClick={()=>setEdit(!edit)}>Edit</Button>
+           <Button variant='outlined' onClick={()=>Edit()}   >Edit</Button>
            <Button variant='outlined' style={{marginBottom:'30px',marginLeft:'20px'}} 
-            onClick={()=>setEdit(!edit)}
+           onClick={()=>setEdit(!edit)}
            > Close</Button>
            </div>
          </div>
@@ -184,25 +259,25 @@ export default function Orders() {
            <div>
                <h3>Enter Email of ServiceProvider to be deleted</h3>
            <div>
-           <TextField name="dsearchemail" style={{width:'40%',marginBottom:'20px'}}
+           <TextField name="dsearchemail"   onChange={(e)=>{setds(e.target.value)}} style={{width:'40%',marginBottom:'20px'}}
              />
            </div>
            <div >
-           <Button variant='outlined' style={{marginBottom:'30px'}}>Search</Button>
+           <Button variant='outlined' onClick={()=>{getdaaa(ds)}} style={{marginBottom:'30px'}}>Search</Button>
            </div>
            <h3>ServiceProvider Information to be Deleted</h3>
 
            
               
-           <h4>FirstName:</h4>
-           <h4>LastName:</h4>
-           <h4>Email:</h4>
-           <h4>ServiceType:</h4>
-           <h4>Contactno:</h4>
+           <h4>FirstName:{card.firstname}</h4>
+           <h4>LastName:{card.lastname}</h4>
+           <h4>Email:{card.email}</h4>
+           <h4>ServiceType:{card.servicetype}</h4>
+           <h4>Contactno:{card.contactno}</h4>
           
-           <Button variant='outlined'   style={{marginBottom:'30px'}}>Delete</Button>
+           <Button variant='outlined'  onClick={()=>dels()}  style={{marginBottom:'30px'}}>Delete</Button>
            <Button variant='outlined' style={{marginBottom:'30px',marginLeft:'20px'}} 
-           onClick={()=>setDelete(!del)}
+           onClick={()=>setDelete(false)}
            > Close</Button>
            </div>
          </div>
@@ -233,36 +308,42 @@ export default function Orders() {
              label="Enter First Name"
              normal='normal'
              size='medium'
+             onChange={(e)=>{setAf(e.target.value)}}
              />
            </div>
            <div>
            <TextField name="lname" // onChange={this.handleChange.bind(this)} value={this.state.lname}style={{width:'40%',marginBottom:'40px'}}//
              label="Enter Last Name"
+             onChange={(e)=>{setAl(e.target.value)}}
              />
            </div>
            <div>
            <TextField name="email" //onChange={this.handleChange.bind(this)} value={this.state.email}style={{width:'40%',marginBottom:'40px'}}//
              label="Enter Email"
+             onChange={(e)=>{setAe(e.target.value)}}
              />
            </div>
            <div>
            <TextField name="servicetype" //onChange={this.handleChange.bind(this)}value={this.state.servicetype}style={{width:'40%',marginBottom:'40px'}}//
              label="Enter Service Type "
+             onChange={(e)=>{setAs(e.target.value)}}
              />
            </div>
            <div>
            <TextField name="pass" //onChange={this.handleChange.bind(this)}value={this.state.pass}style={{width:'40%',marginBottom:'40px'}}//
              label="Enter Password"
+             onChange={(e)=>{setAp(e.target.value)}}
              />
            </div>
            <div>
            <TextField name="contactno" //onChange={this.handleChange.bind(this)}value={this.state.contactno}style={{width:'40%',marginBottom:'40px'}}//
              label="Enter Contact No"
+             onChange={(e)=>{setAc(e.target.value)}}
              />
            </div>
-           <Button variant='outlined' /*onClick={this.add.bind(this)}  style={{marginBottom:'30px'}} */>Add</Button> 
+           <Button variant='outlined'    onClick={()=>Add()} /*onClick={this.add.bind(this)}  style={{marginBottom:'30px'}} */>Add</Button> 
            <Button variant='outlined' style={{marginBottom:'30px',marginLeft:'20px'}} 
-          onClick={()=>setAdd(!add)}
+          onClick={()=>setAdd(false)}
            > Close</Button>
            </div>
          </div>

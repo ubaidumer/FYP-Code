@@ -264,11 +264,11 @@ setprivatetaskOpen(true);
             <center>
                  <Paper elevation={3} style={{width:'200px',height:'200px',marginTop:'20px'}}>
                      <Typography variant='h5' style={{paddingTop:'30px'}}>
-                         Customers
+                         Join Date
                      </Typography>
                      <Divider/>
-                     <Typography variant='h2' style={{paddingTop:'15px'}}>
-                        0
+                     <Typography variant='h4' style={{paddingTop:'15px'}}>
+                        {prof.joindate}
                      </Typography>
                  </Paper> 
                  
@@ -278,11 +278,11 @@ setprivatetaskOpen(true);
             <center>
                  <Paper elevation={3} style={{width:'200px',height:'200px',marginTop:'20px'}}>
                      <Typography variant='h5' style={{paddingTop:'30px'}}>
-                         Customers
+                         Task Completed
                      </Typography>
                      <Divider/>
-                     <Typography variant='h2' style={{paddingTop:'15px'}}>
-                        0
+                     <Typography variant='h4' style={{paddingTop:'15px'}}>
+                        {prof.taskcompleted}
                      </Typography>
                  </Paper> 
                  
@@ -292,11 +292,11 @@ setprivatetaskOpen(true);
             <center>
                  <Paper elevation={3} style={{width:'200px',height:'200px',marginTop:'20px'}}>
                      <Typography variant='h5' style={{paddingTop:'30px'}}>
-                         Customers
+                         Credit Spent
                      </Typography>
                      <Divider/>
-                     <Typography variant='h2' style={{paddingTop:'15px'}}>
-                        0
+                     <Typography variant='h4' style={{paddingTop:'15px'}}>
+                        {prof.creditspent}
                      </Typography>
                  </Paper> 
                  

@@ -1,6 +1,6 @@
 import React from "react";
 import { Map, TileLayer , Marker , Popup, withLeaflet,useLeaflet } from "react-leaflet";
-import { OpenStreetMapProvider, GeoSearchControl } from 'leaflet-geosearch'
+import ReactLeafletSearch from "react-leaflet-search";
 import L from "leaflet";
 import "leaflet-routing-machine";
 import "leaflet/dist/leaflet.css";
@@ -11,9 +11,9 @@ import useGeoLocation from "./useGeoLocation";
 import { Button, Grid } from "@material-ui/core";
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
-
 import usericon from "./marker/user.svg";
 import serviceicon from "./marker/service.svg";
+import "./reactsearch.css";
 let DefaultIcon = L.icon({
     iconUrl: icon,
     shadowUrl: iconShadow
@@ -26,12 +26,12 @@ const markerstart = new L.Icon({
     iconAnchor: [17, 46],
     popupAnchor: [0, -46], 
   });
-  const markerend = new L.Icon({
-    iconUrl: require("./marker/service.svg"),
+  const myIcon = L.icon({
+    iconUrl: usericon,
     iconSize: [40, 40],
     iconAnchor: [17, 46],
     popupAnchor: [0, -46], 
-  });
+});
 export default function FindLocationMap(){
 const [center,setCenter] = React.useState({lat:31.5204,lng: 74.3587});
 const [doctor, setDoctor] = React.useState([]);
@@ -41,37 +41,6 @@ const mapRef= React.useRef();
 
 
   const location = useGeoLocation();
-
-  // make new leaflet element
-const Search = (props) => {
-  const { map } = useLeaflet() // access to leaflet map
-  const { provider } = props
-
-  React.useEffect(() => {
-    
-      const searchControl = new GeoSearchControl({
-          provider,showMarker: true,showPopup: false,  marker: {
-            icon: new L.Icon({
-              iconUrl: usericon,
-              iconSize: [40, 40],
-              iconAnchor: [17, 46],
-              popupAnchor: [0, -46], 
-            }),
-            draggable: false,
-            
-          },
-      })
-      map.addControl(searchControl) // this is how you add a control in vanilla leaflet
-
-
-      return () => {map.removeControl(searchControl)
-      }
-  }, [props])
-
-
-  return null // don't want anything to show up from this comp
-  
-}
 
 return (
     <Grid container>
@@ -103,8 +72,10 @@ return (
                 
                   </Marker>
               )}
-                    <Search provider={new OpenStreetMapProvider()} />
-                  
+                    <ReactLeafletSearch className="custom-style"position="topleft" markerIcon={myIcon}     showMarker={true}
+    showPopup={false}/>;
+                 
+                    
     </Map>
     </Grid>
     </Grid>

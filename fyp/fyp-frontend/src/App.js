@@ -65,9 +65,10 @@ class App extends Component {
               <Route path="/postedTask" component={PostedTask}/>
               <Route path="/workHistory" component={workHistory}/>
               <Route path="/rating" component={rating}/>
-              <Route path="/dashboard" component={Dashboard}/>
+      
               <Route path="/" exact={true} component={HomeScreen}/>
               </Elements>
+              <Route path="/dashboard" component={Dashboard}/>
               <Route path="/FindLocationMap" component={FLMap}/>
               <Route path="/NearbyServices" component={NBSMap}/>
             </BrowserRouter>

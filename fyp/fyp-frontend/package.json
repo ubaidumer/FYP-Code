@@ -23,6 +23,8 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-leaflet": "^2.7.0",
+    "react-leaflet-geosearch": "^0.3.0",
+    "react-leaflet-search": "^2.0.1",
     "react-material-ui-carousel": "^2.1.1",
     "react-multi-carousel": "^2.6.1",
     "react-rating-stars-component": "^2.2.0",

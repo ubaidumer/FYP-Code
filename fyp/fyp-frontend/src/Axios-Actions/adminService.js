@@ -9,7 +9,6 @@ export async function addservice(firstname,lastname,email,servicetype,password,c
 
 export async function getdata(email){
 
-    console.log(email);
     return await http.post(apiEndpoint+ "/serviceprovider/getdata",{email});
 
 }
@@ -20,4 +19,39 @@ export async function edit(firstname,lastname,email,servicetype,password,contact
 export async function del(dsearchemail){
 
     return await http.post(apiEndpoint+"/serviceprovider/del",{dsearchemail});
+}
+export async function delcc(csearchemail){
+
+    return await http.post(apiEndpoint+"/customer/del",{csearchemail});
+}
+export async function viewc(){
+
+    return await http.post(apiEndpoint+ "/admin/allrecordsC");
+
+}
+export async function views(){
+
+    return await http.post(apiEndpoint+ "/admin/allrecordsS");
+
+}
+
+export async function viewcp(){
+
+    return await http.post(apiEndpoint+ "/admin/allrecordsCp");
+
+}
+export async function viewsp(){
+
+    return await http.post(apiEndpoint+ "/admin/allrecordsSp");
+
+}
+export async function viewo(){
+
+    return await http.post(apiEndpoint+ "/admin/allrecordsCo");
+
+}
+export async function viewh(){
+
+    return await http.post(apiEndpoint+ "/admin/allrecordsSh");
+
 }

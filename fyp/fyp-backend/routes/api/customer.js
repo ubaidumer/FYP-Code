@@ -223,6 +223,23 @@ router.post("/signup", async (req,res) => {
     }
     res.send(200);
   });
+  router.post("/del", async (req,res)=>{
+    const task = await Customer.findOne({email:req.body.csearchemail});
+    if(task){
+      const profile= await CProfile.findOne({customer:task._id})
+      task.deleteOne({_id:task._id});
+      profile.deleteOne({_id:profile._id});
+      res.send(200);
+  }
+  else{
+
+      console.log("Customer not found"+req.body.dsearchemail);
+      return res.status(400).send("customer not exists!");
+
+  }
+
+
+  });
 
 
  router.update;

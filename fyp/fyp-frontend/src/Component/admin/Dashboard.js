@@ -28,8 +28,9 @@ import { mainListItems, secondaryListItems,doctor,customer } from './listItems';
 import Deposits from './Deposits';
 import Orders from './Orders';
 
-import { Button } from '@material-ui/core';
+import { Button, Card } from '@material-ui/core';
 import Header from '../../components/Header/Header';
+import * as adminService from "../../Axios-Actions/adminService";
 
 function Copyright() {
   return (
@@ -143,9 +144,44 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+let c=0,s=0;
 export default function Dashboard() {
   const classes = useStyles();
-  const [open,setOpen] = React.useState(false)
+  const [open,setOpen] = React.useState(false);
+  const [card,setCard] = React.useState([]);
+  const [cardS,setCardS] = React.useState([]);
+  const [numc,setC]= React.useState([]);
+  const [nums,setS]= React.useState([]);
+
+React.useEffect(()=>{
+
+  adminService.viewsp() .then((result)=>{
+    setS(result.data);  
+    });
+
+    adminService.viewcp() .then((result)=>{
+      setC(result.data);
+      });
+
+})
+
+  const ViewCus=()=>{
+adminService.viewc() .then((result)=>{
+  setCard(result.data);
+  });
+  }
+  const ViewSer=()=>{
+    adminService.views() .then((result)=>{
+      setCardS(result.data);
+    
+      });
+      }
+      const delS=(email)=>{
+        adminService.del(email);
+          }
+          const delC=(email)=>{
+            adminService.delcc(email);
+              }
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -193,7 +229,7 @@ export default function Dashboard() {
         </div>
      
         <Divider />
-        <Button  > 
+        <Button onClick={()=>{ViewCus()}} > 
         <br/>
         <br/>
          View Customers
@@ -203,12 +239,13 @@ export default function Dashboard() {
         <Divider />
         <br/>
         <br/>
-        <Button > 
+        <Button  onClick={()=>{ViewSer()}}> 
          View Service Providers
         </Button>
         <br/>
         <br/>
         <Divider />
+  
       
       
       
@@ -218,7 +255,7 @@ export default function Dashboard() {
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={2}>
             {/* Chart */}
-            <Grid item md={4}>
+            <Grid item md={6}>
             <center>
                  <Paper elevation={3} style={{width:'200px',height:'200px',marginTop:'20px'}}>
                      <Typography variant='h5' style={{paddingTop:'30px'}}>
@@ -226,12 +263,13 @@ export default function Dashboard() {
                      </Typography>
                      <Divider/>
                      <Typography variant='h2' style={{paddingTop:'15px'}}>
-                        0
+                        {numc.length}
                      </Typography>
                  </Paper> 
                  </center>
             </Grid>
-            <Grid item md={4}>
+        
+            <Grid item md={6}>
             <center>
                  <Paper elevation={3} style={{width:'200px',height:'200px',marginTop:'20px'}}>
                      <Typography variant='h5' style={{paddingTop:'30px'}}>
@@ -239,56 +277,90 @@ export default function Dashboard() {
                      </Typography>
                      <Divider/>
                      <Typography variant='h2' style={{paddingTop:'15px'}}>
-                        0
+                     {nums.length}
                      </Typography>
                  </Paper> 
                  </center>
             </Grid>
-            <Grid item md={4}>
-            <center>
-                 <Paper elevation={3} style={{width:'200px',height:'200px',marginTop:'20px'}}>
-                     <Typography variant='h5' style={{paddingTop:'30px'}}>
-                         Deposits
-                     </Typography>
-                     <Divider/>
-                     <Typography variant='h2' style={{paddingTop:'15px'}}>
-                        0
-                     </Typography>
-                 </Paper> 
-                 </center>
-            </Grid>
+
+            
             <Grid item xs={12} md={12} lg={12}>
-            
-              <Paper className={classes.paper}>
+                              
+                          
+                              <Paper className={classes.paper}>
 
-       <TableContainer component={Paper} >
-      <Table className={classes.table} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell align="left">Customer name</StyledTableCell>
-            <StyledTableCell align="left">ID</StyledTableCell>
-            <StyledTableCell align="left">Email</StyledTableCell>
+                              <TableContainer component={Paper} >
+                             <Table className={classes.table} aria-label="customized table">
+                               <TableHead>
+                                 <TableRow>
+                                   <StyledTableCell align="left">Customer First Name</StyledTableCell>
+                                   <StyledTableCell align="left">Customer Last Name</StyledTableCell>
+                                   <StyledTableCell align="left">Customer Email</StyledTableCell>
+                                   <StyledTableCell align="left">Customer Contact no</StyledTableCell>
+                                   <StyledTableCell align="left">Delete Customer</StyledTableCell>
 
-          </TableRow>
-        </TableHead>
-    
-        <TableBody>
-          
-            <StyledTableRow >
-            
-              <StyledTableCell align="left">sss</StyledTableCell>
-              <StyledTableCell align="left">sss</StyledTableCell>
-              <StyledTableCell align="left">ssss</StyledTableCell>
+                       
+                                 </TableRow>
+                               </TableHead>
+                               {card.map(c=>(
+                               <TableBody>
+                                 
+                                   <StyledTableRow >
+                                   
+                                     <StyledTableCell align="left">{c.firstname}</StyledTableCell>
+                                     <StyledTableCell align="left">{c.lastname}</StyledTableCell>
+                                     <StyledTableCell align="left">{c.email}</StyledTableCell>
+                                     <StyledTableCell align="left">{c.contactno}</StyledTableCell>
+                                     <StyledTableCell align="left"  onClick={()=>{delC(c.email)}}><Button>Delete</Button></StyledTableCell>
+                       
+                                   </StyledTableRow>
+                            
+                               </TableBody>
+                               
+              ))}                       
+                             </Table>
+                           </TableContainer>
+                       </Paper>
+                         </Grid>
+            <Grid item xs={12} md={12} lg={12}>
+                              
+                   
+                              <Paper className={classes.paper}>
 
-            </StyledTableRow>
-     
-        </TableBody>
-
-      </Table>
-    </TableContainer>
-</Paper>
-
-
+                              <TableContainer component={Paper} >
+                             <Table className={classes.table} aria-label="customized table">
+                               <TableHead>
+                                 <TableRow>
+                                   <StyledTableCell align="left">ServiceProvider First Name</StyledTableCell>
+                                   <StyledTableCell align="left">ServiceProvider Last Name</StyledTableCell>
+                                   <StyledTableCell align="left">ServiceProvider ServiceType</StyledTableCell>
+                                   <StyledTableCell align="left">ServiceProvider Email</StyledTableCell>
+                                   <StyledTableCell align="left">ServiceProvider Contact no</StyledTableCell>
+                                   <StyledTableCell align="left">Delete ServiceProvider</StyledTableCell>
+                       
+                                 </TableRow>
+                               </TableHead>
+                               {cardS.map(c=>(
+                               <TableBody>
+                                 
+                                   <StyledTableRow >
+                                   
+                                   <StyledTableCell align="left">{c.firstname}</StyledTableCell>
+                                     <StyledTableCell align="left">{c.lastname}</StyledTableCell>
+                                     <StyledTableCell align="left">{c.servicetype}</StyledTableCell>
+                                     <StyledTableCell align="left">{c.email}</StyledTableCell>
+                                     <StyledTableCell align="left">{c.contactno}</StyledTableCell>
+                                     <StyledTableCell align="left"><Button onClick={()=>{delS(c.email)}}>Delete</Button></StyledTableCell>
+                                   </StyledTableRow>
+                            
+                               </TableBody>
+                               
+              ))}                       
+                             </Table>
+                           </TableContainer>
+                       </Paper>
+                       
+                    
 
             </Grid>
             {/* Recent Deposits */}

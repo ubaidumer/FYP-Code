@@ -4,7 +4,7 @@ import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
-
+import { Divider, Grid} from '@material-ui/core';
 import Palette from "@material-ui/icons/Palette";
 
 import PublishIcon from '@material-ui/icons/Publish';
@@ -241,12 +241,50 @@ console.log("enter valid firstname");
               </GridItem>
             </GridContainer>
             <div className={classes.description}>
-              <p>
-                An artist of considerable range, Chet Faker — the name taken by
-                Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs
-                and records all of his own music, giving it a warm, intimate
-                feel with a solid groove structure.{" "}
-              </p>
+            <Grid container spacing={6}>
+            <Grid item md={4}>
+            <center>
+                 <Paper elevation={3} style={{width:'200px',height:'200px',marginTop:'20px'}}>
+                     <Typography variant='h5' style={{paddingTop:'30px'}}>
+                         Join Date
+                     </Typography>
+                     <Divider/>
+                     <Typography variant='h4' style={{paddingTop:'15px'}}>
+                        {prof.joindate}
+                     </Typography>
+                 </Paper> 
+                 
+                 </center>
+            </Grid>
+            <Grid item md={4}>
+            <center>
+                 <Paper elevation={3} style={{width:'200px',height:'200px',marginTop:'20px'}}>
+                     <Typography variant='h5' style={{paddingTop:'30px'}}>
+                         Task Completed
+                     </Typography>
+                     <Divider/>
+                     <Typography variant='h4' style={{paddingTop:'15px'}}>
+                        {prof.ordercompleted}
+                     </Typography>
+                 </Paper> 
+                 
+                 </center>
+            </Grid>
+            <Grid item md={4}>
+            <center>
+                 <Paper elevation={3} style={{width:'200px',height:'200px',marginTop:'20px'}}>
+                     <Typography variant='h5' style={{paddingTop:'30px'}}>
+                         Credit Spent
+                     </Typography>
+                     <Divider/>
+                     <Typography variant='h4' style={{paddingTop:'15px'}}>
+                        {prof.creditearn}
+                     </Typography>
+                 </Paper> 
+                 
+                 </center>
+            </Grid>
+            </Grid>
             </div>
             <GridContainer justify="center">
               <GridItem xs={12} sm={12} md={12} className={classes.navWrapper}>

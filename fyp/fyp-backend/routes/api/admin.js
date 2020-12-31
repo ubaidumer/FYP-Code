@@ -6,7 +6,11 @@ const decode     = require("jwt-decode");
 const { ServiceProvider , validateServiceProvider} = require('../../models/Service Provider/ServiceProvider');
 const { Admin , validateAdmin , validateLogin }           =require('../../models/Admin/Admin'); 
 const { setToken } = require("../../auth/auth");
-
+const {Customer} =require('../../models/Customer/Customer');
+const {CProfile} = require('../../models/Customer/CProfile');
+const {SProfile} = require('../../models/Service Provider/SProfile');
+const {OrderHistory}= require('../../models/Customer/OrderHistory');
+const {WorkHistory} =require('../../models/Service Provider/WorkHistory');
 router.use(bodyparser.json());
 router.use(bodyparser.urlencoded({ extended: false }));
 
@@ -34,6 +38,20 @@ if (!user) {
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(user.password, salt);
     await user.save();
+    let date= new Date();
+    let d=""+date.getDate()+"/"+date.getMonth()+"/"+date.getFullYear()+"";
+    let profile= new SProfile({
+      serviceprovider: user._id,
+      serviceprovidername: ""+user.firstname+" "+user.lastname+"",
+      ordercompleted:0,
+      creditearn:0,
+      joindate: d,
+      servicetype:user.servicetype,
+      Latitude:74,
+      Longitude:32
+    });
+
+     await profile.save();
     const token = setToken(user._id, user.email, user.isAdmin, user.isApproved)
     res
         .header("x-auth-token", token)
@@ -113,69 +131,77 @@ router.post('/login', async ( req , res ) => {
 
 });
 
-// Admin reset password or Edit password
-router.put('/resetpassword', async ( req , res ) => {
-
-    const a="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmN2UxOWY4NTBkZjcyMmNkOGFiNTI4YyIsImlzQWRtaW4iOnRydWUsImVtYWlsIjoidWJhaWQyMzFAZ21haWwuY29tIiwiaWF0IjoxNjAyMDk5NzA0fQ.ylyHyp5R4mvuvgkevCmwLMCLYjsEACt3vac660BsV6k";
-    const j=decode(a);
-
-    let admin = await Admin.findOne({_id:j.id});
-
+router.post('/allrecordsC',async (req,res)=>{
+    const jwt = decode(req.header("x-auth-token"));
+    const admin= await Admin.find({_id:jwt.id});
     if(admin){
-        const v= await bcrypt.compare(req.body.oldpassword,admin.password);    
-        if(v){
 
-            const salt = await bcrypt.genSalt(10);
-            const pass = await bcrypt.hash(req.body.newpassword, salt);
 
-    await Admin.findByIdAndUpdate(
-        admin._id,
-        {
-          $set: {
-              password:pass
-          },
-        },
-        { new: true }
-      );
-
-      res.send(200);
+        const cus= await Customer.find();
+        res.send(cus);
     }else{
-        console.log(admin.password);
-        console.log("old password doesnt match !");
-        res.send(404);
-    }
-
-
-    }else{
-
         res.send(400);
-        console.log("unauthorized admin");
-
     }
-});
+})
+router.post('/allrecordsS',async (req,res)=>{
+    const jwt = decode(req.header("x-auth-token"));
+    const admin= await Admin.find({_id:jwt.id});
+    if(admin){
 
 
-// Admin deleting a Service Provider
-router.delete('/delete', async ( req ,res ) => {
-
-    const s = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmN2Q4NWUxMTUyYjY1NDFlMGFlNmZiNyIsImlzQWRtaW4iOmZhbHNlLCJlbWFpbCI6InViYWlkMTVAZ21haWwuY29tIiwiaWF0IjoxNjAyMDYxODEyfQ.gVNRPZH8Zeu8wU3yBErTWGggd9JI2Ii-7le1nqL63QQ";
-    const j = decode(s);
-
-    let user = await ServiceProvider.findOne({_id:j.id});
-    
-    if(user){
-
-        user.deleteOne({_id:j.id});
-        res.send(200);
+        const cus= await ServiceProvider.find();
+        res.send(cus);
+    }else{
+        res.send(400);
     }
-    else{
+})
+router.post('/allrecordsCp',async (req,res)=>{
+    const jwt = decode(req.header("x-auth-token"));
+    const admin= await Admin.find({_id:jwt.id});
+    if(admin){
 
-        console.log("user not found");
-        return res.status(400).send("user not exists!");
 
+        const cus= await CProfile.find();
+        res.send(cus);
+    }else{
+        res.send(400);
     }
+})
+router.post('/allrecordsSp',async (req,res)=>{
+    const jwt = decode(req.header("x-auth-token"));
+    const admin= await Admin.find({_id:jwt.id});
+    if(admin){
 
-});
 
+        const cus= await SProfile.find();
+        res.send(cus);
+    }else{
+        res.send(400);
+    }
+})
+router.post('/allrecordso',async (req,res)=>{
+    const jwt = decode(req.header("x-auth-token"));
+    const admin= await Admin.find({_id:jwt.id});
+    if(admin){
+
+
+        const cus= await OrderHistory.find();
+        res.send(cus);
+    }else{
+        res.send(400);
+    }
+})
+router.post('/allrecordsh',async (req,res)=>{
+    const jwt = decode(req.header("x-auth-token"));
+    const admin= await Admin.find({_id:jwt.id});
+    if(admin){
+
+
+        const cus= await WorkHistory.find();
+        res.send(cus);
+    }else{
+        res.send(400);
+    }
+})
 router.update;
 module.exports = router;
