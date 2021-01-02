@@ -102,6 +102,7 @@ else
 router.post('/login', async ( req , res ) => {
 
     // validate Schema
+
     const { error } = validateLogin(req.body)
     if (error) {
         console.log(error.details[0].message)

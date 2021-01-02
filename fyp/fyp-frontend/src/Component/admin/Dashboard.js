@@ -163,7 +163,7 @@ React.useEffect(()=>{
       setC(result.data);
       });
 
-})
+},[])
 
   const ViewCus=()=>{
 adminService.viewc() .then((result)=>{
@@ -175,7 +175,7 @@ adminService.viewc() .then((result)=>{
       setCardS(result.data);
     
       });
-      }
+     }
       const delS=(email)=>{
         adminService.del(email);
           }

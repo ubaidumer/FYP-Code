@@ -13,12 +13,12 @@ import Palette from "@material-ui/icons/Palette";
 import PublishIcon from '@material-ui/icons/Publish';
 import MapIcon from '@material-ui/icons/Map';
 // core components
-import Header from "../../components/Header/Header.js";
+import Rating from "./rating"
 import Footer from "../../components/Footer/Footer.js";
 import Button from "../../components/CustomButtons/Button.js";
 import GridContainer from "../../components/Grid/GridContainer.js";
 import GridItem from "../../components/Grid/GridItem.js";
-import HeaderLinksC from "../../components/Header/HeaderLinksC.js";
+
 import NavPills from "../../components/NavPills/NavPills.js";
 import Parallax from "../../components/Parallax/Parallax.js";
 
@@ -43,6 +43,7 @@ import AcceptRequestSP from "./AcceptRequestSP.js";
 import Pay from "./Pay.js";
 import Stripecard from "./Stripecard.js";
 import NearbyServices from "../../Component/common/NearbyServices.js"
+import rating from "./rating";
 const useStyles = makeStyles(styles);
 
 let currentS;
@@ -234,7 +235,7 @@ setprivatetaskOpen(true);
         <div>
           <div className={classes.container}> 
             <GridContainer justify="center">
-              <GridItem xs={12} sm={12} md={6}>
+              <GridItem xs={12} sm={12} md={10}>
                 <div className={classes.profile}>
                   <div >  
                     <form onSubmit={(e) => up(e)}>   <input style={{ display: 'none' }} type='file' id="file" name='image' onChange={(e) => ch(e)} accept="image/*" />
@@ -260,42 +261,42 @@ setprivatetaskOpen(true);
             </GridContainer>
             <div className={classes.description}>
               <Grid container spacing={6}>
-            <Grid item md={4}>
+            <Grid item md={4} xs={12}>
             <center>
-                 <Paper elevation={3} style={{width:'200px',height:'200px',marginTop:'20px'}}>
-                     <Typography variant='h5' style={{paddingTop:'30px'}}>
+                 <Paper elevation={3} style={{width:'200px',height:'150px',marginTop:'20px'}}>
+                     <Typography variant='h5' style={{paddingTop:'20px'}}>
                          Join Date
                      </Typography>
                      <Divider/>
-                     <Typography variant='h4' style={{paddingTop:'15px'}}>
+                     <Typography variant='h5' style={{paddingTop:'30px'}}>
                         {prof.joindate}
                      </Typography>
                  </Paper> 
                  
                  </center>
             </Grid>
-            <Grid item md={4}>
+            <Grid item md={4} xs={12}>
             <center>
-                 <Paper elevation={3} style={{width:'200px',height:'200px',marginTop:'20px'}}>
-                     <Typography variant='h5' style={{paddingTop:'30px'}}>
+                 <Paper elevation={3} style={{width:'200px',height:'150px',marginTop:'20px'}}>
+                     <Typography variant='h5' style={{paddingTop:'20px'}}>
                          Task Completed
                      </Typography>
                      <Divider/>
-                     <Typography variant='h4' style={{paddingTop:'15px'}}>
+                     <Typography variant='h4' style={{paddingTop:'25px'}}>
                         {prof.taskcompleted}
                      </Typography>
                  </Paper> 
                  
                  </center>
             </Grid>
-            <Grid item md={4}>
+            <Grid item md={4} xs={12}>
             <center>
-                 <Paper elevation={3} style={{width:'200px',height:'200px',marginTop:'20px'}}>
-                     <Typography variant='h5' style={{paddingTop:'30px'}}>
+                 <Paper elevation={3} style={{width:'200px',height:'150px',marginTop:'20px'}}>
+                     <Typography variant='h5' style={{paddingTop:'20px'}}>
                          Credit Spent
                      </Typography>
                      <Divider/>
-                     <Typography variant='h4' style={{paddingTop:'15px'}}>
+                     <Typography variant='h4' style={{paddingTop:'25px'}}>
                         {prof.creditspent}
                      </Typography>
                  </Paper> 
@@ -399,7 +400,8 @@ setprivatetaskOpen(true);
                                       </GridItem>
                                     </GridContainer>
                                   )
-                                }
+                                },
+                                
 
 
                               ]} />
@@ -577,6 +579,20 @@ setprivatetaskOpen(true);
                           <GridItem xs={12} sm={12} md={15}>
 
                             <NearbyServices />
+                          </GridItem>
+                        </GridContainer>
+                      )
+                    }
+                    ,
+                    {
+                      tabButton: "Rate & Review",
+                      tabIcon: Details,
+                      tabContent: (
+                        <GridContainer justify="center">
+                          <GridItem xs={12} sm={12} md={11}>
+                            <br />
+                            <Rating/>
+
                           </GridItem>
                         </GridContainer>
                       )

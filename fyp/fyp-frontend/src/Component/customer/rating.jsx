@@ -1,4 +1,4 @@
-import { Avatar, Grid, Paper} from '@material-ui/core';
+import { Avatar, Button, Container, Grid, Paper, Typography} from '@material-ui/core';
 import React from 'react';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import ReactStars from "react-rating-stars-component";
@@ -6,16 +6,17 @@ import img from './plumber.jpg';
 import * as ratingService from "../../Axios-Actions/ratingService";
 
 let rstar=0;
-class rating extends React.Component{
+class Rating extends React.Component{
 
    constructor(){
        super();
     this.state={
-        likes:false,
+        likes:0,
         rtitle:'',
         rreview:'',
         rate:[],
         servant:[],
+        thumb: true
     };
     this.handleChange= this.handleChange.bind(this);
 
@@ -61,6 +62,17 @@ class rating extends React.Component{
         });  
       }
 
+      liking=()=>{
+          this.setState({thumb:!this.state.thumb})
+          if(this.state.thumb==true)
+          {
+           this.setState({likes:this.state.likes+1})
+          }
+          if(this.state.thumb==false)
+          {
+              this.setState({likes:this.state.likes-1})
+          }
+      }
     render()
     {
         let { servant } = this.state;
@@ -71,46 +83,49 @@ class rating extends React.Component{
            
         return(
             
-            <Grid container style={{backgroundColor:'#fcfcfc'}}>
-             <Grid item md={1}></Grid>
-
+       
+               <Container maxWidth="lg">
+                     <Grid container style={{backgroundColor:'#fcfcfc'}}>
                 <Grid item md={6} xs={12}> 
-                <ul>
+                <ul style={{listStyle:'none'}}>
                 {
                     rate.map(t=>(
                         <li key={t._id}>
                     <div>
                         
                 <Paper style={{height:'50px'}}>
-                    <div>
-                <h2 style={{paddingTop:'10px',paddingLeft:'20px'}}>
+                    <div > 
+                <Typography variant="h5" style={{justifyContent:'center',textAlign:'center',paddingTop:'10px'}}>
                 Reviews
-                </h2>
+                </Typography>
                 </div>
                 </Paper>
-                <div style={{display:'inline-flex',marginTop:'40px',width:'100%',backgroundColor:'#f7f7f7'}}>
+                <div style={{display:'inline-flex',marginTop:'40px',width:'100%',backgroundColor:'#f7f7f7',flexWrap:'wrap'}}>
                    
-                   <Avatar style={{marginTop:'17px',marginRight:'20px',marginLeft:'10px'}}></Avatar>
+                   <Avatar style={{marginTop:'17px',marginRight:'20px',marginLeft:'10px',height:'50px',width:'50px'}}></Avatar>
                    <div>
-                    <h4>
-                       Customer:{t.customeremail}
-                    </h4>
+                   <Typography variant="h6" style={{paddingTop:'25px'}} >
+                       {t.customeremail}
+                       </Typography>
                     <ReactStars
     count={t.star}
-    size={24}
+    size={30}
     color={"#ffd700"}
   />
-                    <p>
+                   <Typography variant="subtitle1">
                         
                       Title: {t.reviewtitle}
-                        </p><p>
+                      </Typography>
+                      <br/>
+                      <Typography variant="subtitle1">
                         Review:{t.review}
-                    </p>
+               </Typography>
+           <br/>
+                    <button style={{backgroundColor:'#f7f7f7',border:'0px',color:'darkblue' ,marginBottom:'10px'}} 
+                     onClick={()=>this.liking()}
 
-                    <button style={{backgroundColor:'#f7f7f7',border:'0px',color:'darkblue' }} 
-
-
-        > <ThumbUpIcon style={{fontSize:'30px'}}/> {this.state.likes + 0 }</button>
+        > <ThumbUpIcon style={{fontSize:'30px'}}/> {this.state.likes  }</button>
+ 
                     </div>
                 </div>
                 </div>
@@ -124,45 +139,50 @@ class rating extends React.Component{
 
 
 
-                <Grid item md={4} xs={12}>
+                <Grid item md={5} xs={12}>
                 <div style={{marginTop:'20px'}}>
                     <Paper style={{marginLeft:'20px',height:'50px'}}>
-                        <h2 style={{paddingTop:'10px',paddingLeft:'20px'}}>
+                        <Typography variant="h5" style={{paddingTop:'10px',paddingLeft:'20px'}}>
                             Post A Review
-                        </h2>
+                        </Typography>
                     </Paper>
                     
-                    <div style={{marginLeft:'20px',marginTop:'20px'}}>
-                        <img alt="no content"style={{maxHeight:'450px',maxWidth:'400px',marginLeft:'20px',marginRight:'20%'}} src={img}/>
+                    <div style={{marginLeft:'20px',marginTop:'20px',justifyContent:'center',textAlign:'center'}}>
+                        <img alt="no content" class="responsive" style={{maxHeight:'350px',maxWidth:'300px',marginRight:'20%'}} src={img}/>
                         <p>ServiceProvider E-mail:{servant.serviceprovideremail}</p>
                         <p>Task Title: {servant.title}</p>
 
-                        <ReactStars 
+                  <center style={{marginLeft:'35%'}}>
+                  <ReactStars 
     count={5}
     onChange={ratingChanged}
     size={24}
     activeColor="#ffd700"
   />
 
+                  </center>
                     </div>
                     
 
-                    <div style={{display:'inline-flex',marginLeft:'20px',marginTop:'20px'}}>
+                    <div style={{display:'inline-flex',marginLeft:'20px',marginTop:'20px'}}> 
                         <Avatar variant='square'   />
                         <div >
-                        <input name="rtitle"onChange={this.handleChange} value={this.state.rtitle}id="rtitle"style={{marginLeft:'20px' ,width:'200px'}} type="text" placeholder="review Title"/>
+                        <input name="rtitle"onChange={this.handleChange} value={this.state.rtitle}id="rtitle"style={{marginLeft:'20px' ,width:'100%',marginTop:'10px'}} type="text" placeholder="review Title"/>
                         </div>
                     </div>
                     <div style={{marginLeft:'80px',marginTop:'10px'}}>
                     <textarea  name="rreview"onChange={this.handleChange} value={this.state.rreview}id="rreview" style={{width:'100%',border:'1px solid #ccccfff'}} type="text" placeholder="Write your review"/>
-                    <button onClick={this.postreview.bind(this,servant.serviceprovider,servant.serviceprovideremail,servant._id)} style={{marginTop:'10px',width:'100px',border:'0px',color:'brown',fontSize:'20px',borderRadius:'9px'}}>POST</button>
+                    <Button variant="contained" color="primary" onClick={this.postreview.bind(this,servant.serviceprovider,servant.serviceprovideremail,servant._id)} style={{marginTop:'10px',width:'100px',fontSize:'20px',marginBottom:'10px'}}>POST</Button>
                         </div>
                 </div>
+                </Grid> 
                 </Grid>
-            </Grid>
+                </Container>
+ 
+            
             
         )
     }
 }
 
-export default rating;
+export default Rating;
