@@ -48,7 +48,7 @@ class AcceptRequest extends Component{
         acceptRequestService.acceptRequest(t)      
         .then((result) => {
             // localStorage.setItem("token", result.data);
-          console.log("Successfull posted");
+          alert(result.data);
             setTimeout(function () {        
                    window.location = "/sprofile";
             }, 2000);

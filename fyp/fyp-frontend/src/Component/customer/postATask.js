@@ -1,4 +1,4 @@
-import { Container, Grid, Paper, Typography } from '@material-ui/core';
+import { Container, Grid, InputLabel, NativeSelect, Paper, TextField, Typography } from '@material-ui/core';
 import React from 'react';
 import * as postService from'../../Axios-Actions/postService';
 
@@ -170,20 +170,21 @@ console.log(  this.state.title,
          <Paper elevation={3} >
          <form onSubmit ={this.handleSubmit} >
          
-         <Typography variant='h5' style={{textAlign:'center',marginTop:'20px',paddingTop:'20px',backgroundColor:'#a62e9c',paddingBottom:'20px',color:'#2d4a6b'}}>
+         <Typography variant='h5' style={{textAlign:'center',marginTop:'20px',paddingTop:'20px',backgroundColor:'#a62e9c',paddingBottom:'20px',color:'white'}}>
              Post a task
          </Typography>
         <div style={{marginLeft:'20px',marginRight:'20px',textAlign:'center'}}>
          <div >
-         <Grid container>
+         <Grid container> 
            <Grid item md={12} xs={12}>
-             <Typography variant='h6' style={{color:'#2d4a6b'}}>
+           <div style={{fontSize:12, color:'red'}}> 
+             {this.state.titleError}     </div>
+             <Typography variant='h6' style={{color:'#2d4a6b',marginTop:'10px'}}>
                  Title
              </Typography> 
-             <div style={{fontSize:12, color:'red'}}> 
-             {this.state.titleError}     </div>
-         <input name="title" placeholder="Enter the title" value={this.state.title} onChange={this.handleChange}
-          style={{marginTop:'10px',border:'0.1rem solid #d9d9d9',height:'30px',borderRadius:'5px',width:'70%',marginBottom:'20px',textAlign:'center'}} type='text'/>
+             
+         <TextField name="title" label="Enter the title" value={this.state.title} onChange={this.handleChange}
+          style={{borderRadius:'5px',width:'70%',marginBottom:'20px',textAlign:'center'}} type='text'/>
      </Grid>
      </Grid>
         </div>
@@ -194,7 +195,10 @@ console.log(  this.state.title,
         <div style={{fontSize:12, color:'red'}}> 
              {this.state.ServiceError}     </div>
         <Typography variant='h6' style={{color:'#2d4a6b'}}>
-                 Service type <span>   <select id="servicetype"onChange={this.handleChange}
+                 Service type <span>
+                   
+                 
+                    <NativeSelect id="servicetype"onChange={this.handleChange}
                  style={{width:'150px',marginBottom:'20px',height:'30px',marginLeft:'20px',border:'0px solid #fff'}}>
                                 <option value="">Select</option>
                                 <option value="Maid">Maid</option>
@@ -203,7 +207,7 @@ console.log(  this.state.title,
                                 <option value="Plumber">Plumber</option>
                                 <option value="Shopkeeper">Shopkeeper</option>
                                 
-                                </select> </span>
+                                </NativeSelect> </span>
              </Typography>
           
         </div>
@@ -216,13 +220,14 @@ console.log(  this.state.title,
              {this.state.cityError}     </div>
              
         <Typography variant='h6' style={{color:'#2d4a6b'}}>
-                 Location  <span>   <select id="city" onChange={this.handleChange}
+                 Location <br/>    <NativeSelect label id="city" onChange={this.handleChange}
                  style={{width:'150px',marginBottom:'20px',height:'30px',marginLeft:'20px',border:'0px solid #fff'}}>
+               
                                 <option value="">Select</option>
                                 <option value="Lahore">Lahore</option>
                                 <option value="Karachi">Karachi</option>
-                                </select>
-                                </span>
+                                </NativeSelect>
+                              
                                 </Typography>
                                 </div> 
                                 </Grid>
@@ -232,47 +237,47 @@ console.log(  this.state.title,
                                 <Grid item md={4} xs={12}>         
              <div style={{fontSize:12, color:'red'}}> 
              {this.state.LocationError}     </div>
-         <input name="Area" placeholder="Enter your Area"  value={this.state.Area}  onChange={this.handleChange}
-          style={{marginTop:'10px',border:'0.1rem solid #d9d9d9',height:'30px',borderRadius:'5px',width:'80%',marginBottom:'20px',textAlign:'center'}} type='text' />
+         <TextField name="Area" label="Enter Area"  value={this.state.Area}  onChange={this.handleChange}
+          style={{height:'30px',borderRadius:'5px',width:'80%',marginBottom:'20px',textAlign:'center'}} type='text' />
           </Grid> 
           <Grid item md={4} xs={12}>  
          <div style={{fontSize:12, color:'red'}}> 
              {this.state.streetNoError}     </div>
          
-         <input name="streetNo" placeholder="Enter your Street No"   value={this.state.streetNo}  onChange={this.handleChange}
-          style={{marginTop:'10px',border:'0.1rem solid #d9d9d9',height:'30px',borderRadius:'5px',width:'80%',marginBottom:'20px',textAlign:'center'}} type='text' />
+         <TextField name="streetNo" label="Enter Street No"   value={this.state.streetNo}  onChange={this.handleChange}
+          style={{height:'30px',borderRadius:'5px',width:'80%',marginBottom:'20px',textAlign:'center'}} type='text' />
           </Grid> 
           <Grid item md={4} xs={12}>   
          <div style={{fontSize:12, color:'red'}}> 
              {this.state.houseNoError}     </div>
-         <input name="houseNo" placeholder="Enter yourHouse No"  value={this.state.houseNo}  onChange={this.handleChange} 
-         style={{marginTop:'10px',border:'0.1rem solid #d9d9d9',height:'30px',borderRadius:'5px',width:'80%',marginBottom:'20px',textAlign:'center'}} type='text'/>
+         <TextField name="houseNo" label="Enter House No"  value={this.state.houseNo}  onChange={this.handleChange} 
+         style={{height:'30px',borderRadius:'5px',width:'80%',marginBottom:'20px',textAlign:'center'}} type='text'/>
         
          </Grid> 
          </Grid>
       
    
-        <Typography variant='h6' style={{marginTop:'20px',marginBottom:'20px',color:'#2d4a6b'}}>
+        <Typography variant='h6' style={{marginTop:'20px',color:'#2d4a6b'}}>
                  Bidding
              </Typography>
              <Grid container>
              <Grid item md={4} xs={12}>  
              <div style={{fontSize:12, color:'red'}}> 
              {this.state.perTaskError}     </div>
-         <input name="perTask" placeholder="Per Task"  value={this.state.perTask}  onChange={this.handleChange}
-          style={{marginTop:'10px',border:'0.1rem solid #d9d9d9',height:'30px',borderRadius:'5px',width:'80%',marginBottom:'20px',textAlign:'center'}} type='text' />
+         <TextField label="Per Task" name="perTask" placeholder="Per Task"  value={this.state.perTask}  onChange={this.handleChange}
+          style={{height:'30px',borderRadius:'5px',width:'80%',marginBottom:'20px',textAlign:'center'}} type='text' />
           </Grid>
           <Grid item md={4} xs={12}>  
          <div style={{fontSize:12, color:'red'}}> 
              {this.state.perHourError}     </div>
-         <input name="perHour"  id="hehe" placeholder="Per Hour"   value={this.state.perHour}  onChange={this.handleChange}
-          style={{marginTop:'10px',border:'0.1rem solid #d9d9d9',height:'30px',borderRadius:'5px',width:'80%',marginBottom:'20px',textAlign:'center'}} type='text' />
+         <TextField label="Per Hour" name="perHour"  id="hehe" placeholder="Per Hour"   value={this.state.perHour}  onChange={this.handleChange}
+          style={{height:'30px',borderRadius:'5px',width:'80%',marginBottom:'20px',textAlign:'center'}} type='text' />
           </Grid>
           <Grid item md={4} xs={12}>  
          <div style={{fontSize:12, color:'red'}}> 
              {this.state.perMonthError}     </div>
-         <input name="perMonth" placeholder="Per Month"  value={this.state.perMonth}  onChange={this.handleChange}
-          style={{marginTop:'10px',border:'0.1rem solid #d9d9d9',height:'30px',borderRadius:'5px',width:'80%',marginBottom:'20px',textAlign:'center'}} type='text' />
+         <TextField label="Per Month" name="perMonth" placeholder="Per Month"  value={this.state.perMonth}  onChange={this.handleChange}
+          style={{height:'30px',borderRadius:'5px',width:'80%',marginBottom:'20px',textAlign:'center'}} type='text' />
          </Grid>
        
          </Grid>
@@ -281,14 +286,44 @@ console.log(  this.state.title,
              <div style={{marginBottom:'10px'}}>Time Duration</div>
              <Grid container>
                <Grid item md={4} xs={6}>
-            <div> <span ><label style={{paddingLeft:'50px',marginTop:'20px'}}>Start Time </label ><input id="starttime" type="time"onChange={this.handleChange}style={{width:'20%'}}/></span></div> 
+            <div> <span ><TextField
+              
+               label="Start Time"
+               type="time"
+               defaultValue="07:30"
+       
+               InputLabelProps={{
+                 shrink: true,
+               }}
+               inputProps={{
+                 step: 300, // 5 min
+               }}
+            id="starttime" onChange={this.handleChange}style={{width:'80%'}}/></span></div> 
             </Grid>
             <Grid item md={4} xs={6}>
-            <div>  <span ><label style={{marginLeft:'40px',paddingLeft:'20px',paddingTop:''}}>End Time </label><input type="time" id="endtime"onChange={this.handleChange}style={{width:'20%'}}/></span></div> 
+            <div>  <span ><TextField
+            
+               label="End time"
+               type="time"
+               defaultValue="10:30"
+             
+               InputLabelProps={{
+                 shrink: true,
+               }}
+               inputProps={{
+                 step: 300, // 5 min
+               }}
+            
+            
+            id="endtime"onChange={this.handleChange}style={{width:'80%'}}/></span></div> 
             </Grid>
             <Grid item md={4} xs={12}>
+
             <div style={{marginTop:'5px'}}>
-            <label style={{marginLeft:'40px',paddingLeft:'20px'}}>Month </label> <span>   <select id="month"onChange={this.handleChange} style={{width:'150px',marginBottom:'20px',height:'30px',marginLeft:'20px',border:'0px solid #fff'}}>
+
+            <span>  
+            <InputLabel htmlFor="demo-customized-select-native">Month</InputLabel> 
+               <NativeSelect id="month"onChange={this.handleChange} label="Month" style={{width:'100px',height:'30px',marginLeft:'20px',border:'0px solid #fff'}}>
                                 <option value="0">0</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -303,7 +338,7 @@ console.log(  this.state.title,
                                 <option value="11">11</option>
                                 <option value="12">12</option>
                                 
-                                </select> </span>
+                                </NativeSelect> </span> 
              </div>
              </Grid>
              </Grid>
@@ -315,7 +350,7 @@ console.log(  this.state.title,
              <h6 style={{marginBlockStart:'1.0em',marginBlockEnd:'1.0em'}}>
                 Description
             </h6>
-        <textarea value={this.state.description}name="description"onChange={this.handleChange}style={{width:'60%',height:'100px'}} type='text'/>
+        <textarea value={this.state.description}name="description"onChange={this.handleChange}style={{width:'60%',height:'60px'}} type='text'/>
         </div>
            </Typography>
           </div>

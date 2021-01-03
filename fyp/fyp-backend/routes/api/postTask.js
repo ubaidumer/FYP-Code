@@ -84,6 +84,9 @@ router.put('/acceptTask:id', async ( req , res )=>{
     let user = await Task.findOne({_id:req.params.id});
     let ser= await ServiceProvider.findOne({_id:jwt.id});
 
+    let t= await Task.findOne({serviceprovider:jwt.id,status:"in progress"});
+
+if(!t){
     await Task.findByIdAndUpdate(
         user._id,
         {
@@ -95,8 +98,10 @@ router.put('/acceptTask:id', async ( req , res )=>{
         { new: true }
       );
 
-      res.send(200);
-
+      res.send("successfully accepted");
+      }else{
+        res.send("already in progress with someone else");
+      }
 });
 //Customer to accepet Service Provider
 router.put('/acceptServiceProvider:id', async ( req , res)=>{

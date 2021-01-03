@@ -218,7 +218,7 @@ console.log("enter valid firstname");
                   { loading ? <CircularProgress variant="determinate" value={progress} />: <div></div> }
                   <form onSubmit={(e) => up(e)}>
                 
-                      <Button  style={{ height: '40px' }} type='submit'
+                      <Button color="success"  style={{ height: '40px' }} type='submit'
                      
                       ><PublishIcon /></Button>
              <br/><br/>
@@ -290,7 +290,7 @@ console.log("enter valid firstname");
               <GridItem xs={12} sm={12} md={12} className={classes.navWrapper}>
                 <NavPills
                   alignCenter
-                  color="primary"
+                  color="success"
                   tabs={[
  
                     {
@@ -300,6 +300,7 @@ console.log("enter valid firstname");
                         <GridContainer justify="center">
                            <GridItem xs={12} sm={12} md={12} className={classes.navWrapper}>
                         <NavPills 
+                        color="success"
                   alignCenter
                   
                   tabs={[

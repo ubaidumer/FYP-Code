@@ -18,7 +18,8 @@ import Footer from "../../components/Footer/Footer.js";
 import Button from "../../components/CustomButtons/Button.js";
 import GridContainer from "../../components/Grid/GridContainer.js";
 import GridItem from "../../components/Grid/GridItem.js";
-
+import Header from "../../components/Header/Header"
+import HeaderLinksC from "../../components/Header/HeaderLinksC"
 import NavPills from "../../components/NavPills/NavPills.js";
 import Parallax from "../../components/Parallax/Parallax.js";
 
@@ -228,14 +229,24 @@ setprivatetaskOpen(true);
   return (
     <div>
 
-   
+<Header
+        color="transparent"
+        brand="XsSupport"
+        rightLinks={<HeaderLinksC />}
+        fixed
+        changeColorOnScroll={{
+          height: 200,
+          color: "white"
+        }}
+        {...rest}
+      />
       <Parallax small filter image={img} />
 
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div>
           <div className={classes.container}> 
             <GridContainer justify="center">
-              <GridItem xs={12} sm={12} md={10}>
+              <GridItem xs={12} sm={12} md={6}>
                 <div className={classes.profile}>
                   <div >  
                     <form onSubmit={(e) => up(e)}>   <input style={{ display: 'none' }} type='file' id="file" name='image' onChange={(e) => ch(e)} accept="image/*" />
@@ -249,7 +260,7 @@ setprivatetaskOpen(true);
                   { loading ? <CircularProgress variant="determinate" value={progress} />: <div></div> }
                     <form onSubmit={(e) => up(e)}>
 
-                      <Button style={{ height: '40px' }} type='submit'><PublishIcon /></Button>
+                      <Button color="primary" style={{ height: '40px' }} type='submit'><PublishIcon /></Button>
               
                     </form>
                     <Typography style={{color:'#a62e9c'}} variant="h6">{prof.customername}</Typography>

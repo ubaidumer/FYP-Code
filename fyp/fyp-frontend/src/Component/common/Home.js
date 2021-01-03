@@ -4,8 +4,8 @@ import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
+import Carousel from 'react-material-ui-carousel'
+
 // @material-ui/icons
 
 // core components
@@ -98,13 +98,20 @@ export default function Home(props) {
             </GridItem>
             <GridItem md={8}>
               <Container maxWidth="md">
-            <Carousel responsive={responsive}>
-  <div><img style={{height:'300px',width:'350px'}} src={img1}/></div>
-  <div><img style={{height:'300px',width:'350px'}}  src={img2}/></div>
-  <div><img style={{height:'300px',width:'350px'}}  src={img3}/></div>
-  <div><img  style={{height:'300px',width:'350px'}} src={img4}/></div>
-
-</Carousel>
+              <Carousel>
+     <div>
+         <img style={{width:'100%',maxHeight:'250px'}}
+         src={img1}/>
+     </div>
+     <div>
+         <img style={{width:'100%',maxHeight:'250px'}}
+         src={img2}/>
+     </div>
+     <div>
+         <img style={{width:'100%',maxHeight:'250px'}}
+         src={img3}/>
+     </div>
+        </Carousel>
 </Container>
             </GridItem>
           </GridContainer>

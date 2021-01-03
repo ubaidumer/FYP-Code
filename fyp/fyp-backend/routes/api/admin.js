@@ -187,6 +187,7 @@ router.post('/allrecordso',async (req,res)=>{
 
 
         const cus= await OrderHistory.find();
+        console.log("hahahah"+cus);
         res.send(cus);
     }else{
         res.send(400);
@@ -200,6 +201,23 @@ router.post('/allrecordsh',async (req,res)=>{
 
         const cus= await WorkHistory.find();
         res.send(cus);
+    }else{
+        res.send(400);
+    }
+})
+router.get("/dep" , async (req,res)=>{
+    const jwt = decode(req.header("x-auth-token"));
+    const admin= await Admin.find({_id:jwt.id});
+    let sum=0;
+    if(admin){
+    const s= await SProfile.find();
+    
+    for(let i=0;i<s.length;i++){
+        sum+=s[i].creditearn;
+    }
+    console.log(sum);
+    res.send(sum)
+
     }else{
         res.send(400);
     }

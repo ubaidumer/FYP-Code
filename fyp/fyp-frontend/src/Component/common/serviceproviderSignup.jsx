@@ -17,7 +17,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from "@material-ui/core/styles";
 import * as authService from'../../Axios-Actions/authService';
-import { Container, Radio } from '@material-ui/core';
+import { Container, NativeSelect, Radio } from '@material-ui/core';
 
 
 function Copyright() {
@@ -212,7 +212,7 @@ class serviceproviderSignup extends Component {
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-              <TextField
+              <NativeSelect style={{marginTop:'10px'}}
                   variant="outlined"
                   required
                   fullWidth
@@ -222,7 +222,15 @@ class serviceproviderSignup extends Component {
                  
                    onChange={this.onChange}
                  
-                />
+                >
+                     <option value="">Service Type</option>
+                     <option value="maid">maid</option>
+                                <option value="plumber">plumber</option>
+                                <option value="driver">driver</option>
+                                <option value="cook">cook</option>
+                                <option value="tailor">tailor</option>
+                                <option value="electrian">electrician</option>
+                </NativeSelect>
               
               </Grid>
               <Grid item xs={12} sm={6}>

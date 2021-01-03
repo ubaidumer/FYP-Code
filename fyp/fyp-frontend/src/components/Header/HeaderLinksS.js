@@ -12,11 +12,11 @@ import ListItem from "@material-ui/core/ListItem";
 import Tooltip from "@material-ui/core/Tooltip";
 
 // @material-ui/icons
-import { Backdrop, Badge, Container, Divider, Fade, Grid, InputAdornment, Modal, Paper, TextField, Typography } from '@material-ui/core';
-import { Apps, People } from "@material-ui/icons";
+import { Backdrop, Badge, Container, Divider, Fade, Grid, InputAdornment, Modal, NativeSelect, Paper, TextField, Typography } from '@material-ui/core';
+import { Apps, Lock, People, } from "@material-ui/icons";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 // core components
-
+import {  Face, Phone, PhonelinkLockOutlined, VpnKey,Work } from "@material-ui/icons";
 import CustomDropdown from "../../components/CustomDropdown/CustomDropdown.js";
 import Button from "../../components/CustomButtons/Button.js";
 
@@ -153,12 +153,12 @@ const update =(e)=>{
   <Fade in={gen}>
     <Paper> 
   <Container maxWidth="md"> 
- <Grid container>
-   <Grid item md={12} xs={12}>
+ <Grid container spacing={2}>
+ <Grid item md={12} style={{backgroundColor:'#4BB543 ',color:'white'}}>
    <center>
       <br/>
     <Typography variant="h5">Update your Info</Typography> 
-    <Divider/>
+    <Divider style={{marginTop:'5px'}}/>
     </center>
    </Grid>
    <Grid item md={1}></Grid>
@@ -169,19 +169,18 @@ const update =(e)=>{
                       formControlProps={{
                         fullWidth: true
                       }}
-                      inputProps={{
-                      
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <People className={classes.inputIconsColor} />
-                          </InputAdornment>
-                        )
-                      }}
+                      InputProps={{
+                        endAdornment: <InputAdornment position="end"><Face style={{color:'#4BB543 '}}/></InputAdornment>,
+                      }} 
                       onChange={(e)=>{setFname(e.target.value)}}
                       
                     /> 
+                    
           
                        <TextField fullWidth
+                          InputProps={{
+                            endAdornment: <InputAdornment position="end"><Face style={{color:'#4BB543 '}}/></InputAdornment>,
+                          }} 
                       label="Last Name..."
                       name="lname"
                       onChange={(e)=>{setLname(e.target.value)}}
@@ -198,7 +197,10 @@ const update =(e)=>{
                         )
                       }}
                     /> 
-                       <TextField fullWidth
+                       <NativeSelect fullWidth style={{marginTop:'10px'}}
+                         InputProps={{
+                          endAdornment: <InputAdornment position="end"><Work style={{color:'#4BB543 '}}/></InputAdornment>,
+                        }} 
                       label="Service Type"
                       name="st"
                       onChange={(e)=>{setSt(e.target.value)}}
@@ -214,13 +216,24 @@ const update =(e)=>{
                           </InputAdornment>
                         )
                       }}
-                    /> 
+                    > 
+                       <option value="">Service Type</option>
+                                <option value="maid">maid</option>
+                                <option value="plumber">plumber</option>
+                                <option value="driver">driver</option>
+                                <option value="cook">cook</option>
+                                <option value="tailor">tailor</option>
+                                <option value="electrian">electrician</option>
+                    </NativeSelect>
  
      <br/>
    </Grid>
    <Grid item md={1}></Grid>
    <Grid item md={5}>
    <TextField fullWidth
+     InputProps={{
+      endAdornment: <InputAdornment position="end"><Phone style={{color:'#4BB543 '}}/></InputAdornment>,
+    }} 
                       label="Change Contact No"
                       name="contact"
                       onChange={(e)=>{setContact(e.target.value)}}
@@ -237,7 +250,10 @@ const update =(e)=>{
                         )
                       }}
                     /> 
-                       <TextField fullWidth
+                       <TextField fullWidth 
+                         InputProps={{
+                          endAdornment: <InputAdornment position="end"><Lock style={{color:'#4BB543 '}}/></InputAdornment>,
+                        }} 
                       label="Password"
                       name="password"
                       onChange={(e)=>{setPass(e.target.value)}}
@@ -261,8 +277,8 @@ const update =(e)=>{
    <Grid item md={4}>
      <br/>
 
-     <Button onClick={(e)=>update(e)} style={{marginRight:'20px'}}>Submit</Button>
- <Button onClick={()=>setGen(!gen)}>Close</Button>
+     <Button color="success" onClick={(e)=>update(e)} style={{marginRight:'20px'}}>Submit</Button>
+ <Button color="success" onClick={()=>setGen(!gen)}>Close</Button>
  </Grid>
  <Grid item md={4}></Grid>
  </Grid>

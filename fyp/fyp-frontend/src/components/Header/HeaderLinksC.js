@@ -12,8 +12,8 @@ import ListItem from "@material-ui/core/ListItem";
 import Tooltip from "@material-ui/core/Tooltip";
 
 // @material-ui/icons
-import { Backdrop, Badge, Container, Divider, Fade, Grid, Modal, Paper, TextField, Typography} from '@material-ui/core';
-import { Apps } from "@material-ui/icons";
+import { Backdrop, Badge, Container, Divider, Fade, Grid, InputAdornment, Modal, Paper, TextField, Typography} from '@material-ui/core';
+import { Apps, Face, Phone, PhonelinkLockOutlined, VpnKey } from "@material-ui/icons";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 // core components
 
@@ -151,44 +151,56 @@ const update =(e)=>{
     <Paper> 
   <Container maxWidth="md"> 
  <Grid container spacing={2}>
-  <Grid item md={12}>
+  <Grid item md={12} style={{backgroundColor:'#a62e9c',color:'white'}}>
     <center>
       <br/>
     <Typography variant="h5">Update your Info</Typography> 
-    <Divider/>
+    <Divider style={{marginTop:'5px'}}/>
     </center>
   </Grid>
    <Grid item md={1}></Grid>
-   <Grid item md={4}>
+   <Grid item md={5}>
     
      <TextField fullWidth
+      InputProps={{
+        endAdornment: <InputAdornment position="end"><Face style={{color:'#a62e9c'}}/></InputAdornment>,
+      }} 
      label="Change your firstName" onChange={(e)=>{setFname(e.target.value)}
     }/>
      <br/>
      <TextField fullWidth
+      InputProps={{
+        endAdornment: <InputAdornment position="end"><Face style={{color:'#a62e9c'}}/></InputAdornment>,
+      }} 
      label="Change your lastName" onChange={(e)=>{setLname(e.target.value)}
     }/>
      <br/>
    </Grid>
-   <Grid item md={2}></Grid>
-   <Grid item md={4}>
-   <TextField fullWidth
+  
+   <Grid item md={5}>
+   <TextField fullWidth 
+     InputProps={{
+      endAdornment: <InputAdornment position="end"><Phone style={{color:'#a62e9c'}}/></InputAdornment>,
+    }} 
      label="Change your Contact No" onChange={(e)=>{setContact(e.target.value)}
     }/>
      <br/>
      <TextField fullWidth
+      InputProps={{
+        endAdornment: <InputAdornment position="end"><VpnKey style={{color:'#a62e9c'}}/></InputAdornment>,
+      }} 
      label="Change your Password" onChange={(e)=>{setPass(e.target.value)}
     }/>
      <br/>
      <Divider/>
    </Grid>
-  
+   <Grid item md={1}></Grid>
    <Grid item md={4}></Grid>
    <Grid item md={4}>
      <br/>
  
-     <Button onClick={(e)=>update(e)} style={{marginRight:'20px'}}>Submit</Button>
- <Button onClick={()=>setGen(!gen)}>Close</Button>
+     <Button color="primary" onClick={(e)=>update(e)} style={{marginRight:'20px'}}>Submit</Button>
+ <Button color="primary" onClick={()=>setGen(!gen)}>Close</Button>
  </Grid>
  <Grid item md={4}></Grid>
  </Grid>

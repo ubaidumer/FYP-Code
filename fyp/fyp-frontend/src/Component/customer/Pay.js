@@ -161,16 +161,10 @@ class Pay extends React.Component {
 
 
       <Grid container style={{paddingTop:'5px',paddingBottom:'40px'}}>
-   
-          <Grid item md={12} xs={12} style={{marginRight:'20px',marginLeft:'20px'}}>
-          <Paper style={{marginTop:'50px', border:'1px solid #000'}} elevation={3}>
-             <div style={{display:'inline-flex'}}>
-              <Button variant="outlined" style={{width:'160px',fontSize:'15px',height:'50px',border:'1px solid white',color:'#9b34eb'}} type="button" onClick={()=>this.setState({open:!this.state.open
-              })}>Cash on Spot
-                <AttachMoneyIcon style={{fontSize:'25px'}}/>
-              </Button>
-                <Typography variant="subtitle1" style={{marginLeft:'30px'}}> Easy option for both customer and Service provider</Typography> </div>
-              <Divider/>
+         <Grid item md={3}></Grid>
+          <Grid item md={7} xs={12}>
+          <Paper  elevation={3}>
+           
         
             <Modal style={{justifyContent:'center',alignItems:'center',display:'flex'}}
               open={this.state.open}
@@ -208,41 +202,44 @@ class Pay extends React.Component {
           
                 
             </Paper>
-            <div style={{border:'1px solid #000', marginTop:'20px'}}>
+            <div style={{border:'1px solid #a62e9c', marginTop:'20px'}}>
                 <div style={{paddingLeft:'30px',backgroundColor:'#dbdbdb'}}><h3 style={{color:'#9b34eb'}}>Delivery Address</h3></div>
            
-                 <div  style={{paddingLeft:'30px',backgroundColor:'white',marginBottom:'20px'}}><br/><Divider/>
-                <Typography variant="h5">Customer: {task.customeremail} </Typography><br/> <Divider/>
-                <Typography variant="h6">Task Location: {task.location}</Typography> <br/> <Divider/>
-                <Typography variant="h6">Task Status: {task.status}</Typography>
+                 <div  style={{marginLeft:'20px',backgroundColor:'white',marginBottom:'20px',textAlign:'start',color:'#a62e9c'}}><br/><Divider/>
+                <Typography variant="h6">Customer: {task.customeremail} </Typography><br/> <Divider/>
+                <Typography variant="subtitle1">Task Location: {task.location}</Typography> <br/> <Divider/>
+                <Typography variant="subtitle1">Task Status: {task.status}</Typography>
             
         
                 </div>
             </div>
           </Grid>
 
-          <Grid item md={2}></Grid>
-          <Grid item md={8} xs={12} style={{marginRight:'20px',marginLeft:'20px'}}>
+          <Grid item md={3}></Grid>
+          <Grid item md={7} xs={12} >
           
-              <div style={{border:'1px solid #000', marginTop:'50px'}}>
+              <div style={{border:'1px solid #a62e9c', marginTop:'50px'}}>
               <div style={{paddingLeft:'30px',backgroundColor:'#dbdbdb'}}><h3 style={{color:'#9b34eb'}}>Cart Summary</h3></div>
               <br/>
                 <Divider/>
-                <div  style={{paddingLeft:'30px',backgroundColor:'white',marginBottom:'20px'}}>
-            <Typography variant="h5">Service provider:{task.serviceprovideremail}</Typography>
+                <div  style={{marginLeft:'20px',backgroundColor:'white',marginBottom:'20px',textAlign:'start',color:'#a62e9c'}}>
+            <Typography variant="h6">Service provider:{task.serviceprovideremail}</Typography>
             <br/>
                 <Divider/>
-            <Typography variant="h6">Total Bill:{(task.month*task.permonth)+(task.pertask)+(task.perhour*(parseInt(task.endtime)-parseInt(task.starttime))*(task.month*30))} Rs.</Typography>
+            <Typography variant="subtitle1">Total Bill:{(task.month*task.permonth)+(task.pertask)+(task.perhour*(parseInt(task.endtime)-parseInt(task.starttime))*(task.month*30))} Rs.</Typography>
             <br/>    <Divider/>
-            <Typography variant="h6"> Task Duration: {task.month} Month</Typography>
+            <Typography variant="subtitle1"> Task Duration: {task.month} Month</Typography>
            <br/> <Divider/>
-            <Typography variant="h6"> Time Duration: starting from={task.starttime} and ending at={task.endtime} </Typography>
+            <Typography variant="subtitle1"> Time Duration: starting from={task.starttime} and ending at={task.endtime} </Typography>
             
           
                 </div>
               
               </div>
-
+              <Button variant="contained" style={{width:'200px',fontSize:'15px',height:'50px',color:'#9b34eb',marginTop:'20px'}} type="button" onClick={()=>this.setState({open:!this.state.open
+              })}>Cash on Spot
+                <AttachMoneyIcon style={{fontSize:'25px'}}/>
+              </Button>
           </Grid>
 
  

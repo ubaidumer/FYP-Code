@@ -7,7 +7,7 @@ import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
 import {makeStyles} from '@material-ui/core/styles';
 import CardInput from './CardInput';
 import * as paymentService from '../../Axios-Actions/paymentService';
-import { Container, Typography } from '@material-ui/core';
+import { Container, Divider, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles({
   root: {
@@ -91,10 +91,10 @@ const useStyles = makeStyles({
     <Container maxWidth="md">
     <Card className={classes.root}>
       <CardContent className={classes.content}>
- <Typography variant="h6" style={{color:'#9b34eb'}}>Your Account Email:{task.customeremail}</Typography>
- <Typography variant="h6" style={{color:'#9b34eb'}}>Your Service Provider Email:{task.serviceprovideremail}</Typography>
- <Typography variant="h6" style={{color:'#9b34eb'}}>Your Total bill:{(task.month*task.permonth)+(task.pertask)+(task.perhour*(parseInt(task.endtime)-parseInt(task.starttime))*(task.month*30))}</Typography>
-
+ <Typography variant="subtitle1" style={{color:'#9b34eb'}}>Your Account Email:{task.customeremail}</Typography>
+ <Typography variant="subtitle1" style={{color:'#9b34eb'}}>Your Service Provider Email:{task.serviceprovideremail}</Typography>
+ <Typography variant="subtitle1" style={{color:'#9b34eb'}}>Your Total bill:{(task.month*task.permonth)+(task.pertask)+(task.perhour*(parseInt(task.endtime)-parseInt(task.starttime))*(task.month*30))}</Typography>
+ <Divider/> 
         <TextField
           label='Email'
           id='outlined-email-input'
