@@ -1,7 +1,11 @@
 
 import React, { Component } from 'react';
+
+// @material-ui/core components
+import { Backdrop, Badge, Container,Fade, Modal} from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
+import InputAdornment from "@material-ui/core/InputAdornment";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -17,6 +21,8 @@ import Joi from "joi-browser";
 import * as authService from'../../Axios-Actions/authService';
 import { Radio } from '@material-ui/core';
 import useGeoLocation from "./useGeoLocation";
+import { Divider } from "@material-ui/core";
+import { Apps, Face, Phone, PhonelinkLockOutlined, VpnKey } from "@material-ui/icons";
 
 
 function Copyright() {
@@ -76,6 +82,7 @@ class SignIn extends Component{
           invalid: false,
           loading: false,
           error: "",
+          gen:false
         };
     
         this.onChange = this.onChange.bind(this);
@@ -186,6 +193,12 @@ class SignIn extends Component{
     
         }
       }
+      rp(e){
+        setTimeout(function () {
+          window.location = "/resetpassword";
+        }, 2000);
+
+      }
   
     render()
     {
@@ -250,10 +263,6 @@ class SignIn extends Component{
 Sign in as a customer.
 </span>
           
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
             <Button
               type="submit"
               fullWidth
@@ -266,14 +275,17 @@ Sign in as a customer.
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
+              <div><Typography> Forget Password? Click the button below. </Typography>
+              <Button
+              variant="contained"
+              color="secondary"
+              fullWidth
+              className={classes.submit}
+              onClick={this.rp}
+            >
+              Reset Password
+            </Button>
+            </div>
               </Grid>
             </Grid>
             <Box mt={5}>
@@ -282,6 +294,7 @@ Sign in as a customer.
           </form>
         </div>
       </Grid>
+    
     </Grid>
         )
     }

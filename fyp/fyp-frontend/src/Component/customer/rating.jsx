@@ -44,7 +44,7 @@ class Rating extends React.Component{
       .then((result) => {
       console.log("Successfull Rated");
         setTimeout(function () {
-          window.location = "/";
+          window.location = "/profile";
         }, 2000);
       })
       .catch((err) => {
@@ -87,19 +87,19 @@ class Rating extends React.Component{
                <Container maxWidth="lg">
                      <Grid container style={{backgroundColor:'#fcfcfc'}}>
                 <Grid item md={6} xs={12}> 
-                <ul style={{listStyle:'none'}}>
-                {
-                    rate.map(t=>(
-                        <li key={t._id}>
-                    <div>
-                        
-                <Paper style={{height:'50px'}}>
+                <Paper style={{height:'50px',marginTop:'20px'}}>
                     <div > 
                 <Typography variant="h5" style={{justifyContent:'center',textAlign:'center',paddingTop:'10px'}}>
                 Reviews
                 </Typography>
                 </div>
                 </Paper>
+                <ul style={{listStyle:'none'}}>
+                {
+                    rate.map(t=>(
+                        <li key={t._id}>
+                    <div>
+                        
                 <div style={{display:'inline-flex',marginTop:'40px',width:'100%',backgroundColor:'#f7f7f7',flexWrap:'wrap'}}>
                    
                    <Avatar style={{marginTop:'17px',marginRight:'20px',marginLeft:'10px',height:'50px',width:'50px'}}></Avatar>
@@ -121,10 +121,6 @@ class Rating extends React.Component{
                         Review:{t.review}
                </Typography>
            <br/>
-                    <button style={{backgroundColor:'#f7f7f7',border:'0px',color:'darkblue' ,marginBottom:'10px'}} 
-                     onClick={()=>this.liking()}
-
-        > <ThumbUpIcon style={{fontSize:'30px'}}/> {this.state.likes  }</button>
  
                     </div>
                 </div>

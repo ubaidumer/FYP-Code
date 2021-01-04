@@ -152,6 +152,7 @@ export default function Dashboard() {
   const [card,setCard] = React.useState([]);
   const [cardS,setCardS] = React.useState([]);
   const [cardo,setCardo] = React.useState([]);
+  const [cardt,setCardt] = React.useState([]);
   const [numc,setC]= React.useState([]);
   const [nums,setS]= React.useState([]);
   const [d,setd]= React.useState('');
@@ -184,6 +185,12 @@ adminService.viewc() .then((result)=>{
         
           });
           }
+          const Viewtask=()=>{
+            adminService.viewtask() .then((result)=>{
+              setCardt(result.data);
+            
+              });
+              }
       const delS=(email)=>{
         adminService.del(email);
           }
@@ -257,6 +264,14 @@ adminService.viewc() .then((result)=>{
         <br/>
         <br/>
          View History
+        </Button>
+        <br/>
+        <br/>
+        <Divider />
+        <Button onClick={()=>{Viewtask()}} > 
+        <br/>
+        <br/>
+         View Customer Requests
         </Button>
         <br/>
         <br/>
@@ -416,6 +431,49 @@ adminService.viewc() .then((result)=>{
                                      <StyledTableCell align="left">{c.accepttaskdate} / {c.endtaskdate}</StyledTableCell>
                                      <StyledTableCell align="left">{c.location}</StyledTableCell>
                                     </StyledTableRow>
+                            
+                               </TableBody>
+                               
+              ))}                       
+                             </Table>
+                           </TableContainer>
+                       </Paper>
+                       
+                    
+
+            </Grid>
+            <Grid item xs={12} md={12} lg={12}>
+                              
+                   
+                              <Paper className={classes.paper}>
+
+                              <TableContainer component={Paper} >
+                             <Table className={classes.table} aria-label="customized table">
+                               <TableHead>
+                                 <TableRow>
+                                 <StyledTableCell align="left">Title</StyledTableCell>
+                                   <StyledTableCell align="left">Customer Email</StyledTableCell>
+                                   <StyledTableCell align="left">ServiceType</StyledTableCell>
+                                   <StyledTableCell align="left">Location</StyledTableCell>
+                                   <StyledTableCell align="left">Total Bill</StyledTableCell>
+                                   <StyledTableCell align="left">Start Time / End Time</StyledTableCell>
+                                   <StyledTableCell align="left">Total Months</StyledTableCell>
+                       
+                                 </TableRow>
+                               </TableHead>
+                               {cardt.map(c=>(
+                               <TableBody>
+                                 
+                                   <StyledTableRow >
+                                   
+                                   <StyledTableCell align="left">{c.title}</StyledTableCell>
+                                     <StyledTableCell align="left">{c.customeremail}</StyledTableCell>
+                                     <StyledTableCell align="left">{c.servicetype}</StyledTableCell>
+                                     <StyledTableCell align="left">{c.location}</StyledTableCell>
+                                     <StyledTableCell align="left">{(c.month*c.permonth)+(c.pertask)+(c.perhour*(parseInt(c.endtime)-parseInt(c.starttime))*(c.month*30))}</StyledTableCell>
+                                     <StyledTableCell align="left">{c.starttime} / {c.endtime}</StyledTableCell>
+                                     <StyledTableCell align="left">{c.month}</StyledTableCell>
+                                   </StyledTableRow>
                             
                                </TableBody>
                                

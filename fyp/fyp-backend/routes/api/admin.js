@@ -11,6 +11,8 @@ const {CProfile} = require('../../models/Customer/CProfile');
 const {SProfile} = require('../../models/Service Provider/SProfile');
 const {OrderHistory}= require('../../models/Customer/OrderHistory');
 const {WorkHistory} =require('../../models/Service Provider/WorkHistory');
+const {Task} =require('../../models/Customer/PostTask');
+const email = require("./email");
 router.use(bodyparser.json());
 router.use(bodyparser.urlencoded({ extended: false }));
 
@@ -222,5 +224,163 @@ router.get("/dep" , async (req,res)=>{
         res.send(400);
     }
 })
+router.post("/workus" , async (req,res)=>{
+    const admin= await Admin.findOne();
+    if(admin){
+        const text ="User Name:"+req.body.name+".Email by: "+req.body.email+". Message:"+req.body.message+". ";
+        email(admin.email, " Contact Us ", text);
+    res.send(200);
+
+    }else{
+        res.send(400);
+    }
+})
+router.post("/postedtaskview" , async (req,res)=>{
+  const table= await Task.find({status:"pending"});
+    if(table){
+      
+    res.send(table);
+
+    }else{
+        res.send(400);
+    }
+})
+
+router.post("/sendrpcode" , async (req,res)=>{
+    
+    const admin = await Admin.findOne({email:req.body.email});
+    if(admin){
+
+        let number=100000 + Math.floor(Math.random() * 900000);
+
+        const text ="Your Verification Code is: "+number+" ";
+        email(req.body.email, " Verification Code ", text);
+        await Admin.update(
+            {_id:admin._id},
+            {
+              $set: {
+               code:number
+              },
+            },
+            { new: true }
+          );
+          res.send(200);
+
+    }else{
+        res.send(404);
+    }
+});
+router.post("/reset" , async (req,res)=>{
+    
+    const admin = await Admin.findOne({email:req.body.email});
+
+    if(admin.code===parseInt(req.body.rpcode)){
+
+        const salt = await bcrypt.genSalt(10);
+        const p = await bcrypt.hash(req.body.rppass, salt);
+        await Admin.update(
+            {_id:admin._id},
+            {
+              $set: {
+               password:p
+              },
+            },
+            { new: true }
+          );
+
+          res.send(200);
+    }else{
+        res.send(404);
+    }
+});
+router.post("/sendrpcodeuser" , async (req,res)=>{
+    
+    const cus = await Customer.findOne({email:req.body.email});
+    const ser = await ServiceProvider.findOne({email:req.body.email});
+    if(cus){
+
+        let number=100000 + Math.floor(Math.random() * 900000);
+
+        const text ="Your Verification Code is: "+number+" ";
+        email(req.body.email, " Verification Code ", text);
+        await Customer.update(
+            {_id:cus._id},
+            {
+              $set: {
+               code:number
+              },
+            },
+            { new: true }
+          );
+          res.send(200);
+
+    }else if(ser){
+
+        let number=100000 + Math.floor(Math.random() * 900000);
+
+        const text ="Your Verification Code is: "+number+" ";
+        email(req.body.email, " Verification Code ", text);
+        await ServiceProvider.update(
+            {_id:ser._id},
+            {
+              $set: {
+               code:number
+              },
+            },
+            { new: true }
+          );
+          res.send(200);
+
+    }else{
+        res.send(404);
+    }
+});
+router.post("/resetuser" , async (req,res)=>{
+    
+    const cus = await Customer.findOne({email:req.body.email});
+    const ser = await ServiceProvider.findOne({email:req.body.email});
+
+    if(cus){
+    if(cus.code===parseInt(req.body.rpcode)){
+
+        const salt = await bcrypt.genSalt(10);
+        const p = await bcrypt.hash(req.body.rppass, salt);
+        await Customer.update(
+            {_id:cus._id},
+            {
+              $set: {
+               password:p
+              },
+            },
+            { new: true }
+          );
+
+          res.send(200);
+    }else{
+        res.send(404);
+    }
+}
+    
+ if(ser){   
+    if(ser.code===parseInt(req.body.rpcode)){
+
+        const salt = await bcrypt.genSalt(10);
+        const p = await bcrypt.hash(req.body.rppass, salt);
+        await ServiceProvider.update(
+            {_id:ser._id},
+            {
+              $set: {
+               password:p
+              },
+            },
+            { new: true }
+          );
+
+          res.send(200);
+    }else{
+        res.send(404);
+    }
+}
+});
 router.update;
 module.exports = router;

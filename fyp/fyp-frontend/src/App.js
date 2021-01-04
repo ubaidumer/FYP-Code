@@ -3,6 +3,7 @@ import { Route, BrowserRouter} from "react-router-dom";
 
 import serviceproviderSignup from "./Component/common/serviceproviderSignup";
 import customerSignup from "./Component/common/customerSignup";
+import reset from "./Component/common/Resetpassword";
 import Login from "./Component/common/login";
 import postatask from "./Component/customer/postATask";
 import acceptRequest from "./Component/serviceprovider/AcceptRequest";
@@ -12,7 +13,7 @@ import orderHistory from "./Component/customer/OrderHistory";
 import workHistory from "./Component/serviceprovider/workHistory";
 import payment from "./Component/customer/payment";
 import rating from "./Component/customer/rating";
-
+import w from "./Component/common/Sections/WorkSection";
 import adminLogin from "./Component/common/adminlogin";
 import HomeScreen from "./Component/common/HomeScreen";
 import Footer from "./Component/common/Footer";
@@ -48,8 +49,7 @@ class App extends Component {
             <Elements stripe={stripePromise}>
                <Route path="/adminSignin" component={LoginPage} />
                <Route path="/profile" component={ProfilePage}/>   
-               <Route path="/sprofile" component={SProfilePage}/>   
-              <Route path="/adminLogin" component={adminLogin}/>   
+               <Route path="/sprofile" component={SProfilePage}/>     
               <Route path="/stripecard" component={Stripecard}/>
              <Route path="/home" component={Home}/>
               <Route path="/customerdashboard" component={customerDashboard}/>      
@@ -65,8 +65,10 @@ class App extends Component {
               <Route path="/postedTask" component={PostedTask}/>
               <Route path="/workHistory" component={workHistory}/>
               <Route path="/rating" component={rating}/>
+              <Route path="/resetpassword" component={reset}/>
+              <Route path="/workwithus" component={w}/>
       
-              <Route path="/" exact={true} component={HomeScreen}/>
+              <Route path="/" exact={true} component={Home}/>
               </Elements>
               <Route path="/dashboard" component={Dashboard}/>
               <Route path="/FindLocationMap" component={FLMap}/>

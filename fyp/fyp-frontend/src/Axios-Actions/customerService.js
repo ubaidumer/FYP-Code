@@ -32,6 +32,10 @@ export async function getServicebbytype(type){
     return await http.post(apiEndpoint + "/serviceprovider/getServicebbytype",{type});
 
 }
+export async function searchname(name){
+    return await http.post(apiEndpoint + "/serviceprovider/searchbyname",{name});
+
+}
 
 export async function editdata(fname,lname,pass,contact){
 
@@ -50,6 +54,23 @@ export async function AllSprofiles(){
 export async function oneprofile(servicetype){
 
     return await http.post(apiEndpoint+"/serviceprovider/gethim",{servicetype});
+}
+export async function delpost(id){
+
+    return await http.post(apiEndpoint+"/postTask/delete",{id});
+}
+export async function editpost(title,servicetype,location,perhour,permonth,pertask,start,end,month,description,id){
+
+    if(!perhour){
+        perhour=0;
+        }
+        if(!permonth){
+            permonth=0;
+        }
+        if(!pertask){
+        pertask=0;
+        }
+    return await http.post(apiEndpoint+"/postTask/edit",{title,servicetype,location,perhour,permonth,pertask,start,end,month,description,id});
 }
 
 

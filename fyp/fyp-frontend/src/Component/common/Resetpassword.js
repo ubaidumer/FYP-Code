@@ -21,7 +21,6 @@ import CardHeader from "../../components/Card/CardHeader.js";
 import CardFooter from "../../components/Card/CardFooter"
 import * as adminService from "../../Axios-Actions/adminService";
 import CustomInput from "../../components/CustomInput/CustomInput.js";
-import * as authService from "../../Axios-Actions/authService";
 import styles from "../../assets/jss/material-kit-react/views/loginPage.js";
 import image from "../../assets/img/bg7.jpg";
 import { Divider, Typography } from "@material-ui/core";
@@ -30,48 +29,33 @@ import { Apps, Face, Phone, PhonelinkLockOutlined, VpnKey } from "@material-ui/i
 
 const useStyles = makeStyles(styles);
 
-export default function LoginPage(props) {
+export default function ResetPassword(props) {
   const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
   const [email,setEmail] = React.useState('');
-  const [pass,setPass] = React.useState('');
   const [gen,setGen] =React.useState(false);
   const [rppass,setrppass] =React.useState("");
   const [rpcode,setrpcode] =React.useState(""); 
   const rp=()=>{
 
     if(!email){
-      alert("To reset your password you need to write admin email.")
+      alert("To reset your password you need to write an email.")
     }
     else if(email){
-      adminService.sendrpcode(email);
+      adminService.sendrpcodeuser(email);
       setGen(true);
     }
   }
   const update=(e)=>{
-    adminService.reset(email,rppass,rpcode)
+    adminService.resetuser(email,rppass,rpcode)
     .then((result) => {
       console.log("Successfully Reset");
         setTimeout(function () {
-          window.location = "/adminSignin";
+          window.location = "/login";
         }, 2000);
       })
       .catch((err) => {
         console.log(" upload error");
       });
-  }
-  const validation=()=>{
-
-    authService.AdminLogin(email,pass)
-    .then((result) => {
-      console.log("Successfully admin login");
-        setTimeout(function () {
-          window.location = "/dashboard";
-        }, 2000);
-      })
-      .catch((err) => {
-        console.log(" upload error");
-      });
-
   }
 
   setTimeout(function() {
@@ -102,7 +86,7 @@ export default function LoginPage(props) {
               <Card className={classes[cardAnimaton]}>
                 <form className={classes.form}>
                   <CardHeader color="primary" className={classes.cardHeader}>
-                    <h2> Admin Authentication</h2>
+                    <h2>Reset Password</h2>
                  
                   </CardHeader>
                   <CardBody>
@@ -119,28 +103,10 @@ export default function LoginPage(props) {
               onChange={(e)=>{setEmail(e.target.value)}}
               type="email"
             />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              onChange={(e)=>{setPass(e.target.value)}}
-              
-            />
+
                   </CardBody>
                   <CardFooter className={classes.cardFooter}>
-                    <Button onClick={()=>{validation()}} simple color="primary" size="lg">
-                     Log In
-                    </Button>
-
-                  </CardFooter>
-                  <CardFooter className={classes.cardFooter}>
-                  <div><Typography style={{marginRight:"20px"}}> Forget Password?      </Typography></div>
+                  <div><Typography> Forget Password? Click button to get code on email. </Typography></div>
                   <Button color="primary" onClick={()=>{rp()}}>Send Code</Button>
                   </CardFooter>
                 </form>

@@ -8,6 +8,7 @@ const {Payment}= require("../../models/Customer/Payment");
 const {Customer}= require("../../models/Customer/Customer");
 const email = require("./email");
 const { ServiceProvider } = require("../../models/Service Provider/ServiceProvider");
+const { Admin } = require("../../models/Admin/Admin");
 router.use(bodyparser.json());
 router.use(bodyparser.urlencoded({ extended: false }));
 
@@ -203,6 +204,9 @@ router.put('/taskCompletion:id', async ( req , res )=>{
         "Your Task is Successfully ended. "+"Your Customer was Email:"+cemail+".Task Title:"+ti+".Task Started at Date:"+ad+".Task End at Date:"+ed+".";
       try {
         email(u.email, " Task Completion ", text);
+        const admin = await Admin.findOne();
+        const t="Task Ended With Title:"+ti+".between customer:"+cemail+" and ServiceProvider:"+u.email+"";
+        email(admin.email, " Task Completion ", t);
         res.send(200);
       } catch (exp) {
         console.log("Error is sending email");
@@ -223,15 +227,13 @@ router.put('/taskCompletion:id', async ( req , res )=>{
 });
 
 // Customer deleting a Task fr-
-router.delete('/delete', async ( req , res ) => {
+router.post('/delete', async ( req , res ) => {
 
-    const taskid="5f7d95fd1a161e3e2cbfb75c";
-
-    let user = await Task.findOne({_id:taskid});
+    let user = await Task.findById({_id:req.body.id});
     try{
     if("pending" === user.status.trim()){
 
-    user.deleteOne({_id:taskid});
+    user.deleteOne({_id:req.body.id});
     res.send(user);
 
     }else{
@@ -241,6 +243,37 @@ router.delete('/delete', async ( req , res ) => {
     }
 }catch(err){
     console.log("Error in deleting Task by customer", err);
+}
+});
+router.post('/edit', async ( req , res ) => {
+
+  let table = await Task.findById({_id:req.body.id});
+  try{
+if(table){
+
+  await Task.update(
+    {_id:req.body.id},
+    {
+      $set: {
+        title: req.body.title,
+        servicetype: req.body.servicetype,
+        location: req.body.location,
+        perhour: req.body.perhour,
+        permonth:req.body.permonth,
+        pertask:req.body.pertask,
+        starttime: req.body.start,
+        endtime: req.body.end,
+        month:req.body.month,
+        description:req.body.description
+      },
+    },
+    { new: true }
+  );
+  res.send(200);
+}
+else{res.send(400);}
+}catch(err){
+  console.log("Error in editing Task by customer", err);
 }
 });
 

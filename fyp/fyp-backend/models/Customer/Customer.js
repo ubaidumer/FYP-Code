@@ -33,7 +33,7 @@ const customer = mongoose.model("Customer", mongoose.Schema({
     image: {
         type: String,
         unique: true
-    }
+    },code:{type:Number}
 }))
 
 function validateCustomer(customer) {

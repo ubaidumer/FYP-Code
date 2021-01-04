@@ -61,7 +61,7 @@ export default function ProfilePage(props) {
   const [preview, setPreview] = React.useState(false);
   const [s, setS] = React.useState([]);
   const [privatetask, setprivatetaskOpen] = React.useState(false);
-
+  const [sbn,setsbn]=React.useState('');
 
   const [title, setTitle] = React.useState('');
   const [servicetype, setServicetype] = React.useState('');
@@ -92,7 +92,7 @@ export default function ProfilePage(props) {
     customerService.AllSprofiles()
       .then((result) => {
         setS(result.data)
-        console.log(result.data)
+  
       });
 
       
@@ -131,6 +131,13 @@ let searchbyall=()=>{
   setS(result.data);
   })
 
+}
+const searchname=()=>{
+
+  customerService.searchname(sbn)
+  .then((result)=>{
+    setS(result.data);
+    })
 }
 let getData=(id)=>{
 
@@ -434,8 +441,9 @@ setprivatetaskOpen(true);
                               <GridItem md={6}>
                                 <div>
                                   <Typography variant="h6">Search</Typography>
-                                  <TextField
-                                    label="Browse..." />
+                                  <TextField onChange={(e)=>{setsbn(e.target.value)}}
+                                    label="Enter Name" />
+                                    <Button onClick={()=>{searchname()}}>Search</Button>
                                 </div>
                               </GridItem>
 

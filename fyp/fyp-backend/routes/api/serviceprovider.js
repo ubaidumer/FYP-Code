@@ -203,6 +203,16 @@ router.use(bodyparser.urlencoded({limit: '50mb', extended: true}));
       const s = await ServiceProvider.findById({_id:req.body.id});
       res.send(s);
     });
+    router.post("/searchbyname", async ( req , res )=>{
+      
+      const s = await ServiceProvider.findOne({firstname:req.body.name});
+      if(s){
+        const si= await SProfile.find({serviceprovider:s._id});
+      res.send(si);
+      }else{
+        res.send(404);
+      }
+    });
 
     router.post('/upload',async(req,res)=>{
       try{
