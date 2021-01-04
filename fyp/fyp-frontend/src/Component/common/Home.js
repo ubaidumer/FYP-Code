@@ -5,14 +5,14 @@ import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
 
 import Carousel from 'react-material-ui-carousel'
-
+import background from "../../assets/img/bg3.jpg"
 // @material-ui/icons
 
 // core components
-import img1 from './azeem.jpg'
-import img2 from './electric.jpg'
-import img3 from './plumber.jpg'
-import img4 from './maid.jpg'
+import img1 from './elec.jpg'
+import img2 from './tailor.jpg'
+import img3 from './plumb.jpg'
+import img4 from './driver.jpg'
 import Header from "../../components/Header/Header.js";
 import Footer from "../../components/Footer/Footer.js";
 import GridContainer from "../../components/Grid/GridContainer.js";
@@ -27,11 +27,11 @@ import styles from "../../assets/jss/material-kit-react/views/landingPage.js"
 
 
 // Sections for this page
-
+import HeaderHome from "../../components/Header/HeaderHome"
 import ProductSection from "./Sections/ProductSection.js";
 import TeamSection from "./Sections/TeamSection.js";
 import WorkSection from "./Sections/WorkSection.js";
-import { Container } from "@material-ui/core";
+import { Container, Paper, Typography } from "@material-ui/core";
 
 const dashboardRoutes = [];
 const responsive = {
@@ -64,8 +64,8 @@ export default function Home(props) {
       <Header
         color="transparent"
         routes={dashboardRoutes}
-        brand="Material Kit React"
-        rightLinks={<HeaderLinks />}
+        brand="XsSupport"
+        rightLinks={<HeaderHome />}
         fixed
         changeColorOnScroll={{
           height: 400,
@@ -73,20 +73,21 @@ export default function Home(props) {
         }}
         {...rest}
       />
-      <Parallax filter image={require("../../assets/img/landing-bg.jpg")}>
+      <Parallax filter image={background}>
         <div className={classes.container}>
           <GridContainer>
             <GridItem xs={12} sm={12} md={4}>
-              <h1 className={classes.title}>Your Story Starts With Us.</h1>
-              <h4>
+              <br/>
+              <Typography variant="h4" className={classes.title}>Your Story Starts With Us.</Typography>
+              <Typography variant="h6">
                 Every landing page needs a small description after the big bold
                 title, that{"'"}s why we added this text here. Add here all the
                 information that can make you or your product create the first
                 impression.
-              </h4>
+                </Typography>
               <br />
               <Button
-                color="danger"
+                color="success"
                 size="lg"
                 href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ref=creativetim"
                 target="_blank"
@@ -96,23 +97,33 @@ export default function Home(props) {
                 Watch video
               </Button>
             </GridItem>
-            <GridItem md={8}>
-              <Container maxWidth="md">
+            <GridItem md={1}></GridItem>
+            <GridItem md={7}>
+             
+                <Paper>
+                  <div style={{paddingTop:'20px',paddingLeft:'20px',paddingRight:'20px'}}>
               <Carousel>
      <div>
-         <img style={{width:'100%',maxHeight:'250px'}}
+         <img style={{width:'620px',maxHeight:'500px'}}
          src={img1}/>
      </div>
      <div>
-         <img style={{width:'100%',maxHeight:'250px'}}
+         <img style={{width:'620px',maxHeight:'500px'}}
          src={img2}/>
      </div>
      <div>
-         <img style={{width:'100%',maxHeight:'250px'}}
+         <img style={{width:'620px',maxHeight:'500px'}}
          src={img3}/>
      </div>
+     <div>
+         <img style={{width:'620px',maxHeight:'500px'}}
+         src={img4}/>
+     </div>
+    
         </Carousel>
-</Container>
+        </div>
+        </Paper>
+
             </GridItem>
           </GridContainer>
         </div>

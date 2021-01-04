@@ -11,22 +11,23 @@ import CustomInput from "../../../components/CustomInput/CustomInput.js";
 import Button from "../../../components/CustomButtons/Button.js";
 
 import styles from "../../../assets/jss/material-kit-react/views/landingPageSections/workStyle.js";
+import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles(styles);
 
 export default function WorkSection() {
   const classes = useStyles();
   return (
-    <div className={classes.section}>
+    <div>
       <GridContainer justify="center">
         <GridItem cs={12} sm={12} md={8}>
-          <h2 className={classes.title}>Work with us</h2>
-          <h4 className={classes.description}>
+          <Typography variant="h5" className={classes.title}>Work with us</Typography>
+          <Typography className={classes.description}>
             Divide details about your product or agency work into parts. Write a
             few lines about each one and contact us about any further
             collaboration. We will responde get back to you in a couple of
             hours.
-          </h4>
+          </Typography>
           <form>
             <GridContainer>
               <GridItem xs={12} sm={12} md={6}>
@@ -60,10 +61,11 @@ export default function WorkSection() {
                 }}
               />
               <GridItem xs={12} sm={12} md={4}>
-                <Button color="primary">Send Message</Button>
+                <Button color="rose">Send Message</Button>
               </GridItem>
             </GridContainer>
           </form>
+          <br/>
         </GridItem>
       </GridContainer>
     </div>

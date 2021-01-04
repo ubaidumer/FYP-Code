@@ -19,6 +19,8 @@ import styles from "../../../assets/jss/material-kit-react/views/landingPageSect
 import azeem from '../azeem.jpg'
 import usman from '../usman.jpg'
 import ubaid from '../ubaid.jpg'
+import { Typography } from "@material-ui/core";
+import { Facebook, Instagram, Twitter } from "@material-ui/icons";
 
 const useStyles = makeStyles(styles);
 
@@ -30,7 +32,7 @@ export default function TeamSection() {
     classes.imgFluid
   );
   return (
-    <div className={classes.section}>
+    <div style={{textAlign:'center'}}>
       <h2 className={classes.title}>Here is our team</h2>
       <div>
         <GridContainer>
@@ -39,18 +41,18 @@ export default function TeamSection() {
               <GridItem xs={12} sm={12} md={6} className={classes.itemGrid}>
                 <img  style={{maxWidth:'150px',maxHeight:'150'}} src={azeem} alt="..." className={imageClasses} />
               </GridItem>
-              <h4 className={classes.cardTitle}>
+              <Typography className={classes.cardTitle}>
                 Azeem Sultan
                 <br />
-                <small className={classes.smallTitle}>Model</small>
-              </h4>
+                <small className={classes.smallTitle}>Founder</small>
+              </Typography>
               <CardBody>
-                <p className={classes.description}>
+                <Typography className={classes.description}>
                   You can write here details about one of your team members. You
                   can give more details about what they do. Feel free to add
                   some <a href="#pablo">links</a> for people to be able to
                   follow them outside the site.
-                </p>
+                </Typography>
               </CardBody>
               <CardFooter className={classes.justifyCenter}>
                 <Button
@@ -58,21 +60,21 @@ export default function TeamSection() {
                   color="transparent"
                   className={classes.margin5}
                 >
-                  <i className={classes.socials + " fab fa-twitter"} />
+                  <Instagram style={{color:'red'}}/>
+                </Button>
+                <Button
+               
+                  color="transparent"
+                  className={classes.margin5}
+                >
+                     <Facebook style={{color:'blue'}}/>
                 </Button>
                 <Button
                   justIcon
                   color="transparent"
                   className={classes.margin5}
                 >
-                  <i className={classes.socials + " fab fa-instagram"} />
-                </Button>
-                <Button
-                  justIcon
-                  color="transparent"
-                  className={classes.margin5}
-                >
-                  <i className={classes.socials + " fab fa-facebook"} />
+                  <Twitter style={{color:'skyblue'}}/>
                 </Button>
               </CardFooter>
             </Card>
@@ -82,18 +84,18 @@ export default function TeamSection() {
               <GridItem xs={12} sm={12} md={6} className={classes.itemGrid}>
                 <img src={ubaid} style={{maxWidth:'150px',maxHeight:'150'}} alt="..." className={imageClasses} />
               </GridItem>
-              <h4 className={classes.cardTitle}>
+              <Typography className={classes.cardTitle}>
                 Ubaid Lkhan
                 <br />
-                <small className={classes.smallTitle}>Designer</small>
-              </h4>
+                <small className={classes.smallTitle}>Developer</small>
+              </Typography>
               <CardBody>
-                <p className={classes.description}>
+                <Typography className={classes.description}>
                   You can write here details about one of your team members. You
                   can give more details about what they do. Feel free to add
                   some <a href="#pablo">links</a> for people to be able to
                   follow them outside the site.
-                </p>
+                </Typography>
               </CardBody>
               <CardFooter className={classes.justifyCenter}>
                 <Button
@@ -101,14 +103,21 @@ export default function TeamSection() {
                   color="transparent"
                   className={classes.margin5}
                 >
-                  <i className={classes.socials + " fab fa-twitter"} />
+                  <Instagram style={{color:'red'}}/>
+                </Button>
+                <Button
+               
+                  color="transparent"
+                  className={classes.margin5}
+                >
+                     <Facebook style={{color:'blue'}}/>
                 </Button>
                 <Button
                   justIcon
                   color="transparent"
                   className={classes.margin5}
                 >
-                  <i className={classes.socials + " fab fa-linkedin"} />
+                  <Twitter style={{color:'skyblue'}}/>
                 </Button>
               </CardFooter>
             </Card>
@@ -116,20 +125,20 @@ export default function TeamSection() {
           <GridItem xs={12} sm={12} md={4}>
             <Card plain>
               <GridItem xs={12} sm={12} md={6} className={classes.itemGrid}>
-                <img  style={{maxWidth:'150px',maxHeight:'100'}} src={usman} alt="..." className={imageClasses} />
+                <img  style={{width:'150px',height:'150px'}} src={usman} alt="..." className={imageClasses} />
               </GridItem>
-              <h4 className={classes.cardTitle}>
-                Kendall Jenner
+              <Typography className={classes.cardTitle}>
+                Usman Zafar
                 <br />
-                <small className={classes.smallTitle}>Usman Nigger</small>
-              </h4>
+                <small className={classes.smallTitle}>Database eNigger</small>
+              </Typography>
               <CardBody>
-                <p className={classes.description}>
+                <Typography className={classes.description}>
                   You can write here details about one of your team members. You
                   can give more details about what they do. Feel free to add
                   some <a href="#pablo">links</a> for people to be able to
                   follow them outside the site.
-                </p>
+                </Typography>
               </CardBody>
               <CardFooter className={classes.justifyCenter}>
                 <Button
@@ -137,21 +146,21 @@ export default function TeamSection() {
                   color="transparent"
                   className={classes.margin5}
                 >
-                  <i className={classes.socials + " fab fa-twitter"} />
+                  <Instagram style={{color:'red'}}/>
+                </Button>
+                <Button
+               
+                  color="transparent"
+                  className={classes.margin5}
+                >
+                     <Facebook style={{color:'blue'}}/>
                 </Button>
                 <Button
                   justIcon
                   color="transparent"
                   className={classes.margin5}
                 >
-                  <i className={classes.socials + " fab fa-instagram"} />
-                </Button>
-                <Button
-                  justIcon
-                  color="transparent"
-                  className={classes.margin5}
-                >
-                  <i className={classes.socials + " fab fa-facebook"} />
+                  <Twitter style={{color:'skyblue'}}/>
                 </Button>
               </CardFooter>
             </Card>
