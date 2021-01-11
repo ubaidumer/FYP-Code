@@ -3,7 +3,9 @@ import http from "./httpService";
 
 //import { apiUrl } from "../config.json";
 //const apiEndpoint = apiUrl + "/auth";
-const apiEndpoint = "http://localhost:5555/api";
+///const apiEndpoint = "http://localhost:5555/api";
+
+const apiEndpoint = process.env.REACT_APP_API_URL+"/api/"
 const tokenKey = "token";
 
 http.setJwt(getJwt());
