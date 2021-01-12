@@ -1,5 +1,5 @@
 import http from "./httpService";
-const apiEndpoint = "http://localhost:5555/api";
+const apiEndpoint = process.env.REACT_APP_API_URL+"/api"
 
 export async function getAllTaskofS() {
     return await http.get(apiEndpoint + "/postTask/viewS")
