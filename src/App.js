@@ -57,7 +57,7 @@ class App extends Component {
               
               <Route path="/rating" component={rating}/>
       
-              <Route path="/" component={Home}/>
+              <Route path="/" exact={true} component={Home}/>
               </Elements>
               <Route path="/dashboard" component={Dashboard}/>
               <Route path="/FindLocationMap" component={FLMap}/>
