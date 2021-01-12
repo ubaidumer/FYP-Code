@@ -98,7 +98,7 @@ export default function Home(props) {
               </Button>
             </GridItem>
             <GridItem md={1}></GridItem>
-            <GridItem md={7} xs={12}>
+            <GridItem md={7} xs={10}>
              
                 <Paper>
                   <div style={{paddingTop:'20px',paddingLeft:'20px',paddingRight:'20px'}}>
