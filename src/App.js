@@ -1,20 +1,15 @@
 import React, { Component } from "react";
 import { Route, BrowserRouter} from "react-router-dom";
 
-import serviceproviderSignup from "./Component/common/serviceproviderSignup";
-import customerSignup from "./Component/common/customerSignup";
 
+import reset from "./Component/common/Resetpassword";
 
-import acceptServiceProvider from "./Component/customer/acceptServiceProvider";
+import w from "./Component/common/Sections/WorkSection";
 
-import payment from "./Component/customer/payment";
-import rating from "./Component/customer/rating";
-
-import adminLogin from "./Component/common/adminlogin";
 
 import NBSMap from "./Component/common/NearbyServices"
 import FLMap from "./Component/common/FindLocationMap";
-import customerDashboard from "./Component/customer/customerDashboard";
+
 
 import SignIn from "./Component/common/SignIn";
 import LoginPage from "./Component/admin/LoginPage";
@@ -43,19 +38,15 @@ class App extends Component {
             <Elements stripe={stripePromise}>
                <Route path="/adminSignin" component={LoginPage} />
                <Route path="/profile" component={ProfilePage}/>   
-               <Route path="/sprofile" component={SProfilePage}/>   
-              <Route path="/adminLogin" component={adminLogin}/>   
+               <Route path="/sprofile" component={SProfilePage}/>     
               <Route path="/stripecard" component={Stripecard}/>
-             
-              <Route path="/customerdashboard" component={customerDashboard}/>      
-              <Route path="/serviceproviderSignup" exact={true} component={serviceproviderSignup} />
-              <Route path="/customerSignup" component={customerSignup} />
+             <Route path="/home" component={Home}/>
+               
+  
               <Route path="/login" component={SignIn}/>
               
-              <Route path="/acceptServiceProvider" component={acceptServiceProvider}/>
-              <Route path="/payment" component={payment}/>
-              
-              <Route path="/rating" component={rating}/>
+              <Route path="/resetpassword" component={reset}/>
+              <Route path="/workwithus" component={w}/>
       
               <Route path="/" exact={true} component={Home}/>
               </Elements>
