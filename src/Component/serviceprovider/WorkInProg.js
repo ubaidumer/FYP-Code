@@ -85,84 +85,14 @@ class WorkInProg extends Component{
       render() {
         const { task } = this.state;
         return (
-          /*
-            <Grid container>
-            <Grid item md={1}></Grid>
-            <Grid item md={10}>
-             <Typography variant="h6">In Progress</Typography>
-                <ul style={{listStyle:'none'}}>
-                    {task.map(t=>( t.status==="in progress" ?(
-                        <li key={t._id} style={{marginLeft:'20px'}}>
-                 
-
-        <Card  className={classes.root} style={{maxWidth:'335px'}}
-         >
-        <CardActionArea>
-          <CardMedia    
-           className={classes.media}    
-           title="Contemplative Reptile"
-          />
-         <img src= {this.getimage(t.servicetype)} alt={"no content"}style={{maxHeight:'400px',maxWidth:'700px'}}/>
-          <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-             Title: {t.title}
-            </Typography>
-            <Divider/>
-            <Typography variant="h6" color="textSecondary" component="p">
-              Location: {t.location}
-            </Typography>
-            <Typography variant="h6" color="textSecondary" component="p">
-              Customer: {t.customeremail}
-            </Typography>
-            <Typography variant="h6" color="textSecondary" component="p">
-              Bidding per Task: {t.pertask}
-            </Typography>
-            <Typography variant="h6" color="textSecondary" component="p">
-              Bidding per Hour: {t.perhour}
-            </Typography>
-            <Typography variant="h6" color="textSecondary" component="p">
-              Bidding per Month: {t.permonth}
-            </Typography>
-            <Divider/>
-            <Typography variant="h6" color="textSecondary" component="p">
-              Start Time: {t.starttime}
-            </Typography>
-            <Typography variant="h6" color="textSecondary" component="p">
-              End Time: {t.endtime}
-            </Typography>
-            <Typography variant="h6" color="textSecondary" component="p">
-              Month: {t.month}
-            </Typography>
-            <Typography variant="h6" color="textSecondary" component="p">
-              Accepted Date: {t.accepttaskdate}
-            </Typography>
-            <Divider/>
-            <Typography variant="h6" color="textSecondary" component="p">
-              Service Type: {t.servicetype}
-            </Typography>
-          </CardContent>
-          <Divider/>
-        </CardActionArea>
-        <CardActions>
-          <Button size="large" color="primary"onClick={this.onSubmit.bind(this,t._id)} style={{fontSize:'20px'}}>
-            End Task!
-          </Button>
-         
-        </CardActions>
-      </Card>
-      </li>
-                    )
-                    : null
-                    ))}
-                </ul>
-      </Grid>
-      </Grid> */
+          
        
       <Grid container>
    
       <Grid item md={12}>
    
       <ul style={{listStyle:'none'}}>
+      {task.length<1 ?<div><Typography>No records found</Typography></div>:<div></div>}
                     {task.map(t=>( t.status==="in progress" ?(
                         <li key={t._id} style={{marginLeft:'20px'}}>
                   

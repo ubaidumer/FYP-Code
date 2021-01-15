@@ -27,17 +27,6 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
 
 const useStyles = makeStyles({
   table: {
@@ -69,16 +58,17 @@ const AcceptedTask=()=> {
       <Table className={classes.table} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Title</StyledTableCell>
-            <StyledTableCell align="right">Start Time -- End Time</StyledTableCell>
-            <StyledTableCell align="right">Month</StyledTableCell>
-            <StyledTableCell align="right">Service Type</StyledTableCell>
-            <StyledTableCell align="right">Location</StyledTableCell>
-            <StyledTableCell align="right">Bill</StyledTableCell>
-            <StyledTableCell align="right">Email</StyledTableCell>
+            <StyledTableCell style={{backgroundColor:'#694496'}}>Title</StyledTableCell>
+            <StyledTableCell style={{backgroundColor:'#694496'}} align="right">Start Time -- End Time</StyledTableCell>
+            <StyledTableCell style={{backgroundColor:'#694496'}} align="right">Month</StyledTableCell>
+            <StyledTableCell style={{backgroundColor:'#694496'}} align="right">Service Type</StyledTableCell>
+            <StyledTableCell style={{backgroundColor:'#694496'}} align="right">Location</StyledTableCell>
+            <StyledTableCell style={{backgroundColor:'#694496'}} align="right">Bill</StyledTableCell>
+            <StyledTableCell style={{backgroundColor:'#694496'}} align="right">Email</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
+        {task.length<1 ?<div><Typography>No records found</Typography></div>:<div></div>}
           {task.map(t => (
             <StyledTableRow key={t._id}>
               <StyledTableCell component="th" scope="row">

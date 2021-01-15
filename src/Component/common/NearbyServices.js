@@ -194,7 +194,7 @@ return (
                                 <Grid item md={10}>
                           <li><TextField fullWidth onChange={(e)=>{setDescription(e.target.value)}}label="Description"></TextField></li> </Grid>
                           <br/>
-                          <li style={{marginLeft:'22%'}}><Button onClick={(e)=>sendptask(e,currentS)}>Send</Button><Button onClick={()=>{setprivatetaskOpen(false)}}>Close</Button></li>
+                          <li style={{marginLeft:'25%'}}><Button variant="contained" color="primary" style={{marginRight:'20px'}} onClick={(e)=>sendptask(e,currentS)}>Send</Button><Button variant="contained" color="secondary" onClick={()=>{setprivatetaskOpen(false)}}>Close</Button></li>
                         </ul>
                       </Grid>
                      </Paper>

@@ -223,7 +223,7 @@ console.log("enter valid firstname");
                       ><PublishIcon /></Button>
              <br/><br/>
                     </form>
-                    <Typography style={{color:'#a62e9c'}} variant="h6">{prof.serviceprovidername}</Typography>
+                    <Typography style={{color:'#4BB543'}} variant="h6">{prof.serviceprovidername}</Typography>
                  
                     
                     <Typography className={classes.description} variant="h6">Service Provider</Typography>
@@ -244,12 +244,12 @@ console.log("enter valid firstname");
             <Grid container spacing={6}>
             <Grid item md={4}>
             <center>
-                 <Paper elevation={3} style={{width:'200px',height:'200px',marginTop:'20px'}}>
-                     <Typography variant='h5' style={{paddingTop:'30px'}}>
+            <Paper elevation={3} style={{width:'200px',height:'150px',marginTop:'20px'}}>
+                     <Typography variant='h5' style={{paddingTop:'20px'}}>
                          Join Date
                      </Typography>
                      <Divider/>
-                     <Typography variant='h4' style={{paddingTop:'15px'}}>
+                     <Typography variant='h5' style={{paddingTop:'30px'}}>
                         {prof.joindate}
                      </Typography>
                  </Paper> 
@@ -258,12 +258,12 @@ console.log("enter valid firstname");
             </Grid>
             <Grid item md={4}>
             <center>
-                 <Paper elevation={3} style={{width:'200px',height:'200px',marginTop:'20px'}}>
-                     <Typography variant='h5' style={{paddingTop:'30px'}}>
-                         Task Completed
+            <Paper elevation={3} style={{width:'200px',height:'150px',marginTop:'20px'}}>
+                     <Typography variant='h5' style={{paddingTop:'20px'}}>
+                       Orders Completed
                      </Typography>
                      <Divider/>
-                     <Typography variant='h4' style={{paddingTop:'15px'}}>
+                     <Typography variant='h6' style={{paddingTop:'30px'}}>
                         {prof.ordercompleted}
                      </Typography>
                  </Paper> 
@@ -272,12 +272,12 @@ console.log("enter valid firstname");
             </Grid>
             <Grid item md={4}>
             <center>
-                 <Paper elevation={3} style={{width:'200px',height:'200px',marginTop:'20px'}}>
-                     <Typography variant='h5' style={{paddingTop:'30px'}}>
-                         Credit Spent
+            <Paper elevation={3} style={{width:'200px',height:'150px',marginTop:'20px'}}>
+                     <Typography variant='h5' style={{paddingTop:'20px'}}>
+                         Credit Earned
                      </Typography>
                      <Divider/>
-                     <Typography variant='h4' style={{paddingTop:'15px'}}>
+                     <Typography variant='h6' style={{paddingTop:'30px'}}>
                         {prof.creditearn}
                      </Typography>
                  </Paper> 

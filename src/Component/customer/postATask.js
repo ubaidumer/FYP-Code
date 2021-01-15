@@ -1,4 +1,4 @@
-import { Container, Grid, InputLabel, NativeSelect, Paper, TextField, Typography } from '@material-ui/core';
+import { Button, Container, Grid, InputLabel, NativeSelect, Paper, TextField, Typography } from '@material-ui/core';
 import React from 'react';
 import * as postService from'../../Axios-Actions/postService';
 
@@ -177,13 +177,16 @@ console.log(  this.state.title,
          <div >
          <Grid container> 
            <Grid item md={12} xs={12}>
-           <div style={{fontSize:12, color:'red'}}> 
-             {this.state.titleError}     </div>
+        
              <Typography variant='h6' style={{color:'#2d4a6b',marginTop:'10px'}}>
                  Title
              </Typography> 
-             
-         <TextField name="title" label="Enter the title" value={this.state.title} onChange={this.handleChange}
+             <div style={{fontSize:12, color:'red'}}> 
+             {this.state.titleError}     </div>
+         <TextField
+       
+         name="title" label="Enter the title" value={this.state.title} onChange={this.handleChange}
+         errorText={this.state.titleError}
           style={{borderRadius:'5px',width:'70%',marginBottom:'20px',textAlign:'center'}} type='text'/>
      </Grid>
      </Grid>
@@ -236,7 +239,7 @@ console.log(  this.state.title,
                                 <Grid container>
                                 <Grid item md={4} xs={12}>         
              <div style={{fontSize:12, color:'red'}}> 
-             {this.state.LocationError}     </div>
+             {this.state.AreaError}     </div>
          <TextField name="Area" label="Enter Area"  value={this.state.Area}  onChange={this.handleChange}
           style={{height:'30px',borderRadius:'5px',width:'80%',marginBottom:'20px',textAlign:'center'}} type='text' />
           </Grid> 
@@ -261,9 +264,12 @@ console.log(  this.state.title,
                  Bidding
              </Typography>
              <Grid container>
+         <Grid item md={4}></Grid>    
+             <Grid item md={4}><div style={{fontSize:12, color:'red'}}> 
+             {this.state.perTaskError}     </div></Grid> 
+             <Grid item md={4}></Grid> 
              <Grid item md={4} xs={12}>  
-             <div style={{fontSize:12, color:'red'}}> 
-             {this.state.perTaskError}     </div>
+         
          <TextField label="Per Task" name="perTask" placeholder="Per Task"  value={this.state.perTask}  onChange={this.handleChange}
           style={{height:'30px',borderRadius:'5px',width:'80%',marginBottom:'20px',textAlign:'center'}} type='text' />
           </Grid>
@@ -355,8 +361,9 @@ console.log(  this.state.title,
            </Typography>
           </div>
          </div>
-         <button style={{marginTop:'20px',marginBottom:'20px',marginLeft:'30%',width:'40%',marginRight:'30%',backgroundColor:'#a62e9c',color:'white',height:'30px'
-        ,borderRadius:'5px'}}>Post</button>
+         <button style={{marginTop:'20px',marginBottom:'20px',marginLeft:'30%',width:'30%',marginRight:'30%',backgroundColor:'#a62e9c',color:'white',height:'35px'
+        ,borderRadius:'5px'}}>POST</button>
+ 
          </form>
          </Paper>
          </Grid>

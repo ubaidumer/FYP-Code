@@ -108,6 +108,7 @@ class AcceptRequestSP extends Component{
    <Grid item md={12}>
 
                 <ul>
+                {task.length<1 ?<div><Typography>No records found</Typography></div>:<div></div>}
                     {task.map(t=>( ((t.status==="pending")&&(t.serviceprovideremail))?(
                         <li key={t._id} style={{display:'inline-flex',marginRight:'10px',marginTop:'20px'}}>
                  

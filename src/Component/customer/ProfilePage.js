@@ -24,6 +24,7 @@ import NavPills from "../../components/NavPills/NavPills.js";
 import Parallax from "../../components/Parallax/Parallax.js";
 
 import profile1 from "../../assets/img/faces/christian.jpg";
+import no from "../../assets/img/faces/no.png"
 import * as customerService from "../../Axios-Actions/customerService"
 import studio1 from "../../assets/img/examples/servant2.jpg";
 
@@ -61,7 +62,7 @@ export default function ProfilePage(props) {
   const [preview, setPreview] = React.useState(false);
   const [s, setS] = React.useState([]);
   const [privatetask, setprivatetaskOpen] = React.useState(false);
-
+  const [sbn,setsbn]=React.useState('');
 
   const [title, setTitle] = React.useState('');
   const [servicetype, setServicetype] = React.useState('');
@@ -92,7 +93,7 @@ export default function ProfilePage(props) {
     customerService.AllSprofiles()
       .then((result) => {
         setS(result.data)
-        console.log(result.data)
+  
       });
 
       
@@ -131,6 +132,13 @@ let searchbyall=()=>{
   setS(result.data);
   })
 
+}
+const searchname=()=>{
+
+  customerService.searchname(sbn)
+  .then((result)=>{
+    setS(result.data);
+    })
 }
 let getData=(id)=>{
 
@@ -251,7 +259,7 @@ setprivatetaskOpen(true);
                   <div >  
                     <form onSubmit={(e) => up(e)}>   <input style={{ display: 'none' }} type='file' id="file" name='image' onChange={(e) => ch(e)} accept="image/*" />
                     <label for="file">   
-                      <img style={{ maxHeight: '200px', maxWidth: '200px' }} src={prof.imageURL || profile1} alt="No Content" className={imageClasses} />
+                      <img style={{ maxHeight: '200px', maxWidth: '200px' }} src={prof.imageURL || no } alt="No Content" className={imageClasses} />
                     </label>
                   </form>
 
@@ -433,9 +441,10 @@ setprivatetaskOpen(true);
                             <GridContainer justify="center">
                               <GridItem md={6}>
                                 <div>
-                                  <Typography variant="h6">Search</Typography>
-                                  <TextField
-                                    label="Browse..." />
+                                  <Typography variant="h6" >Search</Typography>
+                                  <TextField onChange={(e)=>{setsbn(e.target.value)}}
+                                    label="Enter Name" />
+                                    <Button style={{marginLeft:'10px'}} color="warning" onClick={()=>{searchname()}}>Search</Button>
                                 </div>
                               </GridItem>
 
@@ -444,6 +453,7 @@ setprivatetaskOpen(true);
                                 <div>
                                   <Typography variant="h6">Category</Typography>
                                   <CustomDropdown
+                                  color="rose"
           noLiPadding
           buttonText=""
           buttonProps={{
@@ -496,7 +506,7 @@ setprivatetaskOpen(true);
                                     <Card style={{ maxWidth: '300px', marginTop: '10px',marginRight:'30px' }} >
                                       <CardActionArea >
                                         <CardContent >
-                                          <img src={st.imageURL || studio1} style={{ maxHeight: "200px", maxWidth: "300px", borderRadius:'16px 16px 0px 0px' }}></img>
+                                          <img src={st.imageURL || studio1}  style={{ maxHeight: "200px", maxWidth: "300px", borderRadius:'16px 16px 0px 0px' }}></img>
                                           <Typography gutterBottom variant="h6" component="h2">
                                             {st.serviceprovidername}
                                           </Typography>
@@ -511,7 +521,7 @@ setprivatetaskOpen(true);
                                       <CardActions>
 
                                         <Button size="small" color="primary" style={{ marginLeft: "50px" }}
-                                      onClick={() => viewSp(st.serviceprovider,st.imageURL)}
+                                      onClick={() => viewSp(st.serviceprovider,st.imageURL||studio1)}
                                     >
                                           View Details
                                                    </Button>
@@ -761,7 +771,7 @@ setprivatetaskOpen(true);
                                 <Grid item md={10}>
                           <li><TextField fullWidth onChange={(e)=>{setDescription(e.target.value)}}label="Description"></TextField></li> </Grid>
                           <br/>
-                          <li style={{marginLeft:'22%'}}><Button onClick={(e)=>sendptask(e,currentS)}>Send</Button><Button onClick={()=>{setprivatetaskOpen(false)}}>Close</Button></li>
+                          <li style={{marginLeft:'25%'}}><Button color="primary" style={{marginRight:'19px'}} onClick={(e)=>sendptask(e,currentS)}>Send</Button><Button color="danger" onClick={()=>{setprivatetaskOpen(false)}}>Close</Button></li>
                         </ul>
                       </Grid>
                      </Paper>
