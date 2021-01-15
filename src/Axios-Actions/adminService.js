@@ -2,6 +2,7 @@ import http from "./httpService";
 const apiEndpoint = process.env.REACT_APP_API_URL+"/api"
 
 
+
 export async function addservice(firstname,lastname,email,servicetype,password,contactno) {
     
     return await http.post(apiEndpoint + "/admin/register", {firstname,lastname,email,servicetype,password,contactno});
@@ -55,7 +56,38 @@ export async function viewh(){
     return await http.post(apiEndpoint+ "/admin/allrecordsSh");
 
 }
+export async function viewtask(){
+
+    return await http.post(apiEndpoint+ "/admin/postedtaskview");
+
+}
 export async function getdeposits(){
 
     return await http.get(apiEndpoint+ "/admin/dep");
 }
+
+export async function sendrpcode(email){
+
+    return await http.post(apiEndpoint+ "/admin/sendrpcode",{email});
+
+}
+export async function reset(email,rppass,rpcode){
+
+    return await http.post(apiEndpoint+ "/admin/reset",{email,rppass,rpcode});
+
+}
+export async function sendrpcodeuser(email){
+
+    return await http.post(apiEndpoint+ "/admin/sendrpcodeuser",{email});
+
+}
+export async function resetuser(email,rppass,rpcode){
+
+    return await http.post(apiEndpoint+ "/admin/resetuser",{email,rppass,rpcode});
+
+}
+export async function workwithus(name,email,message){
+
+    return await http.post(apiEndpoint+ "/admin/workus",{name,email,message});
+
+}}
