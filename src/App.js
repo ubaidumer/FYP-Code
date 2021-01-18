@@ -21,6 +21,8 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import Home from "./Component/common/Home";
 import Dashboard from "./Component/admin/Dashboard";
+import customerSignup from "./Component/common/CustomerSignup";
+import serviceproviderSignup from "./Component/serviceprovider/serviceproviderSignup";
 const stripePromise = loadStripe("pk_test_51I1Ax7HfaNOMnRYn508ySaI0Fj8tz765xbYQjCAIyRMfsVnv6GvgsdZDzIvaJtgVkqnhSKopZmpUFot8j3tsvW5x00TvBKng7u");
 
 
@@ -41,8 +43,8 @@ class App extends Component {
                <Route path="/sprofile" component={SProfilePage}/>     
               <Route path="/stripecard" component={Stripecard}/>
              <Route path="/home" component={Home}/>
-               
-  
+               <Route path="/customersignup" component={customerSignup}/>
+               <Route path="/serviceprovidersignup" component={serviceproviderSignup}/>
               <Route path="/login" component={SignIn}/>
               
               <Route path="/resetpassword" component={reset}/>
