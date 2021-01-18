@@ -23,6 +23,7 @@ import Button from "../../components/CustomButtons/Button.js";
 import styles from "../../assets/jss/material-kit-react/components/headerLinksStyle";
 import * as serviceproviderService from "../../Axios-Actions/serviceproviderService";
 import CustomInput from "../CustomInput/CustomInput.js";
+import { logout } from "../../Axios-Actions/authService.js";
 const useStyles = makeStyles(styles);
 
 export default function HeaderLinksS(props) {
@@ -34,6 +35,10 @@ export default function HeaderLinksS(props) {
   const [contact,setContact]= useState("");
   const [pass,setPass]= useState("");
   
+  const logout =()=>{
+    localStorage.clear();
+    window.location.href="/login"
+  }
 const update =(e)=>{
   console.log("hi"+fname+lname+contact)
 
@@ -81,7 +86,7 @@ const update =(e)=>{
       </ListItem>
       <ListItem className={classes.listItem}>
       <a style={{textDecoration:'none'}} 
-      href="/login">  <Button>
+      href="/login">  <Button onClick={()=>logout()}>
           <ExitToAppIcon className={classes.icons} /> Logout
         </Button>
         </a>    </ListItem>

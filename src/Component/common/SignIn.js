@@ -44,7 +44,7 @@ function Copyright() {
       height: '100vh',
     },
     image: {
-      backgroundImage: 'url(https://source.unsplash.com/random)',
+      backgroundImage: 'url(https://source.unsplash.com/kK7uPfb2YWU)',
       backgroundRepeat: 'no-repeat',
       backgroundColor:
         theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
@@ -145,7 +145,7 @@ class SignIn extends Component{
         this.setState({ error: errors || {} });
         // console.log(error);
         if (errors) {
-            console.log(errors);   
+            alert(errors);   
             console.log("validation error");
              return;
         }else{
@@ -241,9 +241,7 @@ class SignIn extends Component{
               autoComplete="current-password"
               onChange={this.onChange}
             />
-         <div>
-           <p>hehe error:</p>
-         </div>
+      
 <span>
                 <Radio
         checked={this.state.selectedOption === "a"}
@@ -264,8 +262,13 @@ class SignIn extends Component{
       />
 Sign in as a customer.
 </span>
-          
-            <Button
+          <Grid container>
+        <Grid item md={4}>
+
+        </Grid>
+
+        <Grid item md={4}>
+        <Button
               type="submit"
               fullWidth
               variant="contained"
@@ -275,9 +278,23 @@ Sign in as a customer.
             >
               Sign In
             </Button>
+            <div>
+            <Typography style={{textAlign:'center'}}> Forgot Password? Click the button below. </Typography>
+            
+            </div>
+          </Grid>
+
+          <Grid item md={4}>
+          
+          </Grid>
+          </Grid>
+          
             <Grid container>
               <Grid item xs>
-              <div><Typography> Forget Password? Click the button below. </Typography>
+              <div>
+              <Grid container>
+              <Grid item md={4}></Grid>
+              <Grid item md={4}>
               <Button
               variant="contained"
               color="secondary"
@@ -287,6 +304,9 @@ Sign in as a customer.
             >
               Reset Password
             </Button>
+            </Grid>
+            <Grid item md={4}></Grid>
+            </Grid>
             </div>
               </Grid>
             </Grid>

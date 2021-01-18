@@ -35,11 +35,12 @@ const useStyles = makeStyles({
 
 
 
-
 const OrderHistory=()=> {
 
     const [task,setTask]=React.useState([])
+    const [st,setSt]=React.useState("");
 
+    
     useEffect(() => {
            historyService.getAllOrders()
            .then((result) => {setTask( result.data )});
@@ -59,9 +60,19 @@ const OrderHistory=()=> {
         <TableHead>
           <TableRow>
             <StyledTableCell style={{backgroundColor:'#3264a8'}}>Title</StyledTableCell>
-            <StyledTableCell style={{backgroundColor:'#3264a8'}} align="left">Start Time -- End Time</StyledTableCell>
+            <StyledTableCell style={{backgroundColor:'#3264a8'}} align="left">Start Time-End Time</StyledTableCell>
             <StyledTableCell style={{backgroundColor:'#3264a8'}} align="left">Month</StyledTableCell>
-            <StyledTableCell style={{backgroundColor:'#3264a8'}} align="left">Service Type</StyledTableCell>
+            <StyledTableCell style={{backgroundColor:'#3264a8',width:'150px'}} align="left">Service Type
+            <div><select onChange={(e)=>{const selected=e.target.value;
+            setSt(selected);
+            }}>
+              <option value=""></option>
+            <option value="Plumber">plumber</option>
+                                <option value="Maid">maid</option>
+                                <option value="Driver">driver</option>
+                                <option value="Electrician">electrician</option>
+              </select></div>
+            </StyledTableCell>
             <StyledTableCell style={{backgroundColor:'#3264a8'}} align="left">Location</StyledTableCell>
             <StyledTableCell style={{backgroundColor:'#3264a8'}} align="left">Bill</StyledTableCell>
             <StyledTableCell style={{backgroundColor:'#3264a8'}} align="left">Email</StyledTableCell>
@@ -69,7 +80,9 @@ const OrderHistory=()=> {
         </TableHead>
         <TableBody>
           {task.length<1 ?<div><Typography>No records found</Typography></div>:<div></div>}
+         
           {task.map(t => (
+            st===t.servicetype  ?(
             <StyledTableRow key={t._id}>
               <StyledTableCell component="th" scope="row">
               {t.title}
@@ -80,7 +93,22 @@ const OrderHistory=()=> {
               <StyledTableCell align="left">{t.location}</StyledTableCell>
               <StyledTableCell align="left">{(t.month*t.permonth)+(t.pertask)+(t.perhour*(parseInt(t.endtime)-parseInt(t.starttime))*(t.month*30))}</StyledTableCell>
               <StyledTableCell align="left">     {t.serviceprovideremail}</StyledTableCell>
+            </StyledTableRow>)
+             :
+             !st? (
+              <StyledTableRow key={t._id}>
+              <StyledTableCell component="th" scope="row">
+              {t.title}
+              </StyledTableCell>
+              <StyledTableCell align="left">{t.starttime} -- {t.endtime} </StyledTableCell>
+              <StyledTableCell align="left">{t.month}</StyledTableCell>
+              <StyledTableCell align="left">{t.servicetype}</StyledTableCell>
+              <StyledTableCell align="left">{t.location}</StyledTableCell>
+              <StyledTableCell align="left">{(t.month*t.permonth)+(t.pertask)+(t.perhour*(parseInt(t.endtime)-parseInt(t.starttime))*(t.month*30))}</StyledTableCell>
+              <StyledTableCell align="left">     {t.serviceprovideremail}</StyledTableCell>
             </StyledTableRow>
+             ):(<div></div>)
+              
           ))}
         </TableBody>
       </Table>

@@ -156,6 +156,10 @@ export default function Dashboard() {
   const [numc,setC]= React.useState([]);
   const [nums,setS]= React.useState([]);
   const [d,setd]= React.useState('');
+  const [cust,setCust]= React.useState(false)
+  const [sp,setSp]= React.useState(false)
+  const [hist,setHist]= React.useState(false)
+  const [req,setReq]= React.useState(false)
 
 React.useEffect(()=>{
 
@@ -172,24 +176,38 @@ React.useEffect(()=>{
 adminService.viewc() .then((result)=>{
   setCard(result.data);
   });
+  setCust(!sp);
+  setSp(false);
+  setReq(false);
+  setHist(false);
   }
   const ViewSer=()=>{
     adminService.views() .then((result)=>{
       setCardS(result.data);
     
       });
+      setSp(true);
+      setReq(false);
+      setCust(false);
+      setHist(false)
       }
       const Viewo=()=>{
         adminService.viewo() .then((result)=>{
           setCardo(result.data);
-        
           });
+          setHist(true);
+          setReq(false);
+          setCust(false);
+          setSp(false);
           }
           const Viewtask=()=>{
             adminService.viewtask() .then((result)=>{
               setCardt(result.data);
-            
               });
+              setReq(true)
+              setHist(false);
+              setCust(false);
+              setSp(false)
               }
       const delS=(email)=>{
         adminService.del(email);
@@ -288,6 +306,7 @@ adminService.viewc() .then((result)=>{
           <Grid container spacing={2}>
             {/* Chart */}
             <Grid item md={6}>
+            
             <center>
                  <Paper elevation={3} style={{width:'200px',height:'200px',marginTop:'20px'}}>
                      <Typography variant='h5' style={{paddingTop:'30px'}}>
@@ -320,8 +339,8 @@ adminService.viewc() .then((result)=>{
             <Grid item xs={12} md={12} lg={12}>
                               
                           
-                              <Paper className={classes.paper}>
-
+                              
+                              {cust==true ? 
                               <TableContainer component={Paper} >
                              <Table className={classes.table} aria-label="customized table">
                                <TableHead>
@@ -353,13 +372,14 @@ adminService.viewc() .then((result)=>{
               ))}                       
                              </Table>
                            </TableContainer>
-                       </Paper>
+                           :
+                           <div></div>}
+              
                          </Grid>
             <Grid item xs={12} md={12} lg={12}>
                               
                    
-                              <Paper className={classes.paper}>
-
+                             {sp==true ? 
                               <TableContainer component={Paper} >
                              <Table className={classes.table} aria-label="customized table">
                                <TableHead>
@@ -391,7 +411,10 @@ adminService.viewc() .then((result)=>{
               ))}                       
                              </Table>
                            </TableContainer>
-                       </Paper>
+                           :
+                           <div>
+                             </div>}
+                  
                        
                     
 
@@ -399,8 +422,8 @@ adminService.viewc() .then((result)=>{
             <Grid item xs={12} md={12} lg={12}>
                               
                    
-                              <Paper className={classes.paper}>
-
+                              
+                              {hist==true ? 
                               <TableContainer component={Paper} >
                              <Table className={classes.table} aria-label="customized table">
                                <TableHead>
@@ -437,7 +460,8 @@ adminService.viewc() .then((result)=>{
               ))}                       
                              </Table>
                            </TableContainer>
-                       </Paper>
+                           : <div></div>}
+                  
                        
                     
 
@@ -445,8 +469,8 @@ adminService.viewc() .then((result)=>{
             <Grid item xs={12} md={12} lg={12}>
                               
                    
-                              <Paper className={classes.paper}>
-
+                          
+                               {req==true? 
                               <TableContainer component={Paper} >
                              <Table className={classes.table} aria-label="customized table">
                                <TableHead>
@@ -480,14 +504,18 @@ adminService.viewc() .then((result)=>{
               ))}                       
                              </Table>
                            </TableContainer>
-                       </Paper>
+                           : <div>
+
+                           </div>}
+               
                        
                     
-
+          
             </Grid>
             {/* Recent Deposits */}
         
             {/* Recent Orders */}
+            
             <Grid item xs={12}>
               <Paper className={classes.paper}>
                 <Orders />

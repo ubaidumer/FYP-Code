@@ -256,7 +256,7 @@ setprivatetaskOpen(true);
             <GridContainer justify="center">
               <GridItem xs={12} sm={12} md={6}>
                 <div className={classes.profile}>
-                  <div >  
+                  <div style={{marginRight:'12px'}} >  
                     <form onSubmit={(e) => up(e)}>   <input style={{ display: 'none' }} type='file' id="file" name='image' onChange={(e) => ch(e)} accept="image/*" />
                     <label for="file">   
                       <img style={{ maxHeight: '200px', maxWidth: '200px' }} src={prof.imageURL || no } alt="No Content" className={imageClasses} />
@@ -630,6 +630,8 @@ setprivatetaskOpen(true);
       <Modal style={{display:'flex',alignItems:'center',justifyContent:'center'}}
                        open={openService}
                        onClose={!openService} 
+                       aria-labelledby="simple-modal-title"
+                       aria-describedby="simple-modal-description"
                        closeAfterTransition
                        BackdropComponent={Backdrop}
                        BackdropProps={{

@@ -9,7 +9,7 @@ const profilePageStyle = {
     "& img": {
       maxWidth: "160px",
       width: "100%",
-      margin: "0 auto",
+      marginRight: "12px",
       transform: "translate3d(0, -50%, 0)"
     }
   },
@@ -17,10 +17,12 @@ const profilePageStyle = {
     margin: "1.071rem auto 0",
     maxWidth: "600px",
     color: "#999",
-    textAlign: "center !important"
+    textAlign: "center !important",
+
   },
   name: {
-    marginTop: "-80px"
+    marginTop: "-80px",
+    marginRight:'18px'
   },
   ...imagesStyle,
   main: {
@@ -55,7 +57,8 @@ const profilePageStyle = {
   },
   navWrapper: {
     margin: "20px auto 50px auto",
-    textAlign: "center"
+    textAlign: "center",
+    marginRight:'18px'
   }
 };
 

@@ -32,6 +32,10 @@ export default function HeaderLinksC(props) {
   const [contact,setContact]= useState("");
   const [pass,setPass]= useState("");
   
+  const logout =()=>{
+    localStorage.clear();
+    window.location.href="/login"
+  }
 const update =(e)=>{
 
   if(fname&&lname&&contact&&pass){
@@ -78,7 +82,7 @@ const update =(e)=>{
       </ListItem>
       <ListItem className={classes.listItem}>
       <a style={{textDecoration:'none'}} 
-      href="/login">  <Button>
+      href="/login">  <Button onClick={()=>logout()}>
           <ExitToAppIcon className={classes.icons} /> Logout
         </Button>
         </a>    </ListItem>
