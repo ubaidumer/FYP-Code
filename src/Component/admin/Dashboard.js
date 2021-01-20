@@ -105,6 +105,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   drawerPaper: {
+    backgroundColor:'#1565c0',
     position: 'relative',
     whiteSpace: 'nowrap',
     width: drawerWidth,
@@ -119,9 +120,9 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    width: theme.spacing(7),
+    width: theme.spacing(0),
     [theme.breakpoints.up('sm')]: {
-      width: theme.spacing(9),
+      width: theme.spacing(0),
     },
   },
   appBarSpacer: theme.mixins.toolbar,
@@ -171,6 +172,10 @@ React.useEffect(()=>{
       });
 
 },[])
+const logout=()=>{
+  localStorage.clear();
+  window.location.href="/adminsignin";
+}
 
   const ViewCus=()=>{
 adminService.viewc() .then((result)=>{
@@ -241,14 +246,14 @@ adminService.viewc() .then((result)=>{
           <Typography component="h1" variant="h6" color="white" noWrap className={classes.title}>
          <center> Admin Panel  </center>
           </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
+          <Button style={{    backgroundColor:'#1565c0',
+    borderRadius:10,
+    borderWidth: 1,
+    borderColor: '#0288d1'}} onClick={()=>{logout()}}><Typography component="h1"  className={classes.title} variant="h6" style={{color:"white"}}> <center>logout</center></Typography></Button>
+          
         </Toolbar>
       </AppBar>
-      <Drawer
+      <Drawer 
         variant="permanent"
         classes={{
           paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
@@ -256,43 +261,40 @@ adminService.viewc() .then((result)=>{
         open={open}
       >
         <div className={classes.toolbarIcon}>
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton style={{backgroundColor:'##1565c0',color:'white',paddingTop:'20px',paddingBottom:'20px'}} onClick={handleDrawerClose}>
             <ChevronLeftIcon />
           </IconButton>
         </div>
      
         <Divider />
-        <Button onClick={()=>{ViewCus()}} > 
+        <Button style={{backgroundColor:'#1565c0',color:'white',paddingTop:'20px',paddingBottom:'20px'}} onClick={()=>{ViewCus()}} > 
         <br/>
         <br/>
          View Customers
         </Button>
-        <br/>
-        <br/>
         <Divider />
         <br/>
         <br/>
-        <Button  onClick={()=>{ViewSer()}}> 
+        <Button style={{backgroundColor:'#1565c0',color:'white',paddingTop:'20px',paddingBottom:'20px'}} onClick={()=>{ViewSer()}}> 
          View Service Providers
+         <br/>
+        <br/>
         </Button>
-        <br/>
-        <br/>
+        
         <Divider />
-        <Button onClick={()=>{Viewo()}} > 
+        <Button style={{backgroundColor:'#1565c0',color:'white',paddingTop:'20px',paddingBottom:'20px'}} onClick={()=>{Viewo()}} > 
         <br/>
         <br/>
          View History
         </Button>
-        <br/>
-        <br/>
+        
         <Divider />
-        <Button onClick={()=>{Viewtask()}} > 
+        <Button style={{backgroundColor:'#1565c0',color:'white',paddingTop:'20px',paddingBottom:'20px'}}onClick={()=>{Viewtask()}} > 
         <br/>
         <br/>
          View Customer Requests
         </Button>
-        <br/>
-        <br/>
+        
         <Divider />
 
   
@@ -309,7 +311,7 @@ adminService.viewc() .then((result)=>{
             
             <center>
                  <Paper elevation={3} style={{width:'200px',height:'200px',marginTop:'20px'}}>
-                     <Typography variant='h5' style={{paddingTop:'30px'}}>
+                     <Typography variant='h5' style={{backgroundColor:'#3f51b5',color:'white',paddingTop:'20px',paddingBottom:'20px'}}>
                          Customers
                      </Typography>
                      <Divider/>
@@ -323,7 +325,7 @@ adminService.viewc() .then((result)=>{
             <Grid item md={6}>
             <center>
                  <Paper elevation={3} style={{width:'200px',height:'200px',marginTop:'20px'}}>
-                     <Typography variant='h5' style={{paddingTop:'30px'}}>
+                     <Typography variant='h5' style={{backgroundColor:'#3f51b5',color:'white',paddingTop:'20px',paddingBottom:'20px'}}>
                          Service Providers
                      </Typography>
                      <Divider/>

@@ -7,7 +7,8 @@ import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
 import {makeStyles} from '@material-ui/core/styles';
 import CardInput from './CardInput';
 import * as paymentService from '../../Axios-Actions/paymentService';
-import { Container, Divider, Typography } from '@material-ui/core';
+import { Backdrop, Container, Divider, Fade, Modal, Paper, Typography } from '@material-ui/core';
+import { Alert } from '@material-ui/lab';
 
 const useStyles = makeStyles({
   root: {
@@ -35,6 +36,7 @@ const useStyles = makeStyles({
   // State
   const [email, setEmail] = useState('');
   const [task,setTask]    = useState([]); 
+  const [open,setOpen] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
   React.useEffect(() => {
@@ -54,6 +56,7 @@ const useStyles = makeStyles({
     }
      const res=await paymentService.Payment(email,(task.month*task.permonth)+(task.pertask)+(task.perhour*(parseInt(task.endtime)-parseInt(task.starttime))*(task.month*30)));
      paymentService.paymentbyCard();
+     setOpen(true);
 
  //   const res = await axios.post('http://localhost:3000/pay', {email: email});
 
@@ -91,6 +94,31 @@ const useStyles = makeStyles({
     <Container maxWidth="md">
     <Card className={classes.root}>
       <CardContent className={classes.content}>
+
+        
+     <Modal style={{justifyContent:'center',alignItems:'center',display:'flex'}}
+              open={open}
+              onClose={!open}
+              closeAfterTransition
+              BackdropComponent={Backdrop}
+              BackdropProps={{
+                timeout: 500, 
+              }}
+          
+            >
+              <Fade in={open}> 
+              <Paper elevation={3} style={{textAlign:'center',}}>
+              <Container maxWidth="sm">
+    
+              <Alert severity="success">Payment successful</Alert> 
+              
+            
+            </Container>
+            </Paper>
+
+            </Fade> 
+            </Modal>
+
  <Typography variant="subtitle1" style={{color:'#9b34eb'}}>Your Account Email:{task.customeremail}</Typography>
  <Typography variant="subtitle1" style={{color:'#9b34eb'}}>Your Service Provider Email:{task.serviceprovideremail}</Typography>
  <Typography variant="subtitle1" style={{color:'#9b34eb'}}>Your Total bill:{(task.month*task.permonth)+(task.pertask)+(task.perhour*(parseInt(task.endtime)-parseInt(task.starttime))*(task.month*30))}</Typography>

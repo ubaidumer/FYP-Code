@@ -25,11 +25,9 @@ export default function ProductSection() {
         <GridItem xs={12} sm={12} md={8}>
           <h2 className={classes.title}>Let{"'"}s talk product</h2>
           <Typography className={classes.description}>
-            This is the paragraph where you can write more details about your
-            product. Keep you user engaged by providing meaningful information.
-            Remember that by this time, the user is curious, otherwise he wouldn
-            {"'"}t scroll to get here. Add a button if you want the user to see
-            more.
+          Tell us what you need. It's FREE to post, Get offers from trusted Taskers and view profiles,
+          Choose the right person for your task and get it done.
+            
           </Typography> 
         </GridItem>
       </GridContainer>
@@ -38,7 +36,7 @@ export default function ProductSection() {
           <GridItem xs={12} sm={12} md={4}>
             <InfoArea
               title="Emails"
-              description="Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough."
+              description="Email your queries to us."
               icon={Chat}
               iconColor="info"
               vertical
@@ -47,7 +45,7 @@ export default function ProductSection() {
           <GridItem xs={12} sm={12} md={4}>
             <InfoArea
               title="Verified Users"
-              description="Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough."
+              description="Users provide necessary information to signup, feel free to book services."
               icon={VerifiedUser}
               iconColor="success"
               vertical
@@ -56,7 +54,7 @@ export default function ProductSection() {
           <GridItem xs={12} sm={12} md={4}>
             <InfoArea
               title="Secure"
-              description="Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough."
+              description="It's secured and verified."
               icon={Fingerprint}
               iconColor="danger"
               vertical

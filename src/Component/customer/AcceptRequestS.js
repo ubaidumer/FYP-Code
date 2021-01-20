@@ -12,6 +12,8 @@ import Maid from './maid.png';
 import Plumber from './plumber.png';
 import Shopkeeper from './shopkeeper.png';
 import Electrician from './electrician.png';
+import Driver from "./driver.png"
+import Tailor from "./tailor.png"
 import { makeStyles } from '@material-ui/core/styles';
 import * as acceptServiceProviderService from "../../Axios-Actions/acceptServiceProviderService";
 
@@ -72,13 +74,24 @@ class AcceptRequestS extends Component{
 
           image = Plumber;
           return image;
-        }else if(i==="Electrician"){
+        }
+        else if(i==="Electrian"){
 
           image = Electrician;
           return image;
         }else if(i==="Shopkeeper"){
 
           image = Shopkeeper;
+          return image;
+        }
+        else if(i==="Tailor"){
+
+          image = Tailor;
+          return image;
+        }
+        else if(i==="Driver"){
+
+          image = Driver;
           return image;
         }
 

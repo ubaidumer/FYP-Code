@@ -70,7 +70,9 @@ const OrderHistory=()=> {
             <option value="Plumber">plumber</option>
                                 <option value="Maid">maid</option>
                                 <option value="Driver">driver</option>
-                                <option value="Electrician">electrician</option>
+                                <option value="Electrian">electrician</option>
+                                <option value="Tailor">tailor</option>
+                                <option value="Shopkeeper">shopkeeper</option>
               </select></div>
             </StyledTableCell>
             <StyledTableCell style={{backgroundColor:'#3264a8'}} align="left">Location</StyledTableCell>

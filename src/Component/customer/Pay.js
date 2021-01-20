@@ -2,10 +2,11 @@ import React from 'react';
 import Modal from '@material-ui/core/Modal'
 import { Backdrop, Container, Divider, Grid, Paper,Typography,Fade, Button } from '@material-ui/core';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
-import CreditCardIcon from '@material-ui/icons/CreditCard';
-import img from './cred.png';
 import * as paymentService from "../../Axios-Actions/paymentService";
-import * as Stripecard from"./Stripecard";
+import { Alert } from '@material-ui/lab';
+// or
+
+
 class Pay extends React.Component {
        counter=0;
 
@@ -115,6 +116,7 @@ class Pay extends React.Component {
       handleSubmit= event =>{
         event.preventDefault();
         this.validate();
+        <Alert severity="success">Successful</Alert>
           
         }
    
@@ -134,7 +136,7 @@ class Pay extends React.Component {
           // localStorage.setItem("token", result.data);
         console.log("Successfull emailed");
           setTimeout(function () {
-            window.location = "/";
+            window.location = "/profile";
           }, 2000);
         })
         .catch((err) => {
@@ -148,7 +150,7 @@ class Pay extends React.Component {
           // localStorage.setItem("token", result.data);
         console.log("Successfull emailed");
           setTimeout(function () {
-            window.location = "/";
+            window.location = "/profile";
           }, 2000);
         })
         .catch((err) => {
@@ -240,6 +242,7 @@ class Pay extends React.Component {
               })}>Cash on Spot
                 <AttachMoneyIcon style={{fontSize:'25px'}}/>
               </Button>
+            
           </Grid>
 
  

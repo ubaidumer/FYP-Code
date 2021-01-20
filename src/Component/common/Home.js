@@ -31,7 +31,7 @@ import styles from "../../assets/jss/material-kit-react/views/landingPage.js"
 import HeaderHome from "../../components/Header/HeaderHome"
 import ProductSection from "./Sections/ProductSection.js";
 import TeamSection from "./Sections/TeamSection.js";
-import { Container, Paper, Typography } from "@material-ui/core";
+import { Container, Grid, Paper, Typography } from "@material-ui/core";
 
 import WorkSection from "./Contact";
 
@@ -82,11 +82,11 @@ export default function Home(props) {
             <GridItem xs={12} sm={12} md={4}>
               <br/>
               <Typography variant="h4" className={classes.title}>Your Story Starts With Us.</Typography>
-              <Typography variant="h6">
-                Every landing page needs a small description after the big bold
-                title, that{"'"}s why we added this text here. Add here all the
-                information that can make you or your product create the first
-                impression.
+              <Typography variant="h6" className={classes.title}>
+              XsSupport is a trusted marketplace for people and businesses to outsource their tasks, whether you are looking for work or you need someone to do a specific task we are here to help you hire. Skilled people can earn extra income through our website or mobile app.
+
+Through Supertasker you have an ease of access to different individuals whom you find fit for the job.
+
                 </Typography>
               <br />
               <Button
@@ -100,8 +100,8 @@ export default function Home(props) {
                 Watch video
               </Button>
             </GridItem>
-            <GridItem md={1}></GridItem>
-            <GridItem md={7}>
+            <GridItem xs={false} md={1}></GridItem> 
+            <GridItem  md={7} >
              
                 <Paper>
                   <div style={{paddingTop:'20px',paddingLeft:'20px',paddingRight:'20px'}}>

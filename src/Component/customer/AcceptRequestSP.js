@@ -13,6 +13,8 @@ import Plumber from './plumber.png';
 import Shopkeeper from './shopkeeper.png';
 import Electrician from './electrician.png';
 import { makeStyles } from '@material-ui/core/styles';
+import Tailor from "./tailor.png";
+import Driver from "./driver.png"
 import * as privateTaskService from "../../Axios-Actions/privateTaskService";
 
 
@@ -72,7 +74,8 @@ class AcceptRequestSP extends Component{
 
           image = Plumber;
           return image;
-        }else if(i==="Electrician"){
+        }
+        else if(i==="Electrian"){
 
           image = Electrician;
           return image;
@@ -81,6 +84,17 @@ class AcceptRequestSP extends Component{
           image = Shopkeeper;
           return image;
         }
+        else if(i==="Tailor"){
+
+          image = Tailor;
+          return image;
+        }
+        else if(i==="Driver"){
+
+          image = Driver;
+          return image;
+        }
+        
 
        }
        onCancel(t){

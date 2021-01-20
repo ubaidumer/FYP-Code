@@ -62,6 +62,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
@@ -181,10 +182,11 @@ adminService.getdata(email)
   const classes = useStyles();
   return (
     <React.Fragment>
-      <Title>Add Service Providers</Title>
+      <Title>Manage Service Providers</Title>
       <br/>
      
-      <Modal style={{display:'flex',alignItems:'center',justifyContent:'center'}}
+      <Modal style={{display:'flex',alignItems:'center',justifyContent:'center'
+}}
         open={edit}
         onClose={!edit}
         aria-labelledby="simple-modal-title"
@@ -194,41 +196,124 @@ adminService.getdata(email)
         <Grid item md={3}>
 
         </Grid>
-        <Grid item md={6} style={{backgroundColor:'white',marginTop:'50px'}}>
-         <div style={{border:'2px solid #000',textAlign:'center'}}>
-           <div style={{backgroundColor:'darkseagreen',color:'white',paddingTop:'20px',paddingBottom:'20px'}}> <Typography variant="h2">
+        <Grid item md={6} style={{backgroundColor:'white',marginTop:'40px'}}>
+         <div style={{border:'1px solid #ccc',textAlign:'center',top: '40px',
+      left: '40px',
+      right: '40px',
+      bottom: '40px',
+      border: '1px solid #ccc',
+      background: '#fff',
+      overflow: 'auto',
+      WebkitOverflowScrolling: 'touch',
+      borderRadius: '4px',
+      outline: 'none',
+      padding: '20px'}}>
+           <div style={{backgroundColor:'darkolivegreen',color:'white',paddingTop:'20px',paddingBottom:'20px'}}> <Typography variant="h2">
            Edit a Service Provider
              </Typography>
            </div>
            <div>
                <h3>Enter ServiceProvider Email to be edited</h3>
            <div>
-           <TextField name="esearchemail"    onChange={(e)=>{setesearch(e.target.value)}} /* onChange={this.handleChange.bind(this)} value={this.state.esearchemail}*/ style={{width:'40%',marginBottom:'20px'}}
+           <TextField autoFocus
+            margin="dense" name="esearchemail"  style={{width:'40%',marginBottom:'40px'}}  onChange={(e)=>{setesearch(e.target.value)}} /* onChange={this.handleChange.bind(this)} value={this.state.esearchemail}*/ style={{width:'40%',marginBottom:'20px'}}
              />
            </div>
            <div /*onClick={this.get.bind(this)} */>
-           <Button variant='outlined'onClick={()=>{getdaaa(esearach)}} style={{marginBottom:'30px'}}>Search</Button>
+           <Button variant='outlined'onClick={()=>{getdaaa(esearach)}} style={{backgroundColor:'#3f51b5',color:'white',marginBottom:'30px'}}>Search</Button>
            </div>
            <h3>Enter ServiceProvider Information to be edited</h3>
 
            
               
-           <h4>Fname :{data.firstname}</h4>
-           <TextField name="efname"    onChange={(e)=>{setef(e.target.value)}}/* onChange={this.handleChange}value={this.state.efname}*/ ></TextField>
-           <h4>LastName  :{data.lastname}</h4>
-           <TextField name="elname"   onChange={(e)=>{setel(e.target.value)}}/* onChange={this.handleChange}value={this.state.elname}*/ ></TextField>
-           <h4>Email :{data.email}</h4>
-           <TextField name="eemail"    onChange={(e)=>{setee(e.target.value)}}/*onChange={this.handleChange}value={this.state.eemail}*/ ></TextField>
-           <h4>Password  </h4>
-           <TextField name="epass"   onChange={(e)=>{setep(e.target.value)}} /*onChange={this.handleChange}value={this.state.epass}*/ ></TextField>
-           <h4>ServiceType  :{data.servicetype}</h4>
-           <TextField name="eservicetype"    onChange={(e)=>{setes(e.target.value)}}/*onChange={this.handleChange}value={this.state.eservicetype}*/ ></TextField>
-           <h4>Contactno  :{data.contactno}</h4>
-           <TextField name="econtactno"    onChange={(e)=>{setec(e.target.value)}} /*onChange={this.handleChange}value={this.state.econtactno}*/ ></TextField>
-          
+           <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    autoComplete="fname"
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="efname"
+                    label="First Name"
+                    autoFocus
+                    name="efname"
+                     onChange={(e)=>{setef(e.target.value)}}
+                     
+                  /><h4>FirstName :{data.firstname}</h4>
+                </Grid>
+
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="elname"
+                    label="Last Name"
+                    autoComplete="elname"
+                    name='elname'
+                     onChange={(e)=>{setel(e.target.value)}}
+                  /><h4>LastName :{data.lastname}</h4>
+                </Grid>
+               
+               
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="eemail"
+                    label="Email Address"
+                 
+                    autoComplete="email"
+                    name='eemail' 
+                     onChange={(e)=>{setee(e.target.value)}}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="phone"
+                    label="Enter your Password"
+                    name='epass'
+                    onChange={(e)=>{setep(e.target.value)}}
+                   
+                  />
+                  </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+               
+                    label="Service Type"
+                    type="servicetype"
+                    id="servicetype"
+                    autoComplete="service type"
+                    name='eservicetype'
+                     onChange={(e)=>{setes(e.target.value)}}
+                  /> <h4>ServiceType :{data.servicetype}</h4>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+               
+                    label="Contact No"
+                    type="contactno"
+                    id="contactno"
+                    autoComplete="contact-number"
+                    name='econtactno' 
+                     onChange={(e)=>{setec(e.target.value)}}
+                  /><h4>ContactNo :{data.contactno}</h4>
+                </Grid>
+               
+              </Grid>
            
-           <Button variant='outlined' onClick={()=>Edit()}   >Edit</Button>
-           <Button variant='outlined' style={{marginBottom:'30px',marginLeft:'20px'}} 
+           <Button variant='outlined' style={{backgroundColor:'#3f51b5',color:'white',marginTop:'30px',marginLeft:'30px'}} onClick={()=>Edit()}   >Edit</Button>
+           <Button variant='outlined' style={{backgroundColor:'#3f51b5',color:'white',marginTop:'30px',marginLeft:'30px'}} 
            onClick={()=>setEdit(!edit)}
            > Close</Button>
            </div>
@@ -259,11 +344,12 @@ adminService.getdata(email)
            <div>
                <h3>Enter Email of ServiceProvider to be deleted</h3>
            <div>
-           <TextField name="dsearchemail"   onChange={(e)=>{setds(e.target.value)}} style={{width:'40%',marginBottom:'20px'}}
+           <TextField autoFocus
+            margin="dense" fullWidth name="dsearchemail"   onChange={(e)=>{setds(e.target.value)}} style={{width:'40%',marginBottom:'20px'}}
              />
            </div>
            <div >
-           <Button variant='outlined' onClick={()=>{getdaaa(ds)}} style={{marginBottom:'30px'}}>Search</Button>
+           <Button variant='outlined' onClick={()=>{getdaaa(ds)}} style={{backgroundColor:'#3f51b5',color:'white',marginBottom:'30px'}}>Search</Button>
            </div>
            <h3>ServiceProvider Information to be Deleted</h3>
 
@@ -275,8 +361,8 @@ adminService.getdata(email)
            <h4>ServiceType:{data.servicetype}</h4>
            <h4>Contactno:{data.contactno}</h4>
           
-           <Button variant='outlined'  onClick={()=>dels()}  style={{marginBottom:'30px'}}>Delete</Button>
-           <Button variant='outlined' style={{marginBottom:'30px',marginLeft:'20px'}} 
+           <Button variant='outlined'  onClick={()=>dels()}  style={{backgroundColor:'#3f51b5',color:'white',marginBottom:'30px',marginLeft:'20px'}}>Delete</Button>
+           <Button variant='outlined' style={{backgroundColor:'#3f51b5',color:'white',marginBottom:'30px',marginLeft:'20px'}} 
            onClick={()=>setDelete(false)}
            > Close</Button>
            </div>
@@ -296,53 +382,60 @@ adminService.getdata(email)
         aria-describedby="simple-modal-description"
       >
       <Grid item md={6} style={{backgroundColor:'white',marginTop:'50px'}}>
-         <div style={{border:'2px solid #000',textAlign:'center'}}>
-           <div style={{backgroundColor:'darkolivegreen',color:'white',paddingTop:'20px',paddingBottom:'20px'}}> <Typography variant="h5">
+         <div style={{border:'1px solid #000',textAlign:'center'}}>
+           <div style={{backgroundColor:'#3f51b5',color:'white',paddingTop:'20px',paddingBottom:'20px'}}> <Typography  variant="h5">
            Add a Service Provider
              </Typography>
            </div>
            <div>
            <div >
              
-           <TextField name="fname" //onChange={this.handleChange.bind(this)} value={this.state.fname}style={{width:'40%',marginBottom:'40px'}}//
+           <TextField autoFocus
+            margin="dense" name="fname" //onChange={this.handleChange.bind(this)} value={this.state.fname}style={{width:'40%',marginBottom:'40px'}}//
              label="Enter First Name"
              normal='normal'
              size='medium'
+             style={{width:'40%',marginBottom:'40px'}}
              onChange={(e)=>{setAf(e.target.value)}}
              />
            </div>
            <div>
            <TextField name="lname" // onChange={this.handleChange.bind(this)} value={this.state.lname}style={{width:'40%',marginBottom:'40px'}}//
              label="Enter Last Name"
+             style={{width:'40%',marginBottom:'40px'}}
              onChange={(e)=>{setAl(e.target.value)}}
              />
            </div>
            <div>
            <TextField name="email" //onChange={this.handleChange.bind(this)} value={this.state.email}style={{width:'40%',marginBottom:'40px'}}//
              label="Enter Email"
+             style={{width:'40%',marginBottom:'40px'}}
              onChange={(e)=>{setAe(e.target.value)}}
              />
            </div>
            <div>
            <TextField name="servicetype" //onChange={this.handleChange.bind(this)}value={this.state.servicetype}style={{width:'40%',marginBottom:'40px'}}//
              label="Enter Service Type "
+             style={{width:'40%',marginBottom:'40px'}}
              onChange={(e)=>{setAs(e.target.value)}}
              />
            </div>
            <div>
            <TextField name="pass" //onChange={this.handleChange.bind(this)}value={this.state.pass}style={{width:'40%',marginBottom:'40px'}}//
              label="Enter Password"
+             style={{width:'40%',marginBottom:'40px'}}
              onChange={(e)=>{setAp(e.target.value)}}
              />
            </div>
            <div>
            <TextField name="contactno" //onChange={this.handleChange.bind(this)}value={this.state.contactno}style={{width:'40%',marginBottom:'40px'}}//
              label="Enter Contact No"
+             style={{width:'40%',marginBottom:'40px'}}
              onChange={(e)=>{setAc(e.target.value)}}
              />
            </div>
-           <Button variant='outlined'    onClick={()=>Add()} /*onClick={this.add.bind(this)}  style={{marginBottom:'30px'}} */>Add</Button> 
-           <Button variant='outlined' style={{marginBottom:'30px',marginLeft:'20px'}} 
+           <Button variant='outlined'     style={{backgroundColor:'#3f51b5',color:'white',marginTop:'30px',marginLeft:'20px'}}onClick={()=>Add()} /*onClick={this.add.bind(this)}  style={{marginBottom:'30px'}} */>Add</Button> 
+           <Button variant='outlined' style={{backgroundColor:'#3f51b5',color:'white',  marginTop:'30px',marginLeft:'20px'}} 
           onClick={()=>setAdd(false)}
            > Close</Button>
            </div>

@@ -7,7 +7,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Divider, Grid } from '@material-ui/core';
-
+import Driver from "./driver.png"
+import Tailor from "./tailor.png"
 import Cook from './cook.png';
 import Maid from './maid.png';
 import Plumber from './plumber.png';
@@ -88,13 +89,23 @@ class PrivateAcceptRequest extends Component{
 
           image = Plumber;
           return image;
-        }else if(i==="Electrician"){
+        }else if(i==="Electrian"){
 
           image = Electrician;
           return image;
         }else if(i==="Shopkeeper"){
 
           image = Shopkeeper;
+          return image;
+        }
+        else if(i==="Tailor"){
+
+          image = Tailor;
+          return image;
+        }
+        else if(i==="Driver"){
+
+          image = Driver;
           return image;
         }
 

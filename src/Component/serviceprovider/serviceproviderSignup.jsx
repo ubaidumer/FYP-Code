@@ -18,6 +18,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from "@material-ui/core/styles";
 import * as authService from'../../Axios-Actions/authService';
 import { Container, NativeSelect, Radio } from '@material-ui/core';
+import { Alert, AlertTitle } from '@material-ui/lab';
 
 
 function Copyright() {
@@ -76,6 +77,7 @@ class serviceproviderSignup extends Component {
         invalid: false,
         loading: false,
         error: "",
+        err:true
       };
   
       this.onChange = this.onChange.bind(this);
@@ -135,6 +137,7 @@ class serviceproviderSignup extends Component {
       this.setState({ error: errors || {} });
       if (errors) {
        console.log("validation error");
+       this.setState({err:false}) 
         return;
       }
       if(data.password===data.confirmpassword){
@@ -162,7 +165,7 @@ class serviceproviderSignup extends Component {
           console.log("Server error");
         });
       }else{
-        console.log("password and confirm password are not same.");
+        alert("password and confirm password are not same.");
         return;
       }
     }
@@ -283,10 +286,16 @@ class serviceproviderSignup extends Component {
                 />
               </Grid>
               <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
+              <div>
+                    {this.state.err==false? (<div>
+                      <Alert severity="warning">
+  <AlertTitle>Warning</AlertTitle>
+  <div> {JSON.stringify(this.state.error)}
+   </div>
+  This is a warning alert — <strong>check it out!</strong>
+</Alert>
+                       </div>): (<div> </div>)}
+                  </div>
               </Grid>
             </Grid>
             <Button
@@ -301,7 +310,7 @@ class serviceproviderSignup extends Component {
             </Button>
             <Grid container justify="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/login" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>

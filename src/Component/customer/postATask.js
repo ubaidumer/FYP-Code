@@ -1,5 +1,6 @@
-import { Button, Container, Grid, InputLabel, NativeSelect, Paper, TextField, Typography } from '@material-ui/core';
+import { Backdrop, Button, Container, Fade, Grid, InputLabel, Modal, NativeSelect, Paper, TextField, Typography } from '@material-ui/core';
 import React from 'react';
+import Alert from '@material-ui/lab/Alert';
 import * as postService from'../../Axios-Actions/postService';
 
 class PostATask extends React.Component  {
@@ -26,6 +27,7 @@ class PostATask extends React.Component  {
           perTaskError: '',
           perHourError: '',
           perMonthError: '',
+          open: false
 
       };
       this.handleChange= this.handleChange.bind(this);
@@ -104,6 +106,7 @@ class PostATask extends React.Component  {
         if(isValid){
 
           let location= "city:"+document.getElementById('city').value+" Area:"+this.state.Area+" StreetNo:"+this.state.streetNo+" HouseNo:"+this.state.houseNo;
+          this.setState({open:true})
           
 
 console.log(  this.state.title,
@@ -189,6 +192,29 @@ console.log(  this.state.title,
          errorText={this.state.titleError}
           style={{borderRadius:'5px',width:'70%',marginBottom:'20px',textAlign:'center'}} type='text'/>
      </Grid>
+ 
+     <Modal style={{justifyContent:'center',alignItems:'center',display:'flex'}}
+              open={this.state.open}
+              onClose={!this.state.open}
+              closeAfterTransition
+              BackdropComponent={Backdrop}
+              BackdropProps={{
+                timeout: 500, 
+              }}
+          
+            >
+              <Fade in={this.state.open}> 
+              <Paper elevation={3} style={{textAlign:'center',}}>
+              <Container maxWidth="sm">
+    
+              <Alert severity="success">Task successfully posted</Alert> 
+              <Button onClick={()=>this.setState({open:false})}>Close</Button>
+            
+            </Container>
+            </Paper>
+
+            </Fade> 
+            </Modal>
      </Grid>
         </div>
         <Grid container>
@@ -208,6 +234,8 @@ console.log(  this.state.title,
                                 <option value="Electrian">Electrian</option>
                                 <option value="Cook">Cook</option>
                                 <option value="Plumber">Plumber</option>
+                                <option value="Driver">Driver</option>
+                                <option value="Tailor">Tailor</option>
                                 <option value="Shopkeeper">Shopkeeper</option>
                                 
                                 </NativeSelect> </span>

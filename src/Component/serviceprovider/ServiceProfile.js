@@ -18,7 +18,7 @@ import GridItem from "../../components/Grid/GridItem.js";
 import HeaderLinksS from "../../components/Header/HeaderLinksS.js";
 import NavPills from "../../components/NavPills/NavPills.js";
 import Parallax from "../../components/Parallax/Parallax.js";
-
+import def from "./def.jpg"
 import profile1 from "../../assets/img/faces/christian.jpg";
 import * as serviceproviderService from "../../Axios-Actions/serviceproviderService";
 
@@ -208,7 +208,7 @@ console.log("enter valid firstname");
                   <form onSubmit={(e) => up(e)}>   <input style={{ display: 'none' }} type='file' id="file" name='image' onChange={(e) => ch(e)} accept="image/*" />
                     
                     <label for="file">   
-                  <img  style={{maxHeight:'200px',maxWidth:'200px'}}src={prof.imageURL||profile1} alt="No Content" className={imageClasses}/>
+                  <img  style={{maxHeight:'200px',maxWidth:'200px'}}src={prof.imageURL||def} alt="No Content" className={imageClasses}/>
                   </label>
                 
                   </form>

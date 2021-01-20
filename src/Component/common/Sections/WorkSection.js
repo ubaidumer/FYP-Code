@@ -22,6 +22,7 @@ export default function WorkSection() {
       <GridContainer justify="center">
         <GridItem cs={12} sm={12} md={8}>
           <Typography variant="h5" className={classes.title}>Work with us</Typography>
+    
           <Typography className={classes.description}>
             Divide details about your product or agency work into parts. Write a
             few lines about each one and contact us about any further

@@ -65,6 +65,7 @@ export default function LoginPage(props) {
     .then((result) => {
       console.log("Successfully admin login");
         setTimeout(function () {
+          localStorage.setItem("token", result.data);
           window.location = "/dashboard";
         }, 2000);
       })

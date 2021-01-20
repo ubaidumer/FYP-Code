@@ -102,16 +102,20 @@ class Rating extends React.Component{
                         
                 <div style={{display:'inline-flex',marginTop:'40px',width:'100%',backgroundColor:'#f7f7f7',flexWrap:'wrap'}}>
                    
-                   <Avatar style={{marginTop:'17px',marginRight:'20px',marginLeft:'10px',height:'50px',width:'50px'}}></Avatar>
+                   <Avatar style={{marginTop:'17px',marginRight:'20px',marginLeft:'10px',height:'50px',width:'50px'}} >
+                       <img style={{maxHeight:'50px',maxWidth:'50px'}} src={this.props.pic}/>
+                   </Avatar>
                    <div>
                    <Typography variant="h6" style={{paddingTop:'25px'}} >
                        {t.customeremail}
+                       <br/>
+                       {this.props.name}
                        </Typography>
                     <ReactStars
     count={t.star}
     size={30}
     color={"#ffd700"}
-  />
+  /><div style={{textAlign:"start"}}>
                    <Typography variant="subtitle1">
                         
                       Title: {t.reviewtitle}
@@ -120,6 +124,7 @@ class Rating extends React.Component{
                       <Typography variant="subtitle1">
                         Review:{t.review}
                </Typography>
+               </div>
            <br/>
  
                     </div>
@@ -137,22 +142,23 @@ class Rating extends React.Component{
 
                 <Grid item md={5} xs={12}>
                 <div style={{marginTop:'20px'}}>
-                    <Paper style={{marginLeft:'20px',height:'50px'}}>
+                    <Paper style={{marginLeft:'50px',height:'50px'}}>
                         <Typography variant="h5" style={{paddingTop:'10px',paddingLeft:'20px'}}>
                             Post A Review
                         </Typography>
                     </Paper>
                     
-                    <div style={{marginLeft:'20px',marginTop:'20px',justifyContent:'center',textAlign:'center'}}>
-                        <img alt="no content" class="responsive" style={{maxHeight:'350px',maxWidth:'300px',marginRight:'20%'}} src={img}/>
-                        <p>ServiceProvider E-mail:{servant.serviceprovideremail}</p>
-                        <p>Task Title: {servant.title}</p>
+                    <div style={{marginLeft:'50px',marginTop:'20px',justifyContent:'center',textAlign:'start'}}>
+                        <img alt="no content" class="responsive" style={{maxHeight:'350px',maxWidth:'350px',marginRight:'20%'}} src={this.props.picture}/>
+                        <Typography variant="h6">Email:{servant.serviceprovideremail}</Typography>
+                        <Typography variant="h6">Name:{servant.name}</Typography>
+                        <Typography variant="h6">Task Title: {servant.title}</Typography>
 
-                  <center style={{marginLeft:'35%'}}>
+                  <center style={{marginLeft:'1%'}}>
                   <ReactStars 
     count={5}
     onChange={ratingChanged}
-    size={24}
+    size={36}
     activeColor="#ffd700"
   />
 
@@ -160,7 +166,7 @@ class Rating extends React.Component{
                     </div>
                     
 
-                    <div style={{display:'inline-flex',marginLeft:'20px',marginTop:'20px'}}> 
+                    <div style={{display:'inline-flex',marginTop:'20px'}}> 
                         <Avatar variant='square'   />
                         <div >
                         <input name="rtitle"onChange={this.handleChange} value={this.state.rtitle}id="rtitle"style={{marginLeft:'20px' ,width:'100%',marginTop:'10px'}} type="text" placeholder="review Title"/>

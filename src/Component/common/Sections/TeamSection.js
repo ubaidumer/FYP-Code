@@ -48,10 +48,7 @@ export default function TeamSection() {
               </Typography>
               <CardBody>
                 <Typography className={classes.description}>
-                  You can write here details about one of your team members. You
-                  can give more details about what they do. Feel free to add
-                  some <a href="#pablo">links</a> for people to be able to
-                  follow them outside the site.
+                  Full stack developer || MERN
                 </Typography>
               </CardBody>
               <CardFooter className={classes.justifyCenter}>
@@ -85,16 +82,13 @@ export default function TeamSection() {
                 <img src={ubaid} style={{maxWidth:'150px',maxHeight:'150'}} alt="..." className={imageClasses} />
               </GridItem>
               <Typography className={classes.cardTitle}>
-                Ubaid Lkhan
+                Ubaid khan
                 <br />
                 <small className={classes.smallTitle}>Developer</small>
               </Typography>
               <CardBody>
                 <Typography className={classes.description}>
-                  You can write here details about one of your team members. You
-                  can give more details about what they do. Feel free to add
-                  some <a href="#pablo">links</a> for people to be able to
-                  follow them outside the site.
+                  Node js developer
                 </Typography>
               </CardBody>
               <CardFooter className={classes.justifyCenter}>
@@ -130,14 +124,11 @@ export default function TeamSection() {
               <Typography className={classes.cardTitle}>
                 Usman Zafar
                 <br />
-                <small className={classes.smallTitle}>Database eNigger</small>
+                <small className={classes.smallTitle}>Tester</small>
               </Typography>
               <CardBody>
                 <Typography className={classes.description}>
-                  You can write here details about one of your team members. You
-                  can give more details about what they do. Feel free to add
-                  some <a href="#pablo">links</a> for people to be able to
-                  follow them outside the site.
+                  A web developer and UI/UX designer.
                 </Typography>
               </CardBody>
               <CardFooter className={classes.justifyCenter}>

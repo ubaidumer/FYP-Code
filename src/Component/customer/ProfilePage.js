@@ -5,7 +5,7 @@ import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 import Camera from "@material-ui/icons/Camera";
-import { Backdrop, CircularProgress, Container, Divider, Fade, Grid, Input, Modal } from '@material-ui/core';
+import { Backdrop, CircularProgress, Container, Divider, Fade, Grid, Modal } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import img from "../../assets/img/bg2.jpg"
 
@@ -23,19 +23,18 @@ import HeaderLinksC from "../../components/Header/HeaderLinksC"
 import NavPills from "../../components/NavPills/NavPills.js";
 import Parallax from "../../components/Parallax/Parallax.js";
 
-import profile1 from "../../assets/img/faces/christian.jpg";
 import no from "../../assets/img/faces/no.png"
 import * as customerService from "../../Axios-Actions/customerService"
 import studio1 from "../../assets/img/examples/servant2.jpg";
 
 import styles from "../../assets/jss/material-kit-react/views/profilePage";
-import { Card, CardActionArea, CardActions, CardContent, InputAdornment, Paper, TextField, Typography } from "@material-ui/core";
-import { Apps, AttachMoney, Details, Money, PanoramaFishEye, Payment, SendOutlined } from "@material-ui/icons";
+import { Card, CardActionArea, CardActions, CardContent, Paper, TextField, Typography } from "@material-ui/core";
+import {  Details, Money, PanoramaFishEye } from "@material-ui/icons";
 
 import CustomDropdown from "../../components/CustomDropdown/CustomDropdown.js";
 import * as privateTaskService from "../../Axios-Actions/privateTaskService";
 
-
+import def from "./def.jpg"
 import PostATask from "../customer/postATask"
 import OrderHistory from "./OrderHistory.js";
 import PostedTask from "./postedTask.js";
@@ -45,7 +44,7 @@ import AcceptRequestSP from "./AcceptRequestSP.js";
 import Pay from "./Pay.js";
 import Stripecard from "./Stripecard.js";
 import NearbyServices from "../../Component/common/NearbyServices.js"
-import rating from "./rating";
+
 const useStyles = makeStyles(styles);
 
 let currentS;
@@ -57,7 +56,7 @@ export default function ProfilePage(props) {
 
   const [prof, setProfile] = React.useState([]);
   const [openService,setOpenService]= React.useState(false);
-  const [sp, setSp] = React.useState([]);
+  const [, setSp] = React.useState([]);
   const [details, setGetD] = React.useState([]);
   const [preview, setPreview] = React.useState(false);
   const [s, setS] = React.useState([]);
@@ -126,13 +125,6 @@ export default function ProfilePage(props) {
 
 }
 
-let searchbyall=()=>{
-  customerService.getAllService()
-  .then((result)=>{
-  setS(result.data);
-  })
-
-}
 const searchname=()=>{
 
   customerService.searchname(sbn)
@@ -155,13 +147,13 @@ let getData=(id)=>{
     if(title&&location&&description&&pertask&&perhour&&permonth&&month&&start&&end&&servicetype){
 
       privateTaskService.PostATask(title,servicetype,location,perhour,permonth,pertask,start,end,month,description,serviceprovider) 
-       .then((result) => {
+       .then(() => {
         console.log("Successfully send a private task");
           setTimeout(function () {
             window.location = "/profile";
           }, 2000);
         })
-        .catch((err) => {
+        .catch(() => {
           this.setState({ invalid: true });
           console.log(" upload error");
         });
@@ -182,7 +174,7 @@ let getData=(id)=>{
         currentS=id;
         image=img
   }
-const okhello =(e)=>{
+const okhello =()=>{
 setOpenService(false);
 setprivatetaskOpen(true);
 }
@@ -207,13 +199,13 @@ setprivatetaskOpen(true);
     try {
 
       customerService.saveimage(preview)
-        .then((result) => {
+        .then(() => {
           console.log("Successfull uploaded customer image");
           setTimeout(function () {
             window.location = "/profile";
           }, 2000);
         })
-        .catch((err) => {
+        .catch(() => {
           console.log("image upload error");
         });
     } catch (err) {
@@ -233,7 +225,6 @@ setprivatetaskOpen(true);
     classes.imgRoundedCircle,
     classes.imgFluid
   );
-  const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
   return (
     <div>
 
@@ -259,7 +250,7 @@ setprivatetaskOpen(true);
                   <div style={{marginRight:'12px'}} >  
                     <form onSubmit={(e) => up(e)}>   <input style={{ display: 'none' }} type='file' id="file" name='image' onChange={(e) => ch(e)} accept="image/*" />
                     <label for="file">   
-                      <img style={{ maxHeight: '200px', maxWidth: '200px' }} src={prof.imageURL || no } alt="No Content" className={imageClasses} />
+                      <img style={{ maxHeight: '200px', maxWidth: '200px' }} src={prof.imageURL || def } alt="No Content" className={imageClasses} />
                     </label>
                   </form>
 
@@ -612,7 +603,7 @@ setprivatetaskOpen(true);
                         <GridContainer justify="center">
                           <GridItem xs={12} sm={12} md={11}>
                             <br />
-                            <Rating/>
+                            <Rating name={prof.customername} pic={prof.imageURL} picture={image || studio1} />
 
                           </GridItem>
                         </GridContainer>
@@ -667,7 +658,7 @@ setprivatetaskOpen(true);
 
                               <Typography  variant="subtitle1">Contact No:</Typography>
                     <Typography  variant="subtitle1">{details.contactno}</Typography>
-                    <Button onClick={(e)=>{omegalul()}}variant="outlined">Close</Button>
+                    <Button onClick={()=>{omegalul()}}variant="outlined">Close</Button>
                               </div>
                               </div>
                           
@@ -689,7 +680,7 @@ setprivatetaskOpen(true);
                     <Grid container>
                   
                     <Paper elevation={2} >
-                    <center>
+                    <center style={{backgroundColor:'#675e8c',color:'white'}}>
                             <br/>
                         <Typography variant="h5">Send a Private Task</Typography>
                         <Divider/>
@@ -715,6 +706,8 @@ setprivatetaskOpen(true);
                                 <option value="Cook">Cook</option>
                                 <option value="Plumber">Plumber</option>
                                 <option value="Shopkeeper">Shopkeeper</option>
+                                <option value="Driver">Driver</option>
+                                <option value="Tailor">Tailor</option>
                                 
                                 </select> </span>
              </Typography></li>
@@ -773,7 +766,7 @@ setprivatetaskOpen(true);
                                 <Grid item md={10}>
                           <li><TextField fullWidth onChange={(e)=>{setDescription(e.target.value)}}label="Description"></TextField></li> </Grid>
                           <br/>
-                          <li style={{marginLeft:'25%'}}><Button color="primary" style={{marginRight:'19px'}} onClick={(e)=>sendptask(e,currentS)}>Send</Button><Button color="danger" onClick={()=>{setprivatetaskOpen(false)}}>Close</Button></li>
+                          <li style={{marginLeft:'25%'}}><Button color="success" style={{marginRight:'19px'}} onClick={(e)=>sendptask(e,currentS)}>Send</Button><Button  onClick={()=>{setprivatetaskOpen(false)}}>Close</Button></li>
                         </ul>
                       </Grid>
                      </Paper>

@@ -17,12 +17,13 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from "@material-ui/core/styles";
-import Joi from "joi-browser";
+import Joi, { errors } from "joi-browser";
 import * as authService from'../../Axios-Actions/authService';
 import { Radio } from '@material-ui/core';
 import useGeoLocation from "./useGeoLocation";
 import { Divider } from "@material-ui/core";
 import { Apps, Face, Phone, PhonelinkLockOutlined, VpnKey } from "@material-ui/icons";
+import { Alert, AlertTitle } from '@material-ui/lab';
 
 
 function Copyright() {
@@ -82,7 +83,8 @@ class SignIn extends Component{
           invalid: false,
           loading: false,
           error: "",
-          gen:false
+          gen:false,
+          err: true
         };
     
         this.onChange = this.onChange.bind(this);
@@ -145,8 +147,9 @@ class SignIn extends Component{
         this.setState({ error: errors || {} });
         // console.log(error);
         if (errors) {
-            alert(errors);   
+            console.log(errors) 
             console.log("validation error");
+            this.setState({err:false})
              return;
         }else{
           if(!la||!ln){
@@ -262,6 +265,13 @@ class SignIn extends Component{
       />
 Sign in as a customer.
 </span>
+<div>
+  {this.state.err==false  ? (<div><Alert severity="error"> 
+  <AlertTitle>Error</AlertTitle>
+  Email or Password invalid — <strong>check it out!</strong>
+</Alert> </div>) : (<div> </div>)}
+
+  </div> 
           <Grid container>
         <Grid item md={4}>
 
