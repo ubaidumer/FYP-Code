@@ -81,7 +81,7 @@ export default function Home(props) {
           <GridContainer>
             <GridItem xs={12} sm={12} md={4}>
               <br/>
-            
+              <div style={{marginBottom:'100px'}}></div>
               <Typography variant="h6" className={classes.title}>
               XsSupport is a trusted marketplace for people and businesses to outsource their tasks, whether you are looking for
                work or you need someone to do a specific task we are here to help you hire. Skilled people can earn extra income through our website.
