@@ -21,8 +21,8 @@ export default function ProductSection() {
   const classes = useStyles();
   return (
     <div className={classes.section}>
-      <GridContainer justify="center">
-        <GridItem xs={12} sm={12} md={8}>
+      <GridContainer justify="center" style={{marginRight:'20px'}} >
+        <GridItem xs={12} sm={11} md={8} xs={10}>
           <h2 className={classes.title}>Let{"'"}s talk product</h2>
           <Typography className={classes.description}>
           Tell us what you need. It's FREE to post, Get offers from trusted Taskers and view profiles,
@@ -33,7 +33,7 @@ export default function ProductSection() {
       </GridContainer>
       <div>
         <GridContainer>
-          <GridItem xs={12} sm={12} md={4}>
+          <GridItem xs={12} sm={11} md={4} xs={11}>
             <InfoArea
               title="Emails"
               description="Email your queries to us."
@@ -42,7 +42,7 @@ export default function ProductSection() {
               vertical
             />
           </GridItem>
-          <GridItem xs={12} sm={12} md={4}>
+          <GridItem xs={12} sm={11} md={4} xs={11}>
             <InfoArea
               title="Verified Users"
               description="Users provide necessary information to signup, feel free to book services."
@@ -51,7 +51,7 @@ export default function ProductSection() {
               vertical
             />
           </GridItem>
-          <GridItem xs={12} sm={12} md={4}>
+          <GridItem xs={12} sm={12} md={4} xs={11}>
             <InfoArea
               title="Secure"
               description="It's secured and verified."

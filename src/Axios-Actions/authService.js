@@ -28,7 +28,7 @@ export async function CustomerSignUp(
   password,
   contactno,lat,lng
 ) {
-  return await http.post(apiEndpoint + "/customer/signup", {
+  return await http.post("/customer/signup", {
     firstname,
     lastname,
     email,
@@ -44,7 +44,7 @@ export async function ServiceProviderSignUp(
     password,
     contactno,lat,lng
   ) {
-    return await http.post(apiEndpoint + "/serviceprovider/signup", {
+    return await http.post("/serviceprovider/signup", {
       firstname,
       lastname,
       email,

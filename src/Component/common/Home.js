@@ -83,9 +83,8 @@ export default function Home(props) {
               <br/>
               <Typography variant="h4" className={classes.title}>Your Story Starts With Us.</Typography>
               <Typography variant="h6" className={classes.title}>
-              XsSupport is a trusted marketplace for people and businesses to outsource their tasks, whether you are looking for work or you need someone to do a specific task we are here to help you hire. Skilled people can earn extra income through our website or mobile app.
-
-Through Supertasker you have an ease of access to different individuals whom you find fit for the job.
+              XsSupport is a trusted marketplace for people and businesses to outsource their tasks, whether you are looking for
+               work or you need someone to do a specific task we are here to help you hire. Skilled people can earn extra income through our website.
 
                 </Typography>
               <br />
@@ -101,8 +100,7 @@ Through Supertasker you have an ease of access to different individuals whom you
               </Button>
             </GridItem>
             <GridItem xs={false} md={1}></GridItem> 
-            <GridItem  md={7} >
-             
+            <GridItem  md={7} xs={11}>
                 <Paper>
                   <div style={{paddingTop:'20px',paddingLeft:'20px',paddingRight:'20px'}}>
               <Carousel>
@@ -135,7 +133,10 @@ Through Supertasker you have an ease of access to different individuals whom you
         <div className={classes.container}>
           <ProductSection />
           <TeamSection />
+          <GridItem xs={11}>
           <WorkSection />
+          </GridItem>
+        
         </div>
       </div>
       <Footer />
