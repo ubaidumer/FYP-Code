@@ -10,9 +10,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Tooltip from "@material-ui/core/Tooltip";
-
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
 // @material-ui/icons
-import { Apps, CloudDownload } from "@material-ui/icons";
+import { Apps } from "@material-ui/icons";
 
 // core components
 
@@ -41,25 +41,26 @@ export default function HeaderLinks(props) {
             <Link to="/customerSignup" className={classes.dropdownLink}>
               As Customer
             </Link>,
-            <a
-              href="/serviceproviderSignup"
+            <Link to="/serviceproviderSignup"
               target="_blank"
               className={classes.dropdownLink}
             >
               As Service Provider
-            </a>
+            </Link>
           ]}
         />
       </ListItem>
       <ListItem className={classes.listItem}>
+      <Link to="/login" style={{textDecoration:'none',color:'white'}}>
         <Button
-          href="https://www.creative-tim.com/product/material-kit-react?ref=mkr-navbar"
+          
           color="transparent"
           target="_blank"
           className={classes.navLink}
         >
-          <CloudDownload className={classes.icons} /> Download
+          <VpnKeyIcon className={classes.icons} /> Login
         </Button>
+        </Link>
       </ListItem>
       <ListItem className={classes.listItem}>
         {/*<Tooltip title="Delete">
